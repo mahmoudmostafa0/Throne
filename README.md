@@ -37,3 +37,19 @@ Features
    - Users can see others (screening works)
 
 ![Throne in action...](http://i.imgur.com/tZs4aeu.jpg)
+
+
+
+Credits
+-------
+Mentalis/sbradno
+CptSky
+Fang
+Impulse
+InfamousNoone
+Encore
+
+Leave a message on [Chained2PVP](http://chained2pvp.com/topic/332-throne-project-development/) if you belong in the credits!
+
+
+
