@@ -31,7 +31,7 @@ Features
    - Roles
    - Maps
    - Items (equip, inventory, map)
-   - Movemenent
+   - Movement
    - Limited chat support
    - Users can see others (screening works)
 
