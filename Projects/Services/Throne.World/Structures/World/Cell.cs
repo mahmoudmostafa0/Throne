@@ -13,10 +13,17 @@ namespace Throne.World.Structures.World
         ///     If the tile is flagged as a portal, this will be the portal's destination ID.
         /// </summary>
         public Int16 Argument;
-        
+
+
+        public Cell(CellType baseType, Int16 altitude)
+        {
+            Flags = baseType;
+            Argument = altitude;
+        }
+
         public static implicit operator Boolean(Cell cell)
         {
-            return cell.Flags.HasFlag(CellType.Open);
+            return cell[CellType.Open];
         }
 
         public Boolean this[CellType flag]
