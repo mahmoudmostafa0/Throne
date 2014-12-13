@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84E08876-15EB-491A-BD83-96C54492A638}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Throne.World</RootNamespace>
+    <AssemblyName>Throne.World</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;EXPERIMENTAL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591,3009,3016,3015</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>None</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>..\..\..\Analysis\Relaxed.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Throne.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build x86|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Build x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EXPERIMENTAL</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>1591,3009,3016,3015</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSScriptLibrary">
+      <HintPath>..\..\..\Dependencies\CSScriptLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="Throne.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Build\Throne.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Database\CreateDatabaseCommand.cs" />
+    <Compile Include="Commands\Database\DropDatabaseCommand.cs" />
+    <Compile Include="Commands\Database\ExportSchemaCommand.cs" />
+    <Compile Include="Commands\Scripting\RefreshScriptsCommand.cs" />
+    <Compile Include="Commands\User\Items\CreateItemCommand.cs" />
+    <Compile Include="Commands\User\Character States and Titles\CharacterStateCommand.cs" />
+    <Compile Include="Commands\User\Items\SendGearCommand.cs" />
+    <Compile Include="Commands\User\Travel\TeleportCommand.cs" />
+    <Compile Include="Commands\User\UserCommand.cs" />
+    <Compile Include="Commands\World\MapAttributeCommand.cs" />
+    <Compile Include="Commands\World\WeatherCommand.cs" />
+    <Compile Include="Database\Implementations\Conventions\Naming\WorldClassNamingConvention.cs" />
+    <Compile Include="Managers\Character Manager.cs" />
+    <Compile Include="Managers\Chat Manager.cs" />
+    <Compile Include="Managers\Item Manager.cs" />
+    <Compile Include="Managers\World Manager.cs" />
+    <Compile Include="Network\Handling\WorldPacketHandlerAttribute.cs" />
+    <Compile Include="Network\Handling\WorldPacketPropagator.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.GetWarp.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Away.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.RoleQuery.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.SetAppearance.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Teleport.cs" />
+    <Compile Include="Network\Messages\[1008] Item Information.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Drop.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Equip.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.SendGear.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Unequip.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Use.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Remove.cs" />
+    <Compile Include="Network\Messages\[1016] Weather.cs" />
+    <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
+    <Compile Include="Network\WorldPacket.cs" />
+    <Compile Include="Database\Records\Item Record.cs" />
+    <Compile Include="Database\Records\Server Info Record.cs" />
+    <Compile Include="Properties\Constants.cs" />
+    <Compile Include="Network\Exchange\Diffie-Hellman Exchange.cs" />
+    <Compile Include="Network\Messages\[10014] Role Info.cs" />
+    <Compile Include="Network\Messages\[10005] Walk.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\_GeneralAction.Enumerators.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmAssets.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmFriends.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmLocation.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\_GeneralAction.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmGuild.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmSkills.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmProficiencies.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Jump.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.LoginComplete.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.CombatMode.cs" />
+    <Compile Include="Network\Messages\[1001] Character Creation.cs" />
+    <Compile Include="Network\Messages\[1006] Character Information.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\_ItemAction.Enumerator.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\_ItemAction.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.PingResponse.cs" />
+    <Compile Include="Network\Messages\[1033] Time Synchronize.cs" />
+    <Compile Include="Network\Messages\[1044] Load Map.cs" />
+    <Compile Include="Network\Messages\[1110] Map Info.cs" />
+    <Compile Include="Network\Messages\[2079] Server Information.cs" />
+    <Compile Include="Network\Messages\[1052] Client Authentication.cs" />
+    <Compile Include="Network\Messages\[1004] Chat Message.cs" />
+    <Compile Include="Network\WorldClient.cs" />
+    <Compile Include="Properties\Program.cs" />
+    <Compile Include="Properties\SolutionInfo.cs" />
+    <Compile Include="Database\Records\Character Record.cs" />
+    <Compile Include="Database\Implementations\Serial Generator.cs" />
+    <Compile Include="Database\Implementations\World Database Context.cs" />
+    <Compile Include="Database\Implementations\World Database Record.cs" />
+    <Compile Include="Database\Records\Map Info Record.cs" />
+    <Compile Include="Properties\Settings\SystemSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>SystemSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Scripting\Compilers\Compiler Errors.cs" />
+    <Compile Include="Scripting\Compilers\Compiler.cs" />
+    <Compile Include="Scripting\Compilers\CSharp Compiler.cs" />
+    <Compile Include="Scripting\Interfaces.cs" />
+    <Compile Include="Scripting\Script Attributes.cs" />
+    <Compile Include="Managers\Script Manager.cs" />
+    <Compile Include="Scripting\Scripts\Script Base.cs" />
+    <Compile Include="Scripting\Scripts\Item Script.cs" />
+    <Compile Include="Scripting\Scripts\Map Script.cs" />
+    <Compile Include="Security\Incident Severity Levels.cs" />
+    <Compile Include="Security\Security Violation EventArgs.cs" />
+    <Compile Include="Security\Security Violation Exception.cs" />
+    <Compile Include="Structures\Objects\WorldObject.Enumerators.cs" />
+    <Compile Include="Structures\Gear\Gear.cs" />
+    <Compile Include="Structures\Objects\Items\Item.Enumerators.cs" />
+    <Compile Include="Structures\Objects\Items\Item.Composition.cs" />
+    <Compile Include="Structures\Gear\Gear Slot.cs" />
+    <Compile Include="Structures\Objects\Role.cs" />
+    <Compile Include="Structures\Objects\Character\Character.Assets.cs" />
+    <Compile Include="Structures\Storage\Item Storage Implementations\Inventory.cs" />
+    <Compile Include="Structures\Storage\Item Storage.cs" />
+    <Compile Include="Structures\Storage\Item Storage Implementations\Depository.cs" />
+    <Compile Include="Structures\Objects\Character\Character.Timer.cs" />
+    <Compile Include="Structures\Objects\WorldObject.cs" />
+    <Compile Include="Structures\Objects\IWorldObject.cs" />
+    <Compile Include="Structures\Objects\Items\Item.cs" />
+    <Compile Include="Structures\Objects\Model.cs" />
+    <Compile Include="Structures\Objects\Creature\Creature.cs" />
+    <Compile Include="Structures\Objects\Character\Character.cs" />
+    <Compile Include="Structures\Objects\Character\Character.Properties.cs" />
+    <Compile Include="Structures\Objects\Character\Character.Vision.cs" />
+    <Compile Include="Properties\Settings\EntitySettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>EntitySettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Structures\Travel\Jump.cs" />
+    <Compile Include="Structures\Travel\Position.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Structures\Travel\Direction.cs" />
+    <Compile Include="Structures\World\Enumerators.cs" />
+    <Compile Include="Event Manager.cs" />
+    <Compile Include="Properties\Settings\MapSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>MapSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Structures\Travel\Directional Orientation.cs" />
+    <Compile Include="Structures\Travel\Location.cs" />
+    <Compile Include="Structures\World\Map\Map Base.cs" />
+    <Compile Include="Structures\World\Map\Map.Characters.cs" />
+    <Compile Include="Structures\World\Map\Map.cs" />
+    <Compile Include="Structures\World\Cell.cs" />
+    <Compile Include="Properties\Settings\StrRes1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StrRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Structures\World\Map\Map.Items.cs" />
+    <Compile Include="World Server.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\app.config" />
+    <None Include="Properties\Settings\SystemSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SystemSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings\EntitySettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>EntitySettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Throne.snk" />
+    <None Include="Properties\Settings\MapSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MapSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Settings\StrRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StrRes1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

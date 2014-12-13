@@ -1,0 +1,1 @@
+Copy the contents of the map folder and the GameMap.dat here.

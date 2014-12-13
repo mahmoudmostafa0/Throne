@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC15DE31-B6B0-4FE6-BC98-57B76E9EA76C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Throne.Shared</RootNamespace>
+    <AssemblyName>Throne.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Build\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>1591,3009,3016,3015</NoWarn>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\..\Analysis\Relaxed.ruleset</CodeAnalysisRuleSet>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>None</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Throne.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build x86|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Build x86\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>1591,3009,3016,3015</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>..\..\Analysis\Relaxed.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\Dependencies\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\..\..\Dependencies\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\Dependencies\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\Dependencies\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\BooleanArray.cs" />
+    <Compile Include="Collections\ObjectPool.cs" />
+    <Compile Include="Collections\ProducerConsumerCollectionBase.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandArgumentException.cs" />
+    <Compile Include="Commands\CommandArguments.cs" />
+    <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Commands\CommandConsole.cs" />
+    <Compile Include="Commands\CommandManager.cs" />
+    <Compile Include="Commands\ConsoleCommandUser.cs" />
+    <Compile Include="Commands\ICommandUser.cs" />
+    <Compile Include="Commands\System\ExitCommand.cs" />
+    <Compile Include="Commands\System\HelpCommand.cs" />
+    <Compile Include="Exceptions\ConfigurationValueException.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Cryptography\CAST5.cs" />
+    <Compile Include="Cryptography\Diffie-Hellman Key Exchange.cs" />
+    <Compile Include="Cryptography\Game Cipher.cs" />
+    <Compile Include="Cryptography\NetDragon Authentication Cipher.cs" />
+    <Compile Include="Cryptography\NetDragon DH Key Exchange.cs" />
+    <Compile Include="Exceptions\ExceptionEventArgs.cs" />
+    <Compile Include="Exceptions\ExceptionInfo.cs" />
+    <Compile Include="Exceptions\ExceptionManager.cs" />
+    <Compile Include="Extensions\Extensions.Casting.cs" />
+    <Compile Include="Extensions\Extensions.Collections.cs" />
+    <Compile Include="Extensions\Extensions.Enumerations.cs" />
+    <Compile Include="Extensions\Extensions.Misc.cs" />
+    <Compile Include="Extensions\Extensions.Networking.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Logging\LogProxy.cs" />
+    <Compile Include="Math\BigInteger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Math\FastRandom.cs" />
+    <Compile Include="Math\MathUtils.cs" />
+    <Compile Include="Native\ConsoleControlHandler.cs" />
+    <Compile Include="Native\Memory.cs" />
+    <Compile Include="Network\Handling\PacketHandler.cs" />
+    <Compile Include="Network\Handling\PacketHandlerAttribute.cs" />
+    <Compile Include="Network\Handling\PacketPropagatorBase.cs" />
+    <Compile Include="Network\Security\INetworkCipher.cs" />
+    <Compile Include="Network\Security\Firewall\NetFwHandler.cs" />
+    <Compile Include="Network\Communication\SocketAsyncEventArgsPool.cs" />
+    <Compile Include="Network\Communication\TcpClient.cs" />
+    <Compile Include="Network\Communication\TcpServer.cs" />
+    <Compile Include="Network\Connectivity\ConnectionEventArgs.cs" />
+    <Compile Include="Network\Connectivity\IClient.cs" />
+    <Compile Include="Network\Handling\IPacketPropagator.cs" />
+    <Compile Include="Network\Transmission\PacketTypes.cs" />
+    <Compile Include="Persistence\Conventions\Identity\IdConvention.cs" />
+    <Compile Include="Persistence\Conventions\Identity\IdGenerationConvention.cs" />
+    <Compile Include="Persistence\Conventions\Naming\ClassNameConvention.cs" />
+    <Compile Include="Persistence\Conventions\Naming\ForeignKeyNameConvention.cs" />
+    <Compile Include="Persistence\Conventions\Properties\PropertyNullableConvention.cs" />
+    <Compile Include="Persistence\Conventions\Properties\PropertyUpdateConvention.cs" />
+    <Compile Include="Persistence\Conventions\Relationships\ReferenceConvention.cs" />
+    <Compile Include="Persistence\Conventions\Relationships\RelationshipCascadeConvention.cs" />
+    <Compile Include="Persistence\Conventions\Relationships\RelationshipFetchConvention.cs" />
+    <Compile Include="Persistence\Conventions\Relationships\RelationshipLazyLoadConvention.cs" />
+    <Compile Include="Persistence\GameDatabaseContext.cs" />
+    <Compile Include="Properties\StrRes1.Designer.cs">
+      <DependentUpon>StrRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Security\Permissions\AuthenticatedPermission.cs" />
+    <Compile Include="Security\Permissions\ConnectedPermission.cs" />
+    <Compile Include="Network\Transmission\Packet\Processor.cs" />
+    <Compile Include="Network\Transmission\Packet\Packet.cs" />
+    <Compile Include="Network\Transmission\Stream\Stream.cs" />
+    <Compile Include="Persistence\DatabaseContext.cs" />
+    <Compile Include="Persistence\Interfaces\IActiveRecord.cs" />
+    <Compile Include="Persistence\Mapping\MappableObject.cs" />
+    <Compile Include="Persistence\Schema\SchemaInfo.cs" />
+    <Compile Include="Reflection\ReflectionException.cs" />
+    <Compile Include="Properties\SolutionInfo.cs" />
+    <Compile Include="Runtime\IMemberwiseSerializable.cs" />
+    <Compile Include="Security\Permissions\ConsolePermission.cs" />
+    <Compile Include="Security\Permissions\RootPermission.cs" />
+    <Compile Include="Services\Account\AccountData.cs" />
+    <Compile Include="Services\Account\IAccountService.cs" />
+    <Compile Include="Services\DuplexServiceClient.cs" />
+    <Compile Include="Services\EmptyServiceCallback.cs" />
+    <Compile Include="Services\IEmptyCallbackService.cs" />
+    <Compile Include="Services\IpcDevice.cs" />
+    <Compile Include="Services\ServiceHost.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Threading\ActorApplication.cs" />
+    <Compile Include="Network\NetworkApplication.cs" />
+    <Compile Include="Reflection\ReflectionExtensions.cs" />
+    <Compile Include="Runtime\IDisposableResource.cs" />
+    <Compile Include="Security\IPermissable.cs" />
+    <Compile Include="Security\Permission.cs" />
+    <Compile Include="Security\RestrictedObject.cs" />
+    <Compile Include="Threading\Actors\Actor.cs" />
+    <Compile Include="Threading\Actors\ActorContext.cs" />
+    <Compile Include="Threading\Actors\ActorTimer.cs" />
+    <Compile Include="Threading\Actors\ActorWaitHandle.cs" />
+    <Compile Include="Threading\Actors\IActor.cs" />
+    <Compile Include="Threading\Actors\Operation.cs" />
+    <Compile Include="Threading\Actors\ActorThread.cs" />
+    <Compile Include="Threading\IWaitable.cs" />
+    <Compile Include="Threading\SingletonActor.cs" />
+    <Compile Include="Utilities\FileReader.cs" />
+    <Compile Include="Utilities\RandomProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\StrRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StrRes1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="NetFwTypeLib">
+      <Guid>{58FBCF7C-E7A9-467C-80B3-FC65E8FCCA08}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Throne.snk" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

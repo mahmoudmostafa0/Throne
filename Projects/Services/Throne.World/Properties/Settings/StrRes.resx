@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CMSG_AuthenticationFailed" xml:space="preserve">
+    <value>Authentication failed.</value>
+  </data>
+  <data name="CMSG_CharacterNameUnavailable" xml:space="preserve">
+    <value>The name is unavailable. Please choose a different name.</value>
+  </data>
+  <data name="SMSG_BacklogRecommend" xml:space="preserve">
+    <value>Connection backlog of 10 to 100 recommended.</value>
+  </data>
+  <data name="SMSG_ConfigPersist" xml:space="preserve">
+    <value>Configuring {0} persistence.</value>
+  </data>
+  <data name="SMSG_IPCAuthDeviceConnect" xml:space="preserve">
+    <value>Contacting authentication server...</value>
+  </data>
+  <data name="SMSG_IPCAuthDeviceConnected" xml:space="preserve">
+    <value>Established a connection with the authentication server.</value>
+  </data>
+  <data name="SMSG_ListenHostInvalid" xml:space="preserve">
+    <value>Invalid list host.</value>
+  </data>
+  <data name="SMSG_ListenPortInvalid" xml:space="preserve">
+    <value>Invalid listen port.</value>
+  </data>
+  <data name="SMSG_PacketFooterInvalid" xml:space="preserve">
+    <value>Packet footer should be 8 characters long.</value>
+  </data>
+  <data name="SMSG_StartTCPListener" xml:space="preserve">
+    <value>Starting {0} TCP server on {1}:{2}</value>
+  </data>
+  <data name="CMD_OverwriteDb" xml:space="preserve">
+    <value>Executing this command will permanently overwrite the entire database. Continue? (Y/N)</value>
+  </data>
+  <data name="SMSG_LoggedIn" xml:space="preserve">
+    <value>Logged in.</value>
+  </data>
+  <data name="SMSG_LoggedOut" xml:space="preserve">
+    <value>Logged out.</value>
+  </data>
+  <data name="SMSG_DuplicateScript" xml:space="preserve">
+    <value>Script classes must have unique names, duplicate '{0}' found in '{1}'.</value>
+  </data>
+  <data name="SMSG_LoadScriptAssemblyFailed" xml:space="preserve">
+    <value>Loading of one or multiple types in '{0}' failed, classes in this file won't be loaded. Naming in main source may have changed. Delete the cache folder if this error persists.</value>
+  </data>
+  <data name="SMSG_NonsuchOverride" xml:space="preserve">
+    <value>Override failed. Script class '{0}' not found ({1} @ {2}).</value>
+  </data>
+  <data name="SMSG_NonsuchRemove" xml:space="preserve">
+    <value>Remove failed. Script class '{0}' not found ({1} @ {2}).</value>
+  </data>
+  <data name="SMSG_NoScript" xml:space="preserve">
+    <value>Script not found.</value>
+  </data>
+  <data name="SMSG_NoScriptList" xml:space="preserve">
+    <value>Script list not found at '{0}'.</value>
+  </data>
+  <data name="SMSG_ScriptExcption" xml:space="preserve">
+    <value>Error while loading script '{0}' ({1}).</value>
+  </data>
+  <data name="SMSG_ScriptInitiateFailed" xml:space="preserve">
+    <value>Failed to initiate '{0}'.</value>
+  </data>
+  <data name="SMSG_ScriptListLoaded" xml:space="preserve">
+    <value>Done loading {0} scripts (of {1}).</value>
+  </data>
+  <data name="SMSG_ScriptLoad" xml:space="preserve">
+    <value>Loading scripts, this might take a few minutes...</value>
+  </data>
+  <data name="SMSG_NonsuchMap" xml:space="preserve">
+    <value>Map ID {0} does not exist.</value>
+  </data>
+  <data name="SMSG_MapNotLoaded" xml:space="preserve">
+    <value>Map {0} was not loaded</value>
+  </data>
+  <data name="SMSG_SceneryNotLoaded" xml:space="preserve">
+    <value>Scenery could not be loaded.</value>
+  </data>
+  <data name="SMSG_MapIndexNotFound" xml:space="preserve">
+    <value>Map index not found at '{0}'.</value>
+  </data>
+  <data name="SMSG_BuildMapDb" xml:space="preserve">
+    <value>Building map database.</value>
+  </data>
+  <data name="SMSG_MapFileNotFound" xml:space="preserve">
+    <value>Map file not found: {0}</value>
+  </data>
+  <data name="SMSG_NonUniqueMap" xml:space="preserve">
+    <value>Document ID {0} is not unique.</value>
+  </data>
+  <data name="SMSG_MapBuildDone" xml:space="preserve">
+    <value>Done fetching info for {0} maps. (of {1})</value>
+  </data>
+  <data name="CMD_DropDb" xml:space="preserve">
+    <value>Executing this command will permanently drop the entire database. Continue? (Y/N)</value>
+  </data>
+  <data name="MSG_NoPortalHere" xml:space="preserve">
+    <value>Hmm, that's a funny lookin' portal.</value>
+  </data>
+  <data name="SMSG_WarpNotFound" xml:space="preserve">
+    <value>Warp info for index {0} in map {1} does not exist.</value>
+  </data>
+  <data name="SMSG_SynchroLost" xml:space="preserve">
+    <value>(Jump) lost synchronization.</value>
+  </data>
+  <data name="SMSG_CharacterObjectNotReadyForTasks" xml:space="preserve">
+    <value>A task ({0}) tried to begin before the object was ready.</value>
+  </data>
+  <data name="SMSG_RunningTaskOverride" xml:space="preserve">
+    <value>Task ({0}) was already running and was overridden.</value>
+  </data>
+  <data name="SMSG_CharacterTimerString" xml:space="preserve">
+    <value>CharacterTimer:ActorTimer for task: {0}</value>
+  </data>
+  <data name="SMSG_ChatMessageBadStrings" xml:space="preserve">
+    <value>There were not enough strings.</value>
+  </data>
+  <data name="SMSG_ChatMessageInvalidSender" xml:space="preserve">
+    <value>Message sender doesn't match.</value>
+  </data>
+  <data name="SMSG_ChatMessageEmpty" xml:space="preserve">
+    <value>The message was empty.</value>
+  </data>
+  <data name="VMSG_NoEquip" xml:space="preserve">
+    <value>({0}) An attempt was made to unequip an empty slot.</value>
+  </data>
+  <data name="VMSG_ItemSlotMismatch" xml:space="preserve">
+    <value>({0}) The gear unequip position requested matches the slot, but not the item's position.</value>
+  </data>
+  <data name="CMSG_NotEnoughInventorySpace" xml:space="preserve">
+    <value>Not enough inventory space. (Need {0})</value>
+  </data>
+  <data name="CMSG_InventoryNoItem" xml:space="preserve">
+    <value>The item could not be found in your inventory.</value>
+  </data>
+  <data name="SMSG_SceneryNotFound" xml:space="preserve">
+    <value>Scenery file not found. {0}</value>
+  </data>
+  <data name="SMSG_MapDataNotFound" xml:space="preserve">
+    <value>Map data file not found.</value>
+  </data>
+</root>

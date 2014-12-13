@@ -1,0 +1,64 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Throne.World.Properties.Settings" GeneratedClassName="SystemSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AccountServiceUri" Type="System.Uri" Scope="Application">
+      <Value Profile="(Default)">net.tcp://127.0.0.1:9900</Value>
+    </Setting>
+    <Setting Name="DatabaseType" Type="Throne.Shared.Persistance.DatabaseType" Scope="Application">
+      <Value Profile="(Default)">MySql</Value>
+    </Setting>
+    <Setting Name="ServerListenIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0.0.0.0</Value>
+    </Setting>
+    <Setting Name="ServerListenPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5188</Value>
+    </Setting>
+    <Setting Name="ServerName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="ServerBacklog" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="EncCAST5Standard" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C238xs65pjy7HU9Q</Value>
+    </Setting>
+    <Setting Name="OutgoingPacketFooter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TQServer</Value>
+    </Setting>
+    <Setting Name="IncomingPacketFooter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TQClient</Value>
+    </Setting>
+    <Setting Name="FirewallWatchSeconds" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="FirewallConnectionThreshold" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SocketNoNagel" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SocketKeepAlive" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SocketGracefulDisconnection" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SocketDontFragment" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SocketReuseEndpoint" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DatabaseConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Server=127.0.0.1;Database=throne;User ID=root;Allow Zero Datetime=True&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Server=127.0.0.1;Database=throne;User ID=root;Allow Zero Datetime=True</Value>
+    </Setting>
+    <Setting Name="CommandPrefix" Type="System.Char" Scope="Application">
+      <Value Profile="(Default)">&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

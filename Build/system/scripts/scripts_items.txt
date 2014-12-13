@@ -1,0 +1,4 @@
+// Throne
+// Item Script list file
+
+items/skillbooks/ScentSword.cs
