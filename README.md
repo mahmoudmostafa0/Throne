@@ -42,12 +42,12 @@ Features
 
 Credits
 -------
-Mentalis/sbradno
-CptSky
-Fang
-Impulse
-InfamousNoone
-Encore
+- Mentalis/sbradno
+- CptSky
+- Spirited Fang
+- Impulse
+- InfamousNoone
+- Encore
 
 Leave a message on [Chained2PVP](http://chained2pvp.com/topic/332-throne-project-development/) if you belong in the credits!
 
