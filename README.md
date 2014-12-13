@@ -22,7 +22,7 @@ Features
  - Split server... Login and World
  - C# Scripting (Scripts are linked into their own solutions)
  - Plenty of confusing things (I'm learning... I couldn't find everything I did wrong)
- - Command system
+ - Global OOP based commands (same commands can be used on console and ingame)
  - "Robust" base. At least I think so:
    - Fluent NHibernate
    - Asyncronous Sockets
