@@ -53,6 +53,7 @@ Credits/Contributers/References
 - Mentalis/sbradno
 - CptSky
 - Spirited Fang
+- Korvacs
 - Impulse
 - Smallxmac
 - InfamousNoone
