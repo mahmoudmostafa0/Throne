@@ -39,12 +39,13 @@ Features
 
 
 
-Credits
+Credits/Contributers/References
 -------
 - Mentalis/sbradno
 - CptSky
 - Spirited Fang
 - Impulse
+- Smallxmac
 - InfamousNoone
 - Encore
 
