@@ -6,9 +6,6 @@ Conquer Online emulator in development.
 Written in C#, currently targeted at the patches of late 2014. 
 The goal of the Throne project aims to create a stable server platform for Conquer Online.
 
-Currently, I would call the project confused. There are, in a few cases.. different implementations of the same thing. 
-I'm still learning new-to-me, better, cooler ways to do things in C#, so the project isn't pure as I would like.
-
 Development was originally Mono, but moved to Visual Studio. The project could be ported back to Mono with some effort.
 ******************************
 
@@ -21,9 +18,8 @@ Features
 --------
  - Split server... Login and World
  - C# Scripting (Scripts are linked into their own solutions)
- - Plenty of confusing things (I'm learning... I couldn't find everything I did wrong)
  - Global OOP based commands (same commands can be used on console and ingame)
- - "Robust" base. At least I think so:
+ - Extensive base library
    - Fluent NHibernate
    - Asyncronous Sockets
    - WCF IPC
