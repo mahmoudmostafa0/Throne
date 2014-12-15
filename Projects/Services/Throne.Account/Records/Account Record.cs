@@ -2,7 +2,6 @@
 using System.Net;
 using Throne.Login.Records.Implementations;
 using Throne.Shared.Persistence.Mapping;
-using Throne.Shared;
 
 namespace Throne.Login.Records
 {
@@ -48,6 +47,13 @@ namespace Throne.Login.Records
         public virtual IPAddress LastIP { get; set; }
 
         public virtual DateTime? CreationTime { get; set; }
+
+        public virtual Boolean Online { get; set; }
+
+        public override void Update()
+        {
+            AuthServer.Instance.AccountDbContext.Update(this);
+        }
     }
 
     public sealed class AccountMapping : MappableObject<AccountRecord>
@@ -55,14 +61,15 @@ namespace Throne.Login.Records
         public AccountMapping()
         {
             Id(r => r.Guid);
-            Map(r => r.Username).Length(Constants.Accounts.MaxNameLength);
-            Map(r => r.Password).Length(Constants.Accounts.MaxPasswordLength);
+            Map(r => r.Username);
+            Map(r => r.Password);
             Map(r => r.Email).Nullable();
-            Map(r => r.Fingerprint).Length(Constants.Accounts.FingerprintLength).Nullable();
-            Map(r => r.MacAddress).Length(Constants.Accounts.MacAddressLength).Nullable();
+            Map(r => r.Fingerprint).Nullable();
+            Map(r => r.MacAddress).Nullable();
             Map(r => r.LastLogin).Nullable();
             Map(r => r.LastIP).Nullable();
             Map(r => r.CreationTime).Nullable();
+            Map(r => r.Online);
         }
     }
 }

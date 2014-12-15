@@ -1,4 +1,5 @@
 ﻿using System;
+using Throne.Shared.Network.Connectivity;
 
 namespace Throne.Shared.Network.Transmission
 {

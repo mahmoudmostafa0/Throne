@@ -25,6 +25,16 @@ namespace Throne.Login.Accounts
             set { throw new NotImplementedException(); }
         }
 
+        public Boolean Online
+        {
+            get { return Record.Online; }
+            set
+            {
+                Record.Online = value;
+                Record.Update();
+            }
+        }
+
         public string Username
         {
             get

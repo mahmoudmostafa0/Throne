@@ -35,6 +35,11 @@ namespace Throne.World.Records
         public virtual DateTime? CreationTime { get; set; }
         public virtual String CreatorMacAddress { get; set; }
         public virtual IList<ItemRecord> ItemPayload { get; set; }
+
+        public override void Update()
+        {
+            WorldServer.Instance.WorldDbContext.Update(this);
+        }
     }
 
     public sealed class CharacterMapping : MappableObject<CharacterRecord>
@@ -46,6 +51,8 @@ namespace Throne.World.Records
             Map(r => r.OwnerGuid);
             Map(r => r.Name);
             Map(r => r.Look);
+            Map(r => r.Hairstyle);
+            Map(r => r.Appearance);
             Map(r => r.Level);
             Map(r => r.MapID);
             Map(r => r.InstanceId);

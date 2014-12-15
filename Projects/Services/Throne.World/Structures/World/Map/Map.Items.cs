@@ -30,8 +30,10 @@ namespace Throne.World.Structures.World
             }
         }
 
-        public void AddItem(Item itm)
+        public Boolean AddItem(Item itm)
         {
+            if (!ItemCell(itm.Location.Position, true)) return false; // ya standin in it!
+
             lock (ItemReadWrite)
             {
                 _items[itm.Guid] = itm;
@@ -42,6 +44,8 @@ namespace Throne.World.Structures.World
             using (var pkt = new MapItemInformation(itm))
                 foreach (Character user in GetVisibleUsers(itm))
                     user.User.Send(pkt);
+
+            return true;
         }
 
         public void RemoveItem(Item itm)
@@ -76,6 +80,11 @@ namespace Throne.World.Structures.World
                         itm => itm.Location.Position.InRange(pos, MapSettings.Default.PlayerScreenRange)));
 
             return result;
+        }
+
+        private Boolean ItemCell(Position pos, Boolean value)
+        {
+            return true;
         }
     }
 }

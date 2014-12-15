@@ -72,29 +72,26 @@ namespace Throne.World.Network
         {
             if (Connected)
             {
-                lock (sendLock)
+                SocketAsyncEventArgs sndSocketArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
+
+                if (StreamCipher != null)
+                    value = StreamCipher.Encrypt(value, value.Length);
+
+                sndSocketArgs.SetBuffer(value, 0, value.Length);
+
+                try
                 {
-                    SocketAsyncEventArgs sndSocketArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
+                    if (!socket.SendAsync(sndSocketArgs))
+                        OnSend(sndSocketArgs);
+                }
+                catch (Exception e)
+                {
+                    Disconnect();
 
-                    if (StreamCipher != null)
-                        value = StreamCipher.Encrypt(value, value.Length);
+                    if (e is ObjectDisposedException)
+                        return;
 
-                    sndSocketArgs.SetBuffer(value, 0, value.Length);
-
-                    try
-                    {
-                        if (!socket.SendAsync(sndSocketArgs))
-                            OnSend(sndSocketArgs);
-                    }
-                    catch (Exception e)
-                    {
-                        Disconnect();
-
-                        if (e is ObjectDisposedException)
-                            return;
-
-                        ExceptionManager.RegisterException(e);
-                    }
+                    ExceptionManager.RegisterException(e);
                 }
             }
             else if (!disconnected)
@@ -256,6 +253,7 @@ namespace Throne.World.Network
         {
             if (Character)
             {
+                Character.LoggedIn = false;
                 Character.Save();
                 Character.Dispose();
                 SetCharacter(null);

@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
-using Throne.Shared.Collections;
 using Throne.Shared.Logging;
 using Throne.Shared.Network.Connectivity;
 using Throne.Shared.Reflection;

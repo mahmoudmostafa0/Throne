@@ -181,7 +181,7 @@ namespace Throne.World.Structures.Objects
 
         public Boolean JustCreated { get; internal set; }
 
-        public Boolean LoggedIn { get; private set; }
+        public Boolean LoggedIn { get; set; }
 
         #endregion
 

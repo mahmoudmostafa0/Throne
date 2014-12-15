@@ -2,3 +2,5 @@
 // Map Script list file
 
 maps/[1002] Twin City.cs
+maps/[1004] Promotion Center.cs
+maps/[1006] Stables.cs

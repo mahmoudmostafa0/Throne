@@ -10,7 +10,7 @@ namespace Throne.World.Network.Messages
     [WorldPacketHandler(PacketTypes.AuthenticateClient)]
     public class ClientAuthentication : WorldPacket
     {
-        private int password, session;
+        private int _password, _session;
 
         /// <summary>
         ///     Incoming constructor.
@@ -22,8 +22,8 @@ namespace Throne.World.Network.Messages
 
         public override bool Read(IClient client)
         {
-            password = ReadInt();
-            session = ReadInt();
+            _password = ReadInt();
+            _session = ReadInt();
             return true;
         }
 
@@ -32,10 +32,10 @@ namespace Throne.World.Network.Messages
             WorldServer.Instance.AccountService.Call(
                 accService =>
                 {
-                    if (!accService.Authorize(session, password))
+                    if (!accService.Authorize(_session, _password))
                         return;
 
-                    client.UserData = accService.GetAccount(session);
+                    client.UserData = accService.GetAccount(_session);
                     client.AddPermission(new AuthenticatedPermission());
                 });
 

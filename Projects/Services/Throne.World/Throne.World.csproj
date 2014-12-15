@@ -188,6 +188,7 @@
     <Compile Include="Commands\User\Travel\TeleportCommand.cs" />
     <Compile Include="Commands\User\UserCommand.cs" />
     <Compile Include="Commands\World\MapAttributeCommand.cs" />
+    <Compile Include="Commands\World\MapInfoCommand.cs" />
     <Compile Include="Commands\World\WeatherCommand.cs" />
     <Compile Include="Database\Implementations\Conventions\Naming\WorldClassNamingConvention.cs" />
     <Compile Include="Managers\Character Manager.cs" />
@@ -302,7 +303,6 @@
     </Compile>
     <Compile Include="Structures\Travel\Directional Orientation.cs" />
     <Compile Include="Structures\Travel\Location.cs" />
-    <Compile Include="Structures\World\Map\Map Base.cs" />
     <Compile Include="Structures\World\Map\Map.Characters.cs" />
     <Compile Include="Structures\World\Map\Map.cs" />
     <Compile Include="Structures\World\Cell.cs" />

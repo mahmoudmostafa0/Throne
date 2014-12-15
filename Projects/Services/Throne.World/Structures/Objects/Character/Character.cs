@@ -44,8 +44,8 @@ namespace Throne.World.Structures.Objects
              Constants.LoginMessages.AnswerOk +
              new CharacterInformation(this) +
              new TimeSynchronize(DateTime.Now) +
-             (List<Byte[]>) _inventory +
-             (List<Byte[]>) _gear
+             (List<Byte[]>)_inventory +
+             (List<Byte[]>)_gear
              > User).Dispose();
 
 
@@ -66,7 +66,7 @@ namespace Throne.World.Structures.Objects
 
         public void Dispose()
         {
-            ExitRegion();
+            ExitCurrentRegion();
             ClearScreen();
             Log.Info(StrRes.SMSG_LoggedOut);
 
@@ -77,8 +77,8 @@ namespace Throne.World.Structures.Objects
 
         public void ExchangeSpawns(Character with)
         {
-            with.User.Send((RoleInfo) this);
-            User.Send((RoleInfo) with);
+            with.User.Send((RoleInfo)this);
+            User.Send((RoleInfo)with);
         }
 
         /// <summary>
@@ -98,9 +98,9 @@ namespace Throne.World.Structures.Objects
             Position otherPos = with.Location.Position;
             int pDistance = otherPos - pos;
             int gap = MapSettings.Default.PlayerScreenRange - pDistance;
-                // since we're outside the screen, subtracting the distance from 
+            // since we're outside the screen, subtracting the distance from 
             Position fauxPos = otherPos.GetRelative(pos, gap);
-                // the screen distance will always result in a negative value.
+            // the screen distance will always result in a negative value.
 
             Location.Position.Relocate(fauxPos);
             ExchangeSpawns(with);

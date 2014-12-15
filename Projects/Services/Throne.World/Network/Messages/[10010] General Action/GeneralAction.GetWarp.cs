@@ -1,4 +1,5 @@
-﻿using Throne.World.Properties.Settings;
+﻿using Throne.Shared;
+using Throne.World.Properties.Settings;
 using Throne.World.Scripting.Scripts;
 using Throne.World.Structures.Travel;
 using Throne.World.Structures.World;
@@ -15,8 +16,8 @@ namespace Throne.World.Network.Messages
             var pos = Character.Location.Position;
             var cellInf = Character.Location.Map.GetCell(pos);
 
-            if (cellInf.Flags != CellType.Portal)
-                Log.Error(StrRes.MSG_NoPortalHere);
+            if (!cellInf[CellType.Portal])
+                Character.Log.Error(StrRes.MSG_NoPortalHere.Interpolate(Character.Location));
 
             var dst = Location.None;
             using (var pkt = new GeneralAction(ActionType.Teleport, Character))
@@ -27,6 +28,7 @@ namespace Throne.World.Network.Messages
                     Character.User.Send(pkt.Teleport(dst = map.ReviveLocation));
                     Log.Error(StrRes.SMSG_WarpNotFound, cellInf.Argument, map.Id);
                 }
+            Character.ExitCurrentRegion();
             Character.EnterRegion(dst.Copy);
         }
     }

@@ -115,7 +115,7 @@ namespace Throne.World.Properties.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hmm, that&apos;s a funny lookin&apos; portal..
+        ///   Looks up a localized string similar to Requested an invalid portal. {0}.
         /// </summary>
         internal static string MSG_NoPortalHere {
             get {
@@ -304,7 +304,16 @@ namespace Throne.World.Properties.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map {0} was not loaded.
+        ///   Looks up a localized string similar to Information loaded..
+        /// </summary>
+        internal static string SMSG_MapLoad {
+            get {
+                return ResourceManager.GetString("SMSG_MapLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map was not loaded.
         /// </summary>
         internal static string SMSG_MapNotLoaded {
             get {

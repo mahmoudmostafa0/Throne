@@ -41,29 +41,26 @@ namespace Throne.Login.Network
         {
             if (Connected)
             {
-                lock (sendLock)
+                SocketAsyncEventArgs sndSocketArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
+
+                if (StreamCipher != null)
+                    value = StreamCipher.Encrypt(value, value.Length);
+
+                sndSocketArgs.SetBuffer(value, 0, value.Length);
+
+                try
                 {
-                    SocketAsyncEventArgs sndSocketArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
+                    if (!socket.SendAsync(sndSocketArgs))
+                        OnSend(sndSocketArgs);
+                }
+                catch (Exception ex)
+                {
+                    Disconnect();
 
-                    if (StreamCipher != null)
-                        value = StreamCipher.Encrypt(value, value.Length);
+                    if (ex is ObjectDisposedException)
+                        return;
 
-                    sndSocketArgs.SetBuffer(value, 0, value.Length);
-
-                    try
-                    {
-                        if (!socket.SendAsync(sndSocketArgs))
-                            OnSend(sndSocketArgs);
-                    }
-                    catch (Exception ex)
-                    {
-                        Disconnect();
-
-                        if (ex is ObjectDisposedException)
-                            return;
-
-                        ExceptionManager.RegisterException(ex);
-                    }
+                    ExceptionManager.RegisterException(ex);
                 }
             }
             else if (!disconnected) Disconnect();
@@ -78,7 +75,7 @@ namespace Throne.Login.Network
         ///     This dynamic variable holds authentication data for login, then the account once verified and loaded.
         /// </summary>
         public dynamic UserData { get; set; }
-        
+
         public void DisconnectWithMessage(Byte[] message)
         {
             throw new NotImplementedException();
@@ -124,7 +121,7 @@ namespace Throne.Login.Network
 
             if (BytesTransferred < _minStreamSize)
             {
-                Log.Error("Connection dropped because of empty stream. {0}", ClientAddress); 
+                Log.Error("Connection dropped because of empty stream. {0}", ClientAddress);
                 Disconnect();
             }
             else

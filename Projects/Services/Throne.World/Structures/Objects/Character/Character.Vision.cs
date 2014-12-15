@@ -45,7 +45,8 @@ namespace Throne.World.Structures.Objects
             #region Update characters
 
             List<Character> updatedCharacters = map.GetVisibleUsers(this);
-            IEnumerable<Character> newCurrentCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
+            IEnumerable<Character> newVisibleCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
+            IEnumerable<Character> removeVisibleCharacters = _currentVisibleCharacters.Values.Except(updatedCharacters);
             _scrChrRWLS.EnterWriteLock();
             try
             {
@@ -55,8 +56,14 @@ namespace Throne.World.Structures.Objects
             {
                 _scrChrRWLS.ExitWriteLock();
             }
-            Parallel.ForEach(newCurrentCharacters, chr => ExchangeAerialSpawns(chr, jmp));
+            Parallel.ForEach(newVisibleCharacters, chr =>
+            {
+                ExchangeAerialSpawns(chr, jmp);
+                AddVisibleCharacter(this, spawn: false);
+            });
+            Parallel.ForEach(removeVisibleCharacters, rc => rc.RemoveVisibleCharacter(this));
 
+            User.Send(Location.Map.GetCell(Location.Position).ToString());
             #endregion
         }
 
@@ -67,7 +74,8 @@ namespace Throne.World.Structures.Objects
             #region Update characters
 
             List<Character> updatedCharacters = map.GetVisibleUsers(this);
-            IEnumerable<Character> newCurrentCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
+            IEnumerable<Character> newVisibleCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
+            IEnumerable<Character> removeVisibleCharacters = _currentVisibleCharacters.Values.Except(updatedCharacters);
             _scrChrRWLS.EnterWriteLock();
             try
             {
@@ -77,15 +85,19 @@ namespace Throne.World.Structures.Objects
             {
                 _scrChrRWLS.ExitWriteLock();
             }
-            Parallel.ForEach(newCurrentCharacters, nc => nc.AddVisibleCharacter(this));
+            Parallel.ForEach(newVisibleCharacters, nc => nc.AddVisibleCharacter(this));
+            Parallel.ForEach(removeVisibleCharacters, rc => rc.RemoveVisibleCharacter(this));
+
+            User.Send(Location.Map.GetCell(Location.Position).ToString());
 
             #endregion
         }
 
 
-        private void AddVisibleCharacter(Character chr)
+        private void AddVisibleCharacter(Character chr, Boolean spawn = true)
         {
-            ExchangeSpawns(chr);
+            if (spawn)
+                ExchangeSpawns(chr);
             _scrChrRWLS.EnterWriteLock();
             try
             {
@@ -136,7 +148,7 @@ namespace Throne.World.Structures.Objects
             LookAround();
         }
 
-        public void ExitRegion()
+        public void ExitCurrentRegion()
         {
             _scrChrRWLS.EnterWriteLock();
             try
@@ -166,11 +178,9 @@ namespace Throne.World.Structures.Objects
 
             Direction = Location.Position.GetOrientation(jmp.Destination);
             Location.Position.Relocate(jmp.Destination);
-            //just in case someone didn't have this entity in their screen, update the location now.
-            //prevents query entity from sending an old location, causing an entity to be stuck in someone's client.
-            SendToLocal(jmp.Info, includeSelf: true);
+            SendToLocal(jmp.Info, true);
 
-            if (!Location) // do this check before this entity looks around and exchanges spawns with others.
+            if (!Location)
             {
                 Location.Position.Restore();
                 Logout();

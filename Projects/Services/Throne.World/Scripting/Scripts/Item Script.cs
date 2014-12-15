@@ -9,7 +9,7 @@ namespace Throne.World.Scripting.Scripts
     public abstract class ItemScript : ScriptBase
     {
         /// <summary>
-        /// The item IDs hooked with this script.
+        /// The item ID hooked with this script.
         /// </summary>
         public Int32 HookedItemID;
 

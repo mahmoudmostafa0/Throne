@@ -10,8 +10,20 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <ItemGroup>
-    <Compile Include="..\..\..\Build\system\scripts\maps\**\*.cs">
-      <Link>%(RecursiveDir)%(FileName)</Link>
+    <Compile Include="..\..\..\Build\system\scripts\maps\[1002] Twin City.cs">
+      <Link>[1002] Twin City</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="..\..\..\Build\system\scripts\maps\[1004] Promotion Center.cs">
+      <Link>[1004] Promotion Center</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="..\..\..\Build\system\scripts\maps\[1006] Stable.cs">
+      <Link>[1006] Stable</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="..\..\..\Build\system\scripts\maps\[1006] Stables.cs">
+      <Link>[1006] Stables</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Content Include="..\..\..\Build\system\scripts\scripts_maps.txt">

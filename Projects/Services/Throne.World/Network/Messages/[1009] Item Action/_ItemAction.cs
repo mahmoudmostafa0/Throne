@@ -60,6 +60,7 @@ namespace Throne.World.Network.Messages
             return true;
         }
 
+       
         public override void Handle(IClient client)
         {
             Character = ((WorldClient)client).Character;

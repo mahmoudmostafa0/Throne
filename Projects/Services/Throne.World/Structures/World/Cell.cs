@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Throne.Shared;
 
 namespace Throne.World.Structures.World
 {
     [Serializable, StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct Cell
+    public class Cell
     {
         public CellType Flags;
 
         /// <summary>
-        ///     Holds altitude for valid tiles.
+        ///     Holds altitude for valid tiles. Jump height difference limit is 200.
         ///     If the tile is flagged as a portal, this will be the portal's destination ID.
         /// </summary>
         public Int16 Argument;
@@ -54,6 +55,11 @@ namespace Throne.World.Structures.World
         {
             Argument = value;
             return this;
+        }
+
+        public override string ToString()
+        {
+            return "Flags: {0} | Argument: {1}".Interpolate(Flags, Argument);
         }
     }
 }

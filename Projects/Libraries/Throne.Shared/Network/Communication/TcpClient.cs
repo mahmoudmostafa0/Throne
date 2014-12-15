@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using NHibernate.Exceptions;
 using Throne.Shared.Network.Connectivity;
 using Throne.Shared.Security.Permissions;
 using Throne.Shared.Threading.Actors;
@@ -13,8 +14,6 @@ namespace Throne.Shared.Network.Communication
 
         protected Byte[] rcvBuffer;
 
-        protected readonly Object sendLock;
-
         protected Socket socket;
 
         protected Boolean disconnected;
@@ -25,7 +24,6 @@ namespace Throne.Shared.Network.Communication
             socket = args.Sock;
             socket.NoDelay = socket.DontFragment = true;
 
-            sendLock = new Object();
             rcvBuffer = new Byte[RcvBufferLength];
 
             BeginReceive();
@@ -125,6 +123,11 @@ namespace Throne.Shared.Network.Communication
         {
             rcvSaeArgs.Release();
             base.Dispose(disposing);
+        }
+
+        public static implicit operator Boolean(TcpClient tcpClient)
+        {
+            return tcpClient != null;
         }
     }
 }

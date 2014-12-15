@@ -1,7 +1,6 @@
 ﻿using System;
 using Throne.Shared;
 using Throne.World.Security;
-using Throne.World.Structures.Objects;
 
 namespace Throne.World
 {

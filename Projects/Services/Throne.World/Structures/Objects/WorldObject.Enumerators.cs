@@ -51,7 +51,7 @@ namespace Throne.World.Structures.Objects
         FatalStrike,
         Flashy
 
-
+        //160 Dragon Cyclone
         //154 top dragon
         //153 supreme guild rank 3
         //152 supreme guild rank 2

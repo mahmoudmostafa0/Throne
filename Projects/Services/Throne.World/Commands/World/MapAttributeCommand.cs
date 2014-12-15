@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Throne.Shared;
 using Throne.Shared.Commands;
 using Throne.World.Network;

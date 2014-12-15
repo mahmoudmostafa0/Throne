@@ -43,10 +43,12 @@ namespace Throne.Login.Network.Messages
 
         public override void Handle(IClient client)
         {
-            AccountManager.Instance.PostWait(mgr => client.UserData = mgr.FindAccount(x => x.Username == Username))
-                .Wait();
+            //TODO: Better method for exchange IDs
+            //TODO: Send account already logged in
 
-            if (client.UserData != null && client.UserData.Password.Equals(Password))
+            client.UserData = AccountManager.Instance.FindAccount(x => x.Username == Username);
+
+            if (client.UserData != null && client.UserData.Password.Equals(Password) && !client.UserData.Online)
             {
                 client.UserData.MacAddress = MacAddress;
                 client.UserData.LastLogin = DateTime.Now;

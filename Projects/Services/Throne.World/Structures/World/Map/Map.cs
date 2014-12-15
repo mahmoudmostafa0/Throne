@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Throne.Shared;
 using Throne.Shared.Exceptions;
@@ -22,7 +23,6 @@ namespace Throne.World.Structures.World
     public partial class Map
     {
         public readonly String DataMapPath;
-        public readonly Dictionary<Int32, Location> PortalDestination;
         private readonly MapInfoRecord _record;
         public UInt32 Instance;
         public LogProxy Log;
@@ -39,7 +39,7 @@ namespace Throne.World.Structures.World
 
             DataMapPath = record.DataMapPath;
 
-            PortalDestination = new Dictionary<Int32, Location>();
+            PortalPositions = new Dictionary<int, Position>();
 
             Load(record.MapId);
 
@@ -175,6 +175,8 @@ namespace Throne.World.Structures.World
                         int portalY = BR.ReadInt32() - 1;
                         int destinationId = BR.ReadInt32();
 
+                        PortalPositions.Add(destinationId, new Position((short) portalX, (short) portalY));
+
                         //thanks Fang for the idea of unavoidable portals
                         for (int x = 0; x < 3; x++)
                             for (int y = 0; y < 3; y++)
@@ -270,12 +272,26 @@ namespace Throne.World.Structures.World
 
                     #endregion
                 }
+
+                Log.Info(StrRes.SMSG_MapLoad);
             }
             catch (Exception e)
             {
                 ExceptionManager.RegisterException(e);
-                LogManager.Debug(StrRes.SMSG_MapNotLoaded.Interpolate(mapId));
+                Log.Error(StrRes.SMSG_MapNotLoaded.Interpolate(mapId));
             }
         }
+
+        #region Development
+        /// <summary>
+        /// For locating portals that need to be added.
+        /// </summary>
+        public readonly Dictionary<Int32, Position> PortalPositions;
+
+        public IEnumerable<KeyValuePair<int, Position>> UnimplementedPortals
+        {
+            get { return PortalPositions.Where(eff => !Script.Warps.ContainsKey(eff.Key)); }
+        }
+        #endregion
     }
 }
