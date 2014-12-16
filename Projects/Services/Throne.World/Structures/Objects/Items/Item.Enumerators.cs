@@ -27,11 +27,11 @@
             White = 9
         }
 
-        public enum ItemEffect : int
+        public enum ActiveEffect
         {
             None = 0,
             Steed = 100,
-            Poison = 200,//200
+            Poison = 200,
             HP = 201,
             MP = 202,
             Shield = 203

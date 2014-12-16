@@ -181,6 +181,7 @@
     <Compile Include="Commands\Database\CreateDatabaseCommand.cs" />
     <Compile Include="Commands\Database\DropDatabaseCommand.cs" />
     <Compile Include="Commands\Database\ExportSchemaCommand.cs" />
+    <Compile Include="Commands\Npc\AddNpcCommand.cs" />
     <Compile Include="Commands\Scripting\RefreshScriptsCommand.cs" />
     <Compile Include="Commands\User\Items\CreateItemCommand.cs" />
     <Compile Include="Commands\User\Character States and Titles\CharacterStateCommand.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Remove.cs" />
     <Compile Include="Network\Messages\[1016] Weather.cs" />
     <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
+    <Compile Include="Network\Messages\[2030] NPC Information.cs" />
     <Compile Include="Network\WorldPacket.cs" />
     <Compile Include="Database\Records\Item Record.cs" />
     <Compile Include="Database\Records\Server Info Record.cs" />

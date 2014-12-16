@@ -16,5 +16,10 @@ namespace Throne.Shared.Commands
         {
             Console.WriteLine(response);
         }
+
+        public void Respond(byte[] response)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

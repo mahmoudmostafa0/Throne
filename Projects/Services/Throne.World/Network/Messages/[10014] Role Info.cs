@@ -51,7 +51,7 @@ namespace Throne.World.Network.Messages
             WriteBoolean(false); // show equipment window
             WriteBoolean(c.Away); // afk status
             WriteInt(0); // extended battlepower
-            SeekForward(sizeof(int) * 4); // unknown
+            SeekForward(sizeof(int) * 4); // race items? sxm
             WriteInt(0); // goodwill rank (flowers-female, gifts-male)
             WriteInt(0); // nobility rank
             WriteShort(0); // armor color

@@ -36,10 +36,11 @@
         Auctionitem = 1321,
         AuctionQuery = 1322,
         SRP6ProtocolAuthenticationReqeust = 1542,
-        NpcInfo = 2030,
+        NpcInformation = 2030,
         Npc = 2031,
         TaskDialog = 2032,
         FriendInfo = 2033,
+        PetInfo = 2035,
         ServerInfo = 2079,
 
 

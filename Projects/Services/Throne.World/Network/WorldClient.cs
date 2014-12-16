@@ -57,7 +57,16 @@ namespace Throne.World.Network
         /// For sending responses to command usage.
         /// </summary>
         /// <param name="response"></param>
-        void ICommandUser.Respond(string response)
+        void ICommandUser.Respond(String response)
+        {
+            Send(response);
+        }
+
+        /// <summary>
+        /// For sending responses to command usage.
+        /// </summary>
+        /// <param name="response"></param>
+        void ICommandUser.Respond(Byte[] response)
         {
             Send(response);
         }
@@ -68,7 +77,7 @@ namespace Throne.World.Network
         ///     Sends given bytes as complete packets to the client.
         /// </summary>
         /// <param name="value"></param>
-        public override void Send(byte[] value)
+        public override void Send(Byte[] value)
         {
             if (Connected)
             {
