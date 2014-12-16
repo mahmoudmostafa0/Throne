@@ -39,7 +39,7 @@ Getting Started
  - Configure IPs and ports
    - Get back into those global settings files for both servers, modify the IPs to whatever your router or public IP is, set your ports.. the default ports should work, just make sure you use the same ports in your loader.
  - Prepare your client
-   - No loader is included with the project yet, InfamousNoone released a good one in [ConquerServerV3](https://www.assembla.com/code/conquerserverv3/subversion/nodes).. Conqer's v5997 Windows client was used to develop Throne.
+   - No loader is included with the project yet, InfamousNoone released a good one in [ConquerServerV3](https://www.assembla.com/code/conquerserverv3/subversion/nodes).. Conquer's v5997 Windows client was used to develop Throne.
  - Login!
 
 
