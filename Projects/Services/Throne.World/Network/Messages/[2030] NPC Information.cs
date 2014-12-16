@@ -45,7 +45,7 @@ namespace Throne.World.Network.Messages
         public Int16 Action;
         public UInt32 ID;
         public Int32 Unknown;
-        public UInt16 LookFace;
+        public UInt16 TypeFace;
         public Types Type;
         public Int16 X, Y;
 
@@ -61,7 +61,7 @@ namespace Throne.World.Network.Messages
             WriteInt(Unknown); // unknown
             WriteShort(X);
             WriteShort(Y);
-            WriteUShort(LookFace);
+            WriteUShort(TypeFace);
             WriteShort((Int16) Type);
             WriteShort(Action); // action
             return base.Build();
