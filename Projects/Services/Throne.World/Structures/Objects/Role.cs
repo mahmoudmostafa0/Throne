@@ -1,9 +1,6 @@
-﻿using System;
-using Throne.World.Network;
-
-namespace Throne.World.Structures.Objects
+﻿namespace Throne.World.Structures.Objects
 {
-    public class Role : WorldObject
+    public abstract class Role : WorldObject
     {
         protected Model _look;
 
@@ -12,20 +9,10 @@ namespace Throne.World.Structures.Objects
         {
         }
 
-        public override void SpawnTo(WorldClient observer)
-        {
-
-        }
-
         public virtual Model Look
         {
             get { return _look; }
             set { _look = value; }
-        }
-
-        public static implicit operator Boolean(Role role)
-        {
-            return role != null;
         }
     }
 }

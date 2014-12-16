@@ -4,16 +4,6 @@ using Throne.World.Structures.Travel;
 
 namespace Throne.World.Structures.Objects
 {
-    public enum WorldObjectType
-    {
-        User,
-        Monster,
-        Prop,
-        Npc,
-
-        Count
-    }
-
     /// <summary>
     /// Interface to all world objects.
     /// </summary>
@@ -27,6 +17,6 @@ namespace Throne.World.Structures.Objects
         /// in the end, it is called to spawn an object to the observer's screen.
         /// </summary>
         /// <param name="observer">The observer the object is being spawned to.</param>
-        void SpawnTo(WorldClient observer);
+        void SpawnFor(WorldClient observer);
     }
 }

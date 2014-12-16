@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Throne.Shared;
 using Throne.Shared.Collections;
 using Throne.Shared.Logging;
@@ -46,15 +45,13 @@ namespace Throne.World.Structures.Objects
              new TimeSynchronize(DateTime.Now) +
              (List<Byte[]>)_inventory +
              (List<Byte[]>)_gear
+
              > User).Dispose();
 
 
-            {
-                _scrChrRWLS = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
-                _currentVisibleCharacters = new Dictionary<UInt32, Character>();
-                EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
-            }
-
+            _currentVisibleCharacters = new Dictionary<UInt32, Character>();
+            _currentVisibleMapItems = new Dictionary<UInt32, Item>();
+            EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
 
             Log.Info(StrRes.SMSG_LoggedIn);
         }
@@ -98,9 +95,7 @@ namespace Throne.World.Structures.Objects
             Position otherPos = with.Location.Position;
             int pDistance = otherPos - pos;
             int gap = MapSettings.Default.PlayerScreenRange - pDistance;
-            // since we're outside the screen, subtracting the distance from 
             Position fauxPos = otherPos.GetRelative(pos, gap);
-            // the screen distance will always result in a negative value.
 
             Location.Position.Relocate(fauxPos);
             ExchangeSpawns(with);
@@ -138,9 +133,15 @@ namespace Throne.World.Structures.Objects
                 user.User.Send(packet);
         }
 
-        public override void SpawnTo(WorldClient observer)
+        public override void SpawnFor(WorldClient observer)
         {
             ExchangeSpawns(observer.Character);
+        }
+
+        public override void DespawnFor(WorldClient observer)
+        {
+            using (var pkt = new GeneralAction(ActionType.RemoveEntity, this))
+                observer.Send(pkt);
         }
 
         public void Send(WorldPacket packet)

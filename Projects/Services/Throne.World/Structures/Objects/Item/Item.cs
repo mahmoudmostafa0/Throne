@@ -101,8 +101,16 @@ namespace Throne.World.Structures.Objects
             return new ItemInformation(toAdd);
         }
 
-        public override void SpawnTo(WorldClient observer)
+        public override void SpawnFor(WorldClient observer)
         {
+            using (var pkt = new MapItemInformation(this))
+                observer.Send(pkt);
+        }
+
+        public override void DespawnFor(WorldClient observer)
+        {
+            using (var pkt = new MapItemInformation(this, true))
+                observer.Send(pkt);
         }
     }
 }

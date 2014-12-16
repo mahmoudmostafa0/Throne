@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Remoting;
 using Throne.Shared.Network.Connectivity;
 using Throne.Shared.Network.Transmission;
 using Throne.World.Network.Handling;
 using Throne.World.Properties.Settings;
+using Throne.World.Security;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages
@@ -11,21 +13,26 @@ namespace Throne.World.Network.Messages
     public class ChatMessage : WorldPacket
     {
         public const String SYSTEM = "SYSTEM", ALLUSERS = "ALLUSERS";
-        private const Int32 MINIMUM_LENGTH = 33, AMOUNT_OF_STRINGS = 4;
+        private const Int32 MINIMUM_LENGTH = 33, MINIMUM_STRINGS = 7;
 
         public MessageColor Color;
 
         public WorldClient Client;
 
         public UInt32 Identity;
-        public String Message;
-        public String MessageSuffix = "";
-        public String Recipient = "";
+
+        public String
+            Message,
+            MessagePrefix = "",
+            MessageSuffix = "",
+            Recipient = "",
+            Sender = "";
+
         public UInt32 RecipientMesh;
-        public String Sender = "";
         public UInt32 SenderMesh;
         public MessageStyle Style;
         public MessageChannel Type;
+        public String[] Strings = new String[7];
 
         public ChatMessage(MessageChannel type, String message)
             : base(0)
@@ -35,8 +42,8 @@ namespace Throne.World.Network.Messages
             Type = type;
             Style = MessageStyle.Normal;
             Color = MessageColor.White;
-            Sender = SYSTEM;
-            Recipient = ALLUSERS;
+            //Sender = SYSTEM;
+            //Recipient = ALLUSERS;
             Message = message;
         }
 
@@ -81,7 +88,7 @@ namespace Throne.World.Network.Messages
 
         public override bool Read(IClient client)
         {
-            Client = (WorldClient) client;
+            Client = (WorldClient)client;
 
             ReadInt();
             Color = (MessageColor)ReadInt();
@@ -90,31 +97,38 @@ namespace Throne.World.Network.Messages
             Identity = ReadUInt();
             RecipientMesh = ReadUInt();
             SenderMesh = ReadUInt();
+            Strings = ReadStrings();
 
-            var strings = ReadStrings();
+            if (Strings.Length < MINIMUM_STRINGS)
+                throw new SevereViolation(StrRes.SMSG_ChatMessageBadStrings);
 
-            if (strings.Length < AMOUNT_OF_STRINGS)
-            {
-                InvalidValue(client, StrRes.SMSG_ChatMessageBadStrings, strings.Length, false);
-                return false;
-            }
-
-            Sender = strings[0];
-            Recipient = strings[1];
-            MessageSuffix = strings[2];
-            Message = strings[3];
+            Sender = Strings[0];
+            Recipient = Strings[1];
+            MessageSuffix = Strings[2];
+            Message = Strings[3];
 
             if (Sender != Client.Character.Name)
-            {
-                InvalidValue(client, StrRes.SMSG_ChatMessageInvalidSender, Sender, Client.Character.Name, false);
-                return false;
-            }
+                throw new SevereViolation(StrRes.SMSG_ChatMessageInvalidSender, Sender, Client.Character.Name);
 
             if (!string.IsNullOrWhiteSpace(Message)) return true;
 #if DEBUG
             Log.Info(StrRes.SMSG_ChatMessageEmpty);
 #endif
             return false;
+        }
+
+        public Int32 Length
+        {
+            get
+            {
+                return
+                    MINIMUM_LENGTH +
+                    Recipient.Length +
+                    Sender.Length +
+                    MessageSuffix.Length +
+                    Message.Length +
+                    MessagePrefix.Length;
+            }
         }
 
         public override void Handle(IClient client)
@@ -125,19 +139,22 @@ namespace Throne.World.Network.Messages
 
         protected override byte[] Build()
         {
-            Resize(MINIMUM_LENGTH + Recipient.Length + Sender.Length + MessageSuffix.Length + Message.Length + 8);
+            Resize(Length + 8);
             WriteInt(Environment.TickCount);
-            WriteInt((Int32)MessageColor.Green);
+            WriteInt((int)Color);
             WriteUShort((ushort)Type);
             WriteUShort((ushort)Style);
             WriteUInt(Identity);
             WriteUInt(RecipientMesh);
             WriteUInt(SenderMesh);
-            WriteByte(AMOUNT_OF_STRINGS);
+            WriteByte(MINIMUM_STRINGS);
             WriteStringWithLength(Sender);
             WriteStringWithLength(Recipient);
             WriteStringWithLength(MessageSuffix);
             WriteStringWithLength(Message);
+            WriteByte(0);//unknown
+            WriteByte(0);//unknown 
+            WriteStringWithLength(MessagePrefix);
             return base.Build();
         }
     }
@@ -175,7 +192,7 @@ namespace Throne.World.Network.Messages
         Website = 2105,
         StartRight = 2108,
         ContinueRight = 2109,
-        OfflineWhisper = 2110,
+        LeaveMessage = 2110,
         GuildBulletin = 2111,
         SystemCenter = 2115,
         TradeBoard = 2201,
@@ -183,6 +200,8 @@ namespace Throne.World.Network.Messages
         TeamBoard = 2203,
         GuildBoard = 2204,
         OtherBoard = 2205,
+        CrossServerBroadcast = 2401,
+        CrossServerChat = 2402,
         BroadcastMessage = 2500,
         MonsterTalk = 2600
     }
@@ -198,6 +217,7 @@ namespace Throne.World.Network.Messages
 
     public enum MessageColor
     {
+        None = -1,
         White = 0xFFFFFF,
         Black = 0x000000,
         Yellow = 0x00FFFF,

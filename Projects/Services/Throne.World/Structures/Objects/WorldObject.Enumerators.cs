@@ -60,7 +60,7 @@ namespace Throne.World.Structures.Objects
         //148 auto hunting
         //147 kinetic spark
         //146 blade flurry
-        //145 assasin
+        //145 assassin
         //132 faction two icon
         //131 faction one icon
         //130 faction two active

@@ -1,5 +1,6 @@
 ﻿using System;
 using Throne.Shared.Network.Transmission;
+using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages
 {
@@ -52,6 +53,17 @@ namespace Throne.World.Network.Messages
         public NpcInformation()
             : base(PacketTypes.NpcInformation, 34)
         {
+        }
+
+        public NpcInformation(Npc npc)
+            : base(PacketTypes.NpcInformation, 34)
+        {
+            Action = npc.Action;
+            ID = npc.ID;
+            TypeFace = npc.TypeAndFacing;
+            Type = npc.Type;
+            X = npc.Location.Position.X;
+            Y = npc.Location.Position.Y;
         }
 
         protected override byte[] Build()

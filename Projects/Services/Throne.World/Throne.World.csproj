@@ -213,6 +213,7 @@
     <Compile Include="Network\Messages\[1016] Weather.cs" />
     <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
     <Compile Include="Network\Messages\[2030] NPC Information.cs" />
+    <Compile Include="Network\Messages\[2031] NPC Action.cs" />
     <Compile Include="Network\WorldPacket.cs" />
     <Compile Include="Database\Records\Item Record.cs" />
     <Compile Include="Database\Records\Server Info Record.cs" />
@@ -267,25 +268,27 @@
     <Compile Include="Security\Incident Severity Levels.cs" />
     <Compile Include="Security\Security Violation EventArgs.cs" />
     <Compile Include="Security\Security Violation Exception.cs" />
+    <Compile Include="Structures\Objects\Non-player Entity\DynamicNpc.cs" />
+    <Compile Include="Structures\Objects\Non-player Entity\Npc.cs" />
     <Compile Include="Structures\Objects\WorldObject.Enumerators.cs" />
     <Compile Include="Structures\Gear\Gear.cs" />
-    <Compile Include="Structures\Objects\Items\Item.Enumerators.cs" />
-    <Compile Include="Structures\Objects\Items\Item.Composition.cs" />
+    <Compile Include="Structures\Objects\Item\Item.Enumerators.cs" />
+    <Compile Include="Structures\Objects\Item\Item.Composition.cs" />
     <Compile Include="Structures\Gear\Gear Slot.cs" />
     <Compile Include="Structures\Objects\Role.cs" />
-    <Compile Include="Structures\Objects\Character\Character.Assets.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.Assets.cs" />
     <Compile Include="Structures\Storage\Item Storage Implementations\Inventory.cs" />
     <Compile Include="Structures\Storage\Item Storage.cs" />
     <Compile Include="Structures\Storage\Item Storage Implementations\Depository.cs" />
-    <Compile Include="Structures\Objects\Character\Character.Timer.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.Timer.cs" />
     <Compile Include="Structures\Objects\WorldObject.cs" />
     <Compile Include="Structures\Objects\IWorldObject.cs" />
-    <Compile Include="Structures\Objects\Items\Item.cs" />
+    <Compile Include="Structures\Objects\Item\Item.cs" />
     <Compile Include="Structures\Objects\Model.cs" />
-    <Compile Include="Structures\Objects\Creature\Creature.cs" />
-    <Compile Include="Structures\Objects\Character\Character.cs" />
-    <Compile Include="Structures\Objects\Character\Character.Properties.cs" />
-    <Compile Include="Structures\Objects\Character\Character.Vision.cs" />
+    <Compile Include="Structures\Objects\Non-player Entity\Creature\Creature.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.Properties.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.Vision.cs" />
     <Compile Include="Properties\Settings\EntitySettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -314,6 +317,7 @@
       <DependentUpon>StrRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Structures\World\Map\Map.Items.cs" />
+    <Compile Include="Structures\World\Map\Map.NPCs.cs" />
     <Compile Include="World Server.cs" />
   </ItemGroup>
   <ItemGroup>

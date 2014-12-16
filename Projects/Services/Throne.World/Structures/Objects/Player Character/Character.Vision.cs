@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Structures.Travel;
@@ -13,30 +12,26 @@ namespace Throne.World.Structures.Objects
     /// <summary>
     ///     What a user can see.
     /// </summary>
+    /// <remarks>
+    ///     This part should be kept thread-safe.
+    ///     If "this" entity tries to remove a value from another entity it should posted as a message to the other
+    ///     entity's actor, since each user's messages execute on only one thread no matter what.
+    /// </remarks>
     partial class Character
     {
-        private readonly ReaderWriterLockSlim _scrChrRWLS;
-
         private Dictionary<UInt32, Character> _currentVisibleCharacters;
+        private Dictionary<UInt32, Item> _currentVisibleMapItems; // using the item class for now
 
         public void ClearScreen()
         {
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                _currentVisibleCharacters.Clear();
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
+            _currentVisibleCharacters.Clear();
+            _currentVisibleMapItems.Clear();
         }
 
-        public Boolean Visible(IWorldObject obj)
+        public Boolean IsVisible(IWorldObject obj)
         {
             return Location.Position.InRange(obj.Location.Position, EntitySettings.Default.ScreenRange);
         }
-
 
         public void LookDown(Jump jmp)
         {
@@ -47,23 +42,31 @@ namespace Throne.World.Structures.Objects
             List<Character> updatedCharacters = map.GetVisibleUsers(this);
             IEnumerable<Character> newVisibleCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
             IEnumerable<Character> removeVisibleCharacters = _currentVisibleCharacters.Values.Except(updatedCharacters);
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                _currentVisibleCharacters = updatedCharacters.ToDictionary(c => c.ID);
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
-            Parallel.ForEach(newVisibleCharacters, chr =>
-            {
-                ExchangeAerialSpawns(chr, jmp);
-                AddVisibleCharacter(this, spawn: false);
-            });
-            Parallel.ForEach(removeVisibleCharacters, rc => rc.RemoveVisibleCharacter(this));
 
-            User.Send(Location.Map.GetCell(Location.Position).ToString());
+            _currentVisibleCharacters = updatedCharacters.ToDictionary(c => c.ID);
+
+            foreach (Character nc in newVisibleCharacters)
+            {
+                ExchangeAerialSpawns(nc, jmp);
+                nc.User.PostAsync(() => AddVisibleCharacter(this, false));
+            }
+            foreach (Character rc in removeVisibleCharacters)
+                rc.User.PostAsync(() => RemoveVisibleCharacter(this));
+
+            #endregion
+
+            #region Update map items
+
+            List<Item> updatedMapItems = map.GetVisibleItems(this);
+            IEnumerable<Item> newVisibleMapItems = updatedMapItems.Except(_currentVisibleMapItems.Values);
+            IEnumerable<Item> removeVisibleMapItems = _currentVisibleMapItems.Values.Except(updatedMapItems);
+
+            _currentVisibleMapItems = updatedMapItems.ToDictionary(mi => mi.ID);
+
+            foreach (Item ni in newVisibleMapItems)
+                ni.SpawnFor(User);
+            //TODO: Continue
+
             #endregion
         }
 
@@ -76,69 +79,16 @@ namespace Throne.World.Structures.Objects
             List<Character> updatedCharacters = map.GetVisibleUsers(this);
             IEnumerable<Character> newVisibleCharacters = updatedCharacters.Except(_currentVisibleCharacters.Values);
             IEnumerable<Character> removeVisibleCharacters = _currentVisibleCharacters.Values.Except(updatedCharacters);
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                _currentVisibleCharacters = updatedCharacters.ToDictionary(c => c.ID);
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
-            Parallel.ForEach(newVisibleCharacters, nc => nc.AddVisibleCharacter(this));
-            Parallel.ForEach(removeVisibleCharacters, rc => rc.RemoveVisibleCharacter(this));
 
-            User.Send(Location.Map.GetCell(Location.Position).ToString());
+            _currentVisibleCharacters = updatedCharacters.ToDictionary(c => c.ID);
+
+            foreach (Character nc in newVisibleCharacters)
+                nc.User.PostAsync(() => AddVisibleCharacter(this));
+            foreach (Character rc in removeVisibleCharacters)
+                rc.User.PostAsync(() => RemoveVisibleCharacter(this));
 
             #endregion
         }
-
-
-        private void AddVisibleCharacter(Character chr, Boolean spawn = true)
-        {
-            if (spawn)
-                ExchangeSpawns(chr);
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                _currentVisibleCharacters[chr.ID] = chr;
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
-        }
-
-        private void RemoveVisibleCharacter(Character chr, Boolean force = false)
-        {
-            if (force)
-                using (var removeEntity = new GeneralAction(ActionType.RemoveEntity, chr))
-                    User.Send(removeEntity);
-
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                _currentVisibleCharacters.Remove(chr.ID);
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
-        }
-
-        public Character GetVisibleCharacter(UInt32 Id)
-        {
-            _scrChrRWLS.EnterReadLock();
-            try
-            {
-                return _currentVisibleCharacters[Id];
-            }
-            finally
-            {
-                _scrChrRWLS.ExitReadLock();
-            }
-        }
-
 
         public void EnterRegion(Location location)
         {
@@ -150,16 +100,9 @@ namespace Throne.World.Structures.Objects
 
         public void ExitCurrentRegion()
         {
-            _scrChrRWLS.EnterWriteLock();
-            try
-            {
-                Location.Map.RemoveUser(this);
-                Parallel.ForEach(_currentVisibleCharacters.Values, nc => nc.RemoveVisibleCharacter(this, true));
-            }
-            finally
-            {
-                _scrChrRWLS.ExitWriteLock();
-            }
+            Location.Map.RemoveUser(this);
+            foreach (Character rc in _currentVisibleCharacters.Values)
+                rc.User.PostAsync(() => RemoveVisibleCharacter(this, true));
 
             ClearScreen();
         }
@@ -207,7 +150,6 @@ namespace Throne.World.Structures.Objects
             Direction = Location.Position.GetOrientation(destination);
             Location.Position.Relocate(destination);
             LookAround();
-
             return true;
         }
 
@@ -215,6 +157,34 @@ namespace Throne.World.Structures.Objects
         /// TODO: validate movement timestamps
         /// TODO: Check for fast movements with current timestamps.
         /// TODO: remove invulnerability status
+
+        #endregion
+
+        #region Characters
+        private void AddVisibleCharacter(Character chr, Boolean spawn = true)
+        {
+            if (spawn)
+                ExchangeSpawns(chr);
+
+            _currentVisibleCharacters[chr.ID] = chr;
+        }
+
+        private void RemoveVisibleCharacter(Character chr, Boolean force = false)
+        {
+            if (force)
+                chr.DespawnFor(User);
+
+            _currentVisibleCharacters.Remove(chr.ID);
+        }
+
+        public Character GetVisibleCharacter(UInt32 Id)
+        {
+            return _currentVisibleCharacters[Id];
+        }
+
+        #endregion
+
+        #region Map Items
 
         #endregion
     }

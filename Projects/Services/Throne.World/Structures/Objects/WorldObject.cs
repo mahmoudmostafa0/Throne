@@ -28,17 +28,7 @@ namespace Throne.World.Structures.Objects
             id = ID;
         }
 
-        public virtual Location Location { get; set; }
-        public abstract void SpawnTo(WorldClient observer);
         public virtual String Name { get; set; }
-
-        /// <summary>
-        ///     Represents the unique identification number of an object in the region or game world.
-        /// </summary>
-        public UInt32 ID
-        {
-            get { return id; }
-        }
 
 
         public Boolean IsPlayer
@@ -69,6 +59,24 @@ namespace Throne.World.Structures.Objects
         public Boolean IsTerrainNPC
         {
             get { return id >= DynaNpcIdMin && id <= DynaNpcIdMax; }
+        }
+
+        public virtual Location Location { get; set; }
+        public abstract void SpawnFor(WorldClient observer);
+
+        /// <summary>
+        ///     Represents the unique identification number of an object in the region or game world.
+        /// </summary>
+        public UInt32 ID
+        {
+            get { return id; }
+        }
+
+        public abstract void DespawnFor(WorldClient observer);
+
+        public static implicit operator Boolean(WorldObject obj)
+        {
+            return obj != null;
         }
     }
 }
