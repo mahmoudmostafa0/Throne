@@ -41,7 +41,7 @@ Getting Started
  - Prepare your client
    - No loader is included with the project yet, InfamousNoone released a good one in [ConquerServerV3](https://www.assembla.com/code/conquerserverv3/subversion/nodes).. Conquer's v5997 Windows client was used to develop Throne.
  - Login
-   - Type >help ingame for commands, or help on the console.
+   - Type >help ingame for commands, or help on the console. Standard command usage: >teleport 1002 300 278
    - Use >> to activate targeted commands, any user command can be used on a target. Usage: >>teleport Mentalis 1002 300 378
 
 
