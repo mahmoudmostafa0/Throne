@@ -23,7 +23,7 @@ Features
    - Fluent NHibernate
    - Asyncronous Sockets
    - WCF IPC
-   - Actor based threading (one thread per core, one thread per actor.. lightest load thread after idle, load balanced)
+   - Actor based threading (one thread per core, one thread per actor, load balanced)
  - Conquer Implementations:
    - Roles
    - Maps
