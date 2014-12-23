@@ -30,7 +30,7 @@ namespace Throne.World.Sessions
         /// </summary>
         public void Clear()
         {
-            State.End();
+            State.EndInteraction();
             State = null;
         }
 

@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Transmission;
 using Throne.World.Network.Handling;
-using Throne.World.Scripting.Scripts;
-using Throne.World.Security;
 using Throne.World.Sessions;
 using Throne.World.Structures.Objects;
 using Throne.World.Structures.Task_Dialog;
@@ -47,14 +46,15 @@ namespace Throne.World.Network.Messages
 
         public override bool Read(IClient client)
         {
-            _character = ((WorldClient)client).Character;
+            _character = ((WorldClient) client).Character;
             return true;
         }
 
         public override void Handle(IClient client)
         {
-            NpcSession session = _character.NpcSession;
-            var feedback = new DialogFeedback(Seek(14).ReadByte());
+            var session = _character.NpcSession;
+            var feedback = new DialogFeedback(Seek(14).ReadByte(),
+                Seek(16).ReadStrings().FirstOrDefault() ?? String.Empty, Seek(4).ReadInt());
 
             if (session.Valid())
                 if (session.State.Resume(feedback))
@@ -76,29 +76,38 @@ namespace Throne.World.Network.Messages
 
         public TaskDialog Message(params String[] msg)
         {
-            Seek(15).WriteByte((Byte)Types.Message);
+            Seek(15).WriteByte((Byte) Types.Message);
             WriteStrings(msg);
             return this;
         }
 
-        public TaskDialog Option(Byte op, params String[] txt)
+        public TaskDialog Option(Byte op, String name)
         {
             Seek(14).WriteByte(op);
-            WriteByte((Byte)Types.Option);
-            WriteStrings(txt);
+            WriteByte((Byte) Types.Option);
+            WriteStrings(name);
             return this;
         }
 
         public TaskDialog Picture(UInt16 picId)
         {
             Seek(12).WriteUShort(picId);
-            Seek(15).WriteByte((Byte)Types.Picture);
+            Seek(15).WriteByte((Byte) Types.Picture);
             return this;
         }
 
         public TaskDialog ShowDialog()
         {
-            Seek(15).WriteByte((Byte)Types.ShowDialog);
+            Seek(15).WriteByte((Byte) Types.ShowDialog);
+            return this;
+        }
+
+        public TaskDialog Input(Byte op, UInt16 szInput, String name)
+        {
+            Seek(12).WriteUShort(szInput);
+            WriteByte(op);
+            WriteByte((Byte) Types.Input);
+            WriteStrings(name);
             return this;
         }
 

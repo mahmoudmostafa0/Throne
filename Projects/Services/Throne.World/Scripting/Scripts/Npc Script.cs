@@ -29,6 +29,7 @@ namespace Throne.World.Scripting.Scripts
         protected NpcScript()
         {
             Npc = new Npc();
+            _feedback = new DialogFeedback();
             _resumeSignal = new SemaphoreSlim(0, 1);
             _cancelToken = new CancellationTokenSource();
         }
@@ -158,8 +159,6 @@ namespace Throne.World.Scripting.Scripts
             await Task.Yield();
         }
 
-
-
         protected async Task<DialogFeedback> Response()
         {
             InteractionState = InteractionStates.Feedback;
@@ -170,6 +169,8 @@ namespace Throne.World.Scripting.Scripts
 
         public Boolean Resume(DialogFeedback feedback)
         {
+            if (feedback.Time == _feedback.Time)
+                return true;
             if (feedback.Option == 0)
             {
                 InteractionState = InteractionStates.Ended;
@@ -184,10 +185,10 @@ namespace Throne.World.Scripting.Scripts
         private void ShowDialog(Boolean hide, Dialog dlg)
         {
             if (dlg.Children.Count > 1)
-                dlg.Join(new DialogPicture((ushort)(Npc.Look.Face == 0 ? 296 : Npc.Look.Face)));
+                dlg.Join(Face((ushort) (Npc.Look.Face == 0 ? 296 : Npc.Look.Face)));
 
             using (TaskDialog pkt = new TaskDialog(0).ShowDialog())
-                Character.User.Send(dlg.MakeStream().Join(pkt));
+                Character.User.Send(hide ? dlg.MakeStream() : dlg.MakeStream().Join(pkt));
         }
 
         protected void Message(String msg, params Dialog[] elements)
@@ -204,6 +205,11 @@ namespace Throne.World.Scripting.Scripts
         protected DialogPicture Face(UInt16 face)
         {
             return new DialogPicture(face);
+        }
+
+        protected DialogInput Input(String name, Byte op, UInt16 szInput = 16)
+        {
+            return new DialogInput(name, op, szInput);
         }
 
         #endregion
