@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
 using Throne.World.Network.Handling;
 using Throne.World.Properties.Settings;
 using Throne.World.Security;
@@ -42,8 +42,8 @@ namespace Throne.World.Network.Messages
             Type = type;
             Style = MessageStyle.Normal;
             Color = MessageColor.White;
-            //Sender = SYSTEM;
-            //Recipient = ALLUSERS;
+            Sender = SYSTEM;
+            Recipient = ALLUSERS;
             Message = message;
         }
 

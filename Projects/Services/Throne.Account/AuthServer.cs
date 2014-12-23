@@ -8,15 +8,15 @@ using Throne.Login.Network.Messages;
 using Throne.Login.Properties;
 using Throne.Login.Records.Implementations;
 using Throne.Login.Services;
-using Throne.Shared;
-using Throne.Shared.Configuration;
-using Throne.Shared.Network;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Services;
-using Throne.Shared.Cryptography;
-using Throne.Shared.Services.Account;
+using Throne.Framework;
+using Throne.Framework.Configuration;
+using Throne.Framework.Network;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Services;
+using Throne.Framework.Cryptography;
+using Throne.Framework.Services.Account;
 
 namespace Throne.Login
 {

@@ -2,11 +2,11 @@
 using System.Net;
 using System.Net.Sockets;
 using NHibernate.Exceptions;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Network.Communication
+namespace Throne.Framework.Network.Communication
 {
     public abstract class TcpClient : Actor<TcpClient>
     {

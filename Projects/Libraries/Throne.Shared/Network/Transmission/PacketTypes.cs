@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Network.Transmission
+﻿namespace Throne.Framework.Network.Transmission
 {
     public enum PacketTypes : short
     {
@@ -37,7 +37,7 @@
         AuctionQuery = 1322,
         SRP6ProtocolAuthenticationReqeust = 1542,
         NpcInformation = 2030,
-        Npc = 2031,
+        NpcAction = 2031,
         TaskDialog = 2032,
         FriendInfo = 2033,
         PetInfo = 2035,

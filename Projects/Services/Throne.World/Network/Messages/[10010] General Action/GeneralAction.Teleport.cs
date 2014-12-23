@@ -1,5 +1,5 @@
 ﻿
-using Throne.Shared.Math;
+using Throne.Framework.Math;
 using Throne.World.Structures.Travel;
 
 namespace Throne.World.Network.Messages

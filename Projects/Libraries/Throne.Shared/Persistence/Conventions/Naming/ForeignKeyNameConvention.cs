@@ -2,7 +2,7 @@ using System;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 
-namespace Throne.Shared.Persistence.Conventions.Naming
+namespace Throne.Framework.Persistence.Conventions.Naming
 {
     internal sealed class ForeignKeyNameConvention : ForeignKeyConvention
     {

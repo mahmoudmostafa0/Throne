@@ -3,8 +3,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Throne.Shared;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework;
+using Throne.Framework.Threading.Actors;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Structures.Objects;
@@ -32,8 +32,6 @@ namespace Throne.World.Structures.World
 
         public Boolean AddItem(Item itm)
         {
-            if (!ItemCell(itm.Location.Position, true)) return false; // ya standin in it!
-
             lock (ItemReadWrite)
             {
                 _items[itm.Guid] = itm;
@@ -78,13 +76,22 @@ namespace Throne.World.Structures.World
                 result.AddRange(
                     _items.Values.Where(
                         itm => itm.Location.Position.InRange(pos, MapSettings.Default.PlayerScreenRange)));
+            //Screen range differs from characters.. seems to be 20-22..
 
             return result;
         }
 
-        private Boolean ItemCell(Position pos, Boolean value)
+        private Boolean ValidItemPosition(Position pos, Boolean value)
         {
-            return true;
+            var cell = GetCell(pos);
+            try
+            {
+                return !cell[CellType.Item];
+            }
+            finally
+            {
+                cell[CellType.Item] = true;
+            }
         }
     }
 }

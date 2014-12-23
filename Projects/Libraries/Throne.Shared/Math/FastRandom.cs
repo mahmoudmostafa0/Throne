@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 
-namespace Throne.Shared.Math
+namespace Throne.Framework.Math
 {
     /// <summary>
     ///     A fast random number generator.
@@ -25,7 +25,8 @@ namespace Throne.Shared.Math
         /// <summary>
         ///     Gets a FastRandom instance for the current thread.
         /// </summary>
-        [ThreadStatic] [SuppressMessage("Microsoft.Security", "CA2104", Justification = "This field has to be public and read-only.")] public static readonly FastRandom Current = new FastRandom();
+        [ThreadStatic, SuppressMessage("Microsoft.Security", "CA2104", Justification = "This field has to be public and read-only.")] 
+        public static readonly FastRandom Current = new FastRandom();
 
         private uint _bitBuffer;
 

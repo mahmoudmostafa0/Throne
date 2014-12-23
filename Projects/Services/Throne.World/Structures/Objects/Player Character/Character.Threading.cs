@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Throne.Shared;
-using Throne.Shared.Threading.Actors;
+using System.Threading.Tasks;
+using Throne.Framework;
+using Throne.Framework.Threading.Actors;
 using Throne.World.Properties.Settings;
 
 namespace Throne.World.Structures.Objects
@@ -15,7 +16,7 @@ namespace Throne.World.Structures.Objects
         private Boolean _canBeginTasks = true;
 
         /// <summary>
-        ///     Creates a new <see cref="Throne.Shared.Threading.Actors.ActorTimer" />
+        ///     Creates a new <see cref="Throne.Framework.Threading.Actors.ActorTimer" />
         ///     A timer is used to invoke tasks on the current thread of this instance's
         ///     <see cref="Throne.World.Network.WorldClient" />
         ///     The action is passed to the actor's current thread for the sake of load balancing.
@@ -48,7 +49,7 @@ namespace Throne.World.Structures.Objects
         }
 
         /// <summary>
-        ///     Creates a new <see cref="Throne.Shared.Threading.Actors.ActorTimer" />
+        ///     Creates a new <see cref="Throne.Framework.Threading.Actors.ActorTimer" />
         ///     A timer is used to invoke tasks on the thread this character's actor picks.
         /// </summary>
         /// <param name="action">What is your task, oh great one? (use lambada expressions to do anything at all)</param>
@@ -93,6 +94,11 @@ namespace Throne.World.Structures.Objects
 
                 return true;
             }
+        }
+
+        public Actor Actor
+        {
+            get { return User; }
         }
     }
 

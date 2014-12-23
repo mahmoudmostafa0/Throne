@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
+using Throne.World.Structures.Objects.Actors;
 using Throne.World.Structures.Travel;
 using Throne.World.Structures.World;
 
@@ -21,6 +21,7 @@ namespace Throne.World.Structures.Objects
     {
         private Dictionary<UInt32, Character> _currentVisibleCharacters;
         private Dictionary<UInt32, Item> _currentVisibleMapItems; // using the item class for now
+        private Dictionary<UInt32, Npc> _currentVisibleNpcs;
 
         public void ClearScreen()
         {
@@ -28,9 +29,11 @@ namespace Throne.World.Structures.Objects
             _currentVisibleMapItems.Clear();
         }
 
-        public Boolean IsVisible(IWorldObject obj)
+        public Boolean CanSee(IWorldObject obj)
         {
-            return Location.Position.InRange(obj.Location.Position, EntitySettings.Default.ScreenRange);
+            return _currentVisibleCharacters.ContainsKey(obj.ID) ||
+                   _currentVisibleMapItems.ContainsKey(obj.ID) ||
+                   _currentVisibleNpcs.ContainsKey(obj.ID);
         }
 
         public void LookDown(Jump jmp)
@@ -64,8 +67,26 @@ namespace Throne.World.Structures.Objects
             _currentVisibleMapItems = updatedMapItems.ToDictionary(mi => mi.ID);
 
             foreach (Item ni in newVisibleMapItems)
+            {
                 ni.SpawnFor(User);
-            //TODO: Continue
+                ni.Script.OnEnterScreen(this, ni);
+            }
+
+            foreach (Item ni in removeVisibleMapItems)
+                ni.Script.OnExitScreen(this, ni);
+
+            #endregion
+
+            #region Update npcs
+
+            List<Npc> updatedNpcs = map.GetVisibleNpcs(this);
+            IEnumerable<Npc> newVisibleNpcs = updatedNpcs.Except(_currentVisibleNpcs.Values);
+            IEnumerable<Npc> removeVisibleNpcs = _currentVisibleNpcs.Values.Except(updatedNpcs);
+
+            _currentVisibleNpcs = updatedNpcs.ToDictionary(n => n.ID);
+
+            foreach (Npc nn in newVisibleNpcs)
+                nn.SpawnFor(User);
 
             #endregion
         }
@@ -86,6 +107,38 @@ namespace Throne.World.Structures.Objects
                 nc.User.PostAsync(() => AddVisibleCharacter(this));
             foreach (Character rc in removeVisibleCharacters)
                 rc.User.PostAsync(() => RemoveVisibleCharacter(this));
+
+            #endregion
+
+            #region Update map items
+
+            List<Item> updatedMapItems = map.GetVisibleItems(this);
+            IEnumerable<Item> newVisibleMapItems = updatedMapItems.Except(_currentVisibleMapItems.Values);
+            IEnumerable<Item> removeVisibleMapItems = _currentVisibleMapItems.Values.Except(updatedMapItems);
+
+            _currentVisibleMapItems = updatedMapItems.ToDictionary(mi => mi.ID);
+
+            foreach (Item ni in newVisibleMapItems)
+            {
+                ni.SpawnFor(User);
+                ni.Script.OnEnterScreen(this, ni);
+            }
+
+            foreach (Item ni in removeVisibleMapItems)
+                ni.Script.OnExitScreen(this, ni);
+
+            #endregion
+
+            #region Update npcs
+
+            List<Npc> updatedNpcs = map.GetVisibleNpcs(this);
+            IEnumerable<Npc> newVisibleNpcs = updatedNpcs.Except(_currentVisibleNpcs.Values);
+            IEnumerable<Npc> removeVisibleNpcs = _currentVisibleNpcs.Values.Except(updatedNpcs);
+
+            _currentVisibleNpcs = updatedNpcs.ToDictionary(n => n.ID);
+
+            foreach (Npc nn in newVisibleNpcs)
+                nn.SpawnFor(User);
 
             #endregion
         }
@@ -185,6 +238,25 @@ namespace Throne.World.Structures.Objects
         #endregion
 
         #region Map Items
+
+        private void AddVisibleMapItem(Item itm)
+        {
+            itm.SpawnFor(User);
+            _currentVisibleMapItems[itm.ID] = itm;
+        }
+
+        private void RemoveVisibleMapItem(Item itm, Boolean force = false)
+        {
+            if (force)
+                itm.DespawnFor(User);
+
+            _currentVisibleMapItems.Remove(itm.ID);
+        }
+
+        private Item GetVisibleMapItem(UInt32 Id)
+        {
+            return _currentVisibleMapItems[Id];
+        }
 
         #endregion
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     public class CommandArguments
     {

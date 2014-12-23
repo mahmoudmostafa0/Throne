@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Throne.Shared.Commands;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Commands;
+using Throne.Framework.Security.Permissions;
 
 namespace Throne.World.Commands.Database
 {

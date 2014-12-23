@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Reflection;
-using Throne.Shared.Collections;
+using Throne.Framework.Collections;
 
-namespace Throne.Shared.Reflection
+namespace Throne.Framework.Reflection
 {
     public static class ReflectionExtensions
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Throne.Shared;
+using Throne.Framework;
 
 namespace Throne.World.Structures.World
 {

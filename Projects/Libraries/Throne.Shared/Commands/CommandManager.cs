@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Reflection;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Threading;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Reflection;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Threading;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     public sealed class CommandManager : SingletonActor<CommandManager>
     {

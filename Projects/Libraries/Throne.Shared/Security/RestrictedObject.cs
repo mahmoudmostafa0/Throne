@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Throne.Shared.Security
+namespace Throne.Framework.Security
 {
     /// <summary>
     ///     A default implementation of IPermissible.

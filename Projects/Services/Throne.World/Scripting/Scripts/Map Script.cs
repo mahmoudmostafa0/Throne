@@ -30,7 +30,6 @@ namespace Throne.World.Scripting.Scripts
         {
         }
 
-
         public override bool Init()
         {
             if (!Map)
@@ -59,7 +58,7 @@ namespace Throne.World.Scripting.Scripts
             MapId = Id;
         }
 
-        public void InstanceScript()
+        public void SetInstance(UInt32 instanceId)
         {
             Instance = true;
         }

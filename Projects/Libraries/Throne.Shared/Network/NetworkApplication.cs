@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Net;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Properties;
-using Throne.Shared.Threading;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Properties;
+using Throne.Framework.Threading;
 
-namespace Throne.Shared.Network
+namespace Throne.Framework.Network
 {
     public abstract class NetworkApplication<T> : ActorApplication<T>
         where T : NetworkApplication<T>

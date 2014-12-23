@@ -1,7 +1,7 @@
 ﻿using System;
-using Throne.Shared.Network.Connectivity;
+using Throne.Framework.Network.Connectivity;
 
-namespace Throne.Shared.Network.Transmission
+namespace Throne.Framework.Network.Transmission
 {
     public class AuthenticationPacket : Packet
     {

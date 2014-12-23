@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
 
-namespace Throne.Shared.Network.Handling
+namespace Throne.Framework.Network.Handling
 {
     public sealed class PacketHandler<T>
         where T : Packet

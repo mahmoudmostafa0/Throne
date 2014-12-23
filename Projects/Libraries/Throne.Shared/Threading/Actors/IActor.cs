@@ -1,16 +1,15 @@
 ﻿using System;
-using Throne.Shared.Runtime;
-using Throne.Shared.Security;
+using System.Threading.Tasks;
+using Throne.Framework.Runtime;
+using Throne.Framework.Security;
 
-namespace Throne.Shared.Threading.Actors
+namespace Throne.Framework.Threading.Actors
 {
     public interface IActor : IDisposableResource, IPermissible
     {
-        void Join();
-
         void PostAsync(Action msg);
 
-        IWaitable PostWait(Action msg);
+        Task PostWait(Action msg);
     }
 
     public interface IActor<out TThis> : IActor
@@ -18,6 +17,6 @@ namespace Throne.Shared.Threading.Actors
     {
         void PostAsync(Action<TThis> msg);
 
-        IWaitable PostWait(Action<TThis> msg);
+        Task PostWait(Action<TThis> msg);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Throne.Shared
+namespace Throne.Framework
 {
     public static partial class Extensions
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using Throne.Shared;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Security;
-using TcpClient = Throne.Shared.Network.Communication.TcpClient;
+using Throne.Framework;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Security;
+using TcpClient = Throne.Framework.Network.Communication.TcpClient;
 
 #pragma warning disable 618
 
@@ -126,6 +126,16 @@ namespace Throne.Login.Network
             }
             else
                 Receive();
+        }
+
+        public void Respond(string response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Respond(byte[] response)
+        {
+            Send(response);
         }
     }
 }

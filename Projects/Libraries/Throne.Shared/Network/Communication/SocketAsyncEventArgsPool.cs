@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Sockets;
-using Throne.Shared.Collections;
+using Throne.Framework.Collections;
 
-namespace Throne.Shared.Network.Communication
+namespace Throne.Framework.Network.Communication
 {
     public static class SocketAsyncEventArgsPool
     {

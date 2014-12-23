@@ -10,8 +10,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <ItemGroup>
-    <Compile Include="..\..\..\Build\system\scripts\items\skillbooks\ScentSword.cs">
-      <Link>skillbooks\ScentSword</Link>
+    <Compile Include="..\..\..\Build\system\scripts\items\**\*.cs">
+      <Link>%(RecursiveDir)%(FileName)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Content Include="..\..\..\Build\system\scripts\scripts_items.txt">
@@ -19,9 +19,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Throne.Shared\Throne.Shared.csproj">
+    <ProjectReference Include="..\..\Libraries\Throne.Shared\Throne.Framework.csproj">
       <Project>{cc15de31-b6b0-4fe6-bc98-57b76e9ea76c}</Project>
-      <Name>Throne.Shared</Name>
+      <Name>Throne.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\Throne.World\Throne.World.csproj">
       <Project>{84e08876-15eb-491a-bd83-96c54492a638}</Project>

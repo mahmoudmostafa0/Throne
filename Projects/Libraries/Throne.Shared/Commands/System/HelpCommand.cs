@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Throne.Shared.Commands.System
+namespace Throne.Framework.Commands.System
 {
     [Command("Help", "Commands", "Command", "?")]
     public sealed class HelpCommand : Command

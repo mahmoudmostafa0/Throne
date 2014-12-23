@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
-namespace Throne.Shared.Threading
+namespace Throne.Framework.Threading
 {
-    public interface IWaitable
+    public interface IWaitable : INotifyCompletion
     {
         /// <summary>
         /// Caution must be used when waiting indefinitely.

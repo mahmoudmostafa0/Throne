@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using Throne.Shared;
-using Throne.Shared.Commands;
+using Throne.Framework;
+using Throne.Framework.Commands;
 using Throne.World.Network;
 using Throne.World.Network.Messages;
 

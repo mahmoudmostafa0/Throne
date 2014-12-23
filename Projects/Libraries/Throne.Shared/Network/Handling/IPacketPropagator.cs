@@ -1,7 +1,7 @@
 ﻿
-using Throne.Shared.Network.Connectivity;
+using Throne.Framework.Network.Connectivity;
 
-namespace Throne.Shared.Network.Handling
+namespace Throne.Framework.Network.Handling
 {
     public interface IPacketPropagator
     {

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Net;
-using Throne.Shared.Logging;
-using Throne.Shared.Network.Security;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Commands;
+using Throne.Framework.Logging;
+using Throne.Framework.Network.Security;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Network.Connectivity
+namespace Throne.Framework.Network.Connectivity
 {
-    public interface IClient : IActor
+    public interface IClient : IActor, ICommandUser
     {
         INetworkCipher StreamCipher { get; }
 

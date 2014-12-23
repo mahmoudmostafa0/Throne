@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.Contracts;
 using JetBrains.Annotations;
 
-namespace Throne.Shared.Exceptions
+namespace Throne.Framework.Exceptions
 {
     /// <summary>
     ///     Holds information describing an exception.

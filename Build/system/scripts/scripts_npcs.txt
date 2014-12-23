@@ -1,0 +1,4 @@
+// Throne
+// Npc Script list file
+
+npcs/GuildDirector.cs

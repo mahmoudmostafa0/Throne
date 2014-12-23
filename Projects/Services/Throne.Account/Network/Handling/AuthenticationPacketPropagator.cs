@@ -1,5 +1,5 @@
-﻿using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Transmission;
+﻿using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Transmission;
 
 namespace Throne.Login.Network.Handling
 {

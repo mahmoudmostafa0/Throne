@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Throne.Shared;
-using Throne.Shared.Collections;
-using Throne.Shared.Logging;
-using Throne.Shared.Network.Transmission.Stream;
-using Throne.Shared.Runtime;
+using Throne.Framework;
+using Throne.Framework.Collections;
+using Throne.Framework.Logging;
+using Throne.Framework.Network.Transmission.Stream;
+using Throne.Framework.Runtime;
 using Throne.World.Network;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Records;
+using Throne.World.Sessions;
+using Throne.World.Structures.Objects.Actors;
 using Throne.World.Structures.Storage;
 using Throne.World.Structures.Travel;
 using Constants = Throne.World.Properties.Constants;
@@ -19,9 +21,16 @@ namespace Throne.World.Structures.Objects
     /// <summary> An in-game user controlled entity with an archetype. </summary>
     public sealed partial class Character : Role, IDisposableResource
     {
+        /// <summary>
+        ///     Initializes a new character object.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="record"></param>
         public Character(WorldClient user, CharacterRecord record)
             : base(record.Guid)
         {
+            NpcSession = new NpcSession();
+
             User = user;
             Record = record;
 
@@ -29,7 +38,7 @@ namespace Throne.World.Structures.Objects
 
             _timers = new Dictionary<CharacterTask, CharacterTimer>();
 
-            _look = new Model(Record.Look, Record.Hairstyle);
+            _look = new Model(Record.Look);
             _pStats = new BooleanArray<RoleState>(192);
 
             IEnumerable<Item> items = Record.ItemPayload.Select(itemRecord => new Item(itemRecord));
@@ -43,14 +52,14 @@ namespace Throne.World.Structures.Objects
              Constants.LoginMessages.AnswerOk +
              new CharacterInformation(this) +
              new TimeSynchronize(DateTime.Now) +
-             (List<Byte[]>)_inventory +
-             (List<Byte[]>)_gear
-
+             (List<Byte[]>) _inventory +
+             (List<Byte[]>) _gear
              > User).Dispose();
 
 
             _currentVisibleCharacters = new Dictionary<UInt32, Character>();
             _currentVisibleMapItems = new Dictionary<UInt32, Item>();
+            _currentVisibleNpcs = new Dictionary<UInt32, Npc>();
             EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
 
             Log.Info(StrRes.SMSG_LoggedIn);
@@ -65,17 +74,17 @@ namespace Throne.World.Structures.Objects
         {
             ExitCurrentRegion();
             ClearScreen();
-            Log.Info(StrRes.SMSG_LoggedOut);
+            NpcSession.Clear();
 
-            User = null;
+            Log.Info(StrRes.SMSG_LoggedOut);
         }
 
         public bool IsDisposed { get; private set; }
 
         public void ExchangeSpawns(Character with)
         {
-            with.User.Send((RoleInfo)this);
-            User.Send((RoleInfo)with);
+            with.User.Send((RoleInfo) this);
+            User.Send((RoleInfo) with);
         }
 
         /// <summary>

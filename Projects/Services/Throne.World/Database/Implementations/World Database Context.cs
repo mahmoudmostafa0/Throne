@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentNHibernate;
-using Throne.Shared.Persistence;
+using Throne.Framework.Persistence;
 using Throne.World.Records;
 
 namespace Throne.World.Database.Records.Implementations

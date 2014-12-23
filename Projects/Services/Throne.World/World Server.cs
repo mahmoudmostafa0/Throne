@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Net;
-using Throne.Shared;
-using Throne.Shared.Configuration;
-using Throne.Shared.Network;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Services;
-using Throne.Shared.Cryptography;
-using Throne.Shared.Services.Account;
+using System.Threading;
+using Throne.Framework;
+using Throne.Framework.Configuration;
+using Throne.Framework.Cryptography;
+using Throne.Framework.Network;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Services;
+using Throne.Framework.Services.Account;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Network;
 using Throne.World.Network.Handling;
 using Throne.World.Properties.Settings;
 using Throne.World.Records;
-using Throne.World.Scripting;
+using Throne.World.Structures.Objects;
+using Throne.World.Structures.Travel;
 
 namespace Throne.World
 {
@@ -23,13 +25,12 @@ namespace Throne.World
     {
         private IPAddress _listenIp;
 
+        private WorldServer()
+        {
+        }
+
         public EventManager Events { get; private set; }
         public ServerInfoRecord Info { get; private set; }
-
-        private WorldServer()
-        {            
-
-        }
 
         public WorldDatabaseContext WorldDbContext { get; private set; }
 
@@ -74,12 +75,15 @@ namespace Throne.World
             if (!SystemSettings.Default.ServerBacklog.IsBetween(10, 100))
                 throw new ConfigurationValueException(StrRes.SMSG_BacklogRecommend);
 
-            if (SystemSettings.Default.OutgoingPacketFooter != "" && !SystemSettings.Default.OutgoingPacketFooter.Length.Equals(8) |
-                SystemSettings.Default.IncomingPacketFooter != "" && !SystemSettings.Default.IncomingPacketFooter.Length.Equals(8))
+            if (SystemSettings.Default.OutgoingPacketFooter != "" &&
+                !SystemSettings.Default.OutgoingPacketFooter.Length.Equals(8) |
+                SystemSettings.Default.IncomingPacketFooter != "" &&
+                !SystemSettings.Default.IncomingPacketFooter.Length.Equals(8))
                 throw new ConfigurationValueException(StrRes.SMSG_PacketFooterInvalid);
 
             Log.Info(StrRes.SMSG_ConfigPersist, SystemSettings.Default.DatabaseType);
-            WorldDbContext = new WorldDatabaseContext(SystemSettings.Default.DatabaseType, SystemSettings.Default.DatabaseConnectionString);
+            WorldDbContext = new WorldDatabaseContext(SystemSettings.Default.DatabaseType,
+                SystemSettings.Default.DatabaseConnectionString);
 
             Log.Info(StrRes.SMSG_IPCAuthDeviceConnect);
             AccountService = new IpcDevice<IAccountService, EmptyCallbackService>(() =>
@@ -90,7 +94,7 @@ namespace Throne.World
             Info = ServerInfoManager.Instance.Get(SystemSettings.Default.ServerName);
 
             Events = new EventManager();
-            
+
             ScriptManager.Instance.Load();
 
 
@@ -125,7 +129,6 @@ namespace Throne.World
 
         protected override void Pulse(TimeSpan diff)
         {
-            
         }
 
         public void UpdateTitle()

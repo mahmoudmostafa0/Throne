@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Security.Permissions
+﻿namespace Throne.Framework.Security.Permissions
 {
     public sealed class AuthenticatedPermission : Permission
     {

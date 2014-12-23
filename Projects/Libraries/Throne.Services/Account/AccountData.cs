@@ -2,7 +2,7 @@
 using System.Net;
 using System.Runtime.Serialization;
 
-namespace Throne.Shared.Services.Account
+namespace Throne.Framework.Services.Account
 {
     [DataContract]
     public struct AccountData

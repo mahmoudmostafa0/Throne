@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Throne.Shared.Reflection;
+using Throne.Framework.Reflection;
 
-namespace Throne.Shared
+namespace Throne.Framework
 {
     public static partial class Extensions
     {

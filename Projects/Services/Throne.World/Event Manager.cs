@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared;
+using Throne.Framework;
 using Throne.World.Security;
 
 namespace Throne.World

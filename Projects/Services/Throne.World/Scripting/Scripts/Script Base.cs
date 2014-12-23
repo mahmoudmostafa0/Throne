@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Throne.Shared;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Runtime;
+using Throne.Framework;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Runtime;
 
 namespace Throne.World.Scripting.Scripts
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ServiceModel;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Services
+namespace Throne.Framework.Services
 {
     public sealed class IpcDevice<TService, TCallback> : Actor<IpcDevice<TService, TCallback>>
         where TService : class

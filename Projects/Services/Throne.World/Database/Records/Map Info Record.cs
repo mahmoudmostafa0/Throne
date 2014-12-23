@@ -1,6 +1,6 @@
 ﻿using System;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Persistence.Mapping;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Persistence.Mapping;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Structures.World;
 

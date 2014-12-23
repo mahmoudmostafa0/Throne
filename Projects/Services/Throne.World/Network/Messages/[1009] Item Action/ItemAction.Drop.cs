@@ -1,4 +1,6 @@
-﻿namespace Throne.World.Network.Messages
+﻿using Throne.World.Structures.World;
+
+namespace Throne.World.Network.Messages
 {
     public partial class ItemAction
     {
@@ -7,7 +9,7 @@
             var item = Character.RemoveInventoryItem(Guid);
             if (!item) return;
 
-            var location = Character.Location.Copy;
+            var location = Character.Location.RandomLocalCopy(CellType.Item, 5);
 
             item.OwnerInfo = null;
             item.Location = location;

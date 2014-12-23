@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 
-namespace Throne.Shared.Logging
+namespace Throne.Framework.Logging
 {
     /// <summary>
     ///     The interface for any text logger.

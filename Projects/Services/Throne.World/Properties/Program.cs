@@ -1,5 +1,5 @@
-﻿using Throne.Shared.Commands;
-using Throne.Shared.Threading.Actors;
+﻿using Throne.Framework.Commands;
+using Throne.Framework.Threading.Actors;
 
 namespace Throne.World
 {

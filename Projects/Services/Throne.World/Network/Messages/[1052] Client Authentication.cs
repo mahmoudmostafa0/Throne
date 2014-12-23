@@ -1,9 +1,10 @@
-﻿using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission.Stream;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Network.Transmission;
+﻿using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
+using Throne.Framework.Network.Transmission.Stream;
+using Throne.Framework.Security.Permissions;
 using Throne.World.Network.Handling;
 using Throne.World.Properties;
+using Throne.World.Records;
 
 namespace Throne.World.Network.Messages
 {
@@ -27,21 +28,21 @@ namespace Throne.World.Network.Messages
             return true;
         }
 
-        public override void Handle(IClient client)
+        public override async void Handle(IClient client)
         {
-            WorldServer.Instance.AccountService.Call(
-                accService =>
+            await WorldServer.Instance.AccountService.PostWait(
+                asvc => asvc.Call(accService =>
                 {
                     if (!accService.Authorize(_session, _password))
                         return;
 
                     client.UserData = accService.GetAccount(_session);
                     client.AddPermission(new AuthenticatedPermission());
-                });
+                }));
 
             if (client.HasPermission(typeof (AuthenticatedPermission)))
             {
-                var @char = CharacterManager.Instance.FindCharacterRecord(client);
+                CharacterRecord @char = CharacterManager.Instance.FindCharacterRecord(client);
                 if (@char == null)
                     using (new Stream()
                            + Constants.LoginMessages.NewRole

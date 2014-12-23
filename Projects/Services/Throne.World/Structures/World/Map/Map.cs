@@ -5,14 +5,15 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Throne.Shared;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Threading.Actors;
 using Throne.World.Database.Records;
 using Throne.World.Properties.Settings;
 using Throne.World.Scripting.Scripts;
 using Throne.World.Structures.Objects;
+using Throne.World.Structures.Objects.Actors;
 using Throne.World.Structures.Travel;
 
 namespace Throne.World.Structures.World
@@ -45,8 +46,9 @@ namespace Throne.World.Structures.World
 
             _reviveLocation = new Location(record.SpawnMapId, new Position(record.SpawnPointX, record.SpawnPointY));
             _users = new Dictionary<UInt32, Character>();
-            _items = new Dictionary<uint, Item>();
+            _items = new Dictionary<UInt32, Item>();
             _itemTimers = new ConcurrentDictionary<UInt32, ActorTimer>();
+            _npcs = new Dictionary<UInt32, Npc>();
         }
 
         public uint Id
@@ -283,8 +285,9 @@ namespace Throne.World.Structures.World
         }
 
         #region Development
+
         /// <summary>
-        /// For locating portals that need to be added.
+        ///     For locating portals that need to be added.
         /// </summary>
         public readonly Dictionary<Int32, Position> PortalPositions;
 
@@ -292,6 +295,7 @@ namespace Throne.World.Structures.World
         {
             get { return PortalPositions.Where(eff => !Script.Warps.ContainsKey(eff.Key)); }
         }
+
         #endregion
     }
 }

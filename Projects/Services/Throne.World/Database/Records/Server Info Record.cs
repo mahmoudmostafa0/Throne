@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Throne.Shared.Persistence.Mapping;
-using Throne.Shared.Threading;
+using Throne.Framework.Persistence.Mapping;
+using Throne.Framework.Threading;
 using Throne.World.Database.Records.Implementations;
 
 namespace Throne.World.Records

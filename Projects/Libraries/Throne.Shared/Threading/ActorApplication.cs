@@ -2,16 +2,16 @@
 using System.Reflection;
 using System.Threading;
 
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Threading
+namespace Throne.Framework.Threading
 {
     public abstract class ActorApplication<T> : SingletonActor<T>
         where T : ActorApplication<T>
     {
-        public const int UpdateDelay = 50;
+        public const int UpdateDelay = 20000;
 
         protected readonly ActorTimer _updateTimer;
         public LogProxy Log;

@@ -2,8 +2,8 @@
 using Throne.Login.Accounts;
 using Throne.Login.Network.Handling;
 using Throne.Login.Properties;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
 
 namespace Throne.Login.Network.Messages
 {

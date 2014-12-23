@@ -9,10 +9,10 @@ using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions;
 using NHibernate;
 using NHibernate.Linq;
-using Throne.Shared.Persistence.Schema;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Persistence.Schema;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Persistence
+namespace Throne.Framework.Persistence
 {
     public abstract class DatabaseContext : Actor<DatabaseContext>
     {

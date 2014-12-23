@@ -1,6 +1,6 @@
 using System;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     public static class CommandConsole
     {

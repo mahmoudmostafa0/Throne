@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared.Persistence.Interfaces;
+using Throne.Framework.Persistence.Interfaces;
 
 namespace Throne.World.Database.Records.Implementations
 {

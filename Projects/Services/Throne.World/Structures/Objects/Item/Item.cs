@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Throne.Shared.Network.Transmission.Stream;
+using Throne.Framework.Network.Transmission.Stream;
 using Throne.World.Network;
 using Throne.World.Network.Messages;
 using Throne.World.Records;
+using Throne.World.Scripting.Scripts;
 
 namespace Throne.World.Structures.Objects
 {
@@ -52,6 +53,22 @@ namespace Throne.World.Structures.Objects
             Record = record;
         }
 
+        #region Scripting 
+        //TODO: Move this to the item information class when implemented.
+
+        private ItemScript _script;
+
+        public ItemScript Script
+        {
+            get
+            {
+                if (!_script)
+                    _script = ScriptManager.Instance.GetItemScript(this);
+                return _script;
+            }
+        }
+
+        #endregion
 
         public UInt32 Guid
         {

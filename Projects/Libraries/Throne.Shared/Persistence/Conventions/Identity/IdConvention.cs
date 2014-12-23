@@ -1,7 +1,7 @@
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Throne.Shared.Persistence.Conventions.Identity
+namespace Throne.Framework.Persistence.Conventions.Identity
 {
     internal sealed class IdConvention : IIdConvention
     {

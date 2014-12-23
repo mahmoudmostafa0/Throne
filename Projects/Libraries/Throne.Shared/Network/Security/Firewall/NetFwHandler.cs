@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Net;
 using NetFwTypeLib;
 
-namespace Throne.Shared.Network.Security.Firewall
+namespace Throne.Framework.Network.Security.Firewall
 {
     public class NetFwHandler
     {

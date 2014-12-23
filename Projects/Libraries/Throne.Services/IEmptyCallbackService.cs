@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace Throne.Shared.Services
+namespace Throne.Framework.Services
 {
     public interface IEmptyCallbackService
     {

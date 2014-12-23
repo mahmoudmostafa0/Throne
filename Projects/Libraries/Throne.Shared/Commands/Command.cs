@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     public abstract class Command
     {

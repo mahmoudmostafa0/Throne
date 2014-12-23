@@ -1,6 +1,6 @@
 using System;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public sealed class CommandAttribute : Attribute

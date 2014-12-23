@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     [Serializable]
     public class CommandArgumentException : Exception

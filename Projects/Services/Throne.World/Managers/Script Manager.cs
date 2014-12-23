@@ -4,15 +4,16 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Runtime;
-using Throne.Shared.Threading;
-using Throne.Shared.Utilities;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Runtime;
+using Throne.Framework.Threading;
+using Throne.Framework.Utilities;
 using Throne.World.Properties.Settings;
 using Throne.World.Scripting;
 using Throne.World.Scripting.Compiler;
 using Throne.World.Scripting.Scripts;
+using Throne.World.Structures.Objects;
 using Throne.World.Structures.World;
 
 namespace Throne.World
@@ -26,8 +27,9 @@ namespace Throne.World
 
         private readonly CSharpCompiler _compiler;
 
+        private readonly Dictionary<Int32, ItemScript> _itemScripts; 
         private readonly Dictionary<UInt32, MapScript> _mapScripts;
-        private readonly Dictionary<string, Type> _scripts;
+        private readonly Dictionary<String, Type> _scripts;
 
         private readonly List<IDisposableResource> _scriptsToDispose;
 
@@ -35,8 +37,9 @@ namespace Throne.World
         {
             _compiler = new CSharpCompiler();
 
-            _scripts = new Dictionary<string, Type>();
+            _scripts = new Dictionary<String, Type>();
             _mapScripts = new Dictionary<UInt32, MapScript>();
+            _itemScripts = new Dictionary<Int32, ItemScript>();
 
             _scriptsToDispose = new List<IDisposableResource>();
         }
@@ -52,6 +55,7 @@ namespace Throne.World
 
         private void ClearScriptContainers()
         {
+            _itemScripts.Clear();
             _mapScripts.Clear();
             _scripts.Clear();
             _scriptsToDispose.Clear();
@@ -313,6 +317,13 @@ namespace Throne.World
         public void AddMapScript(MapScript scr)
         {
             _mapScripts[scr.MapId] = scr;
+        }
+
+        public ItemScript GetItemScript(Item itm)
+        {
+            ItemScript script;
+            _itemScripts.TryGetValue(itm.Type, out script);
+            return script ?? new DummyItemScript();
         }
     }
 }

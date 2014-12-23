@@ -4,10 +4,9 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using Throne.Login.Annotations;
 using Throne.Login.Records;
-using Throne.Shared;
-using Throne.Shared.Collections;
-using Throne.Shared.Logging;
-using Throne.Shared.Threading;
+using Throne.Framework;
+using Throne.Framework.Logging;
+using Throne.Framework.Threading;
 
 namespace Throne.Login.Accounts
 {

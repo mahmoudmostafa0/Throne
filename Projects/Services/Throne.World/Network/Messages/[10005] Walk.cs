@@ -1,7 +1,7 @@
 ﻿using System;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
+using Throne.Framework.Security.Permissions;
 using Throne.World.Structures.Travel;
 
 namespace Throne.World.Network.Messages

@@ -1,1 +1,1 @@
-Copy the contents of the map folder and the GameMap.dat here.
+The contents of the client's map folder and a copy of the GameMap.dat go here.

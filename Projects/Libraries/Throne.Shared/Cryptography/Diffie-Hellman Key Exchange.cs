@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Text;
-using Throne.Shared.Math;
+using Throne.Framework.Math;
 
-namespace Throne.Shared.Cryptography
+namespace Throne.Framework.Cryptography
 {
     public class DiffieHellman
     {

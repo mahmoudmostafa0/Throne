@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Transmission;
 
 namespace Throne.Login.Network.Messages
 {

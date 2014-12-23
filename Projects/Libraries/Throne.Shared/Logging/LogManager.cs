@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Text;
-using Throne.Shared.Logging.Loggers;
+using Throne.Framework.Logging.Loggers;
 
-namespace Throne.Shared.Logging
+namespace Throne.Framework.Logging
 {
     /// <summary>
     ///     Takes care of all logging in the entire source base.

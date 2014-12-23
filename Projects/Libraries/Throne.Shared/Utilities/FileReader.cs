@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Throne.Shared.Utilities
+namespace Throne.Framework.Utilities
 {
     /// <summary>
     ///     General use class to read files line for line.
@@ -76,7 +76,7 @@ namespace Throne.Shared.Utilities
                     string includeFilePath = Path.Combine((!fileName.StartsWith("/") ? _relativePath : ""),
                         fileName.TrimStart('/'));
 
-                    // Prevent rekursive including
+                    // Prevent recursive including
                     if (includeFilePath != _filePath)
                     {
                         // Silently ignore failed includes, only raise an
@@ -94,9 +94,7 @@ namespace Throne.Shared.Utilities
                                 yield break;
                         }
                         else if (require)
-                        {
                             throw new FileNotFoundException("Required file '" + includeFilePath + "' not found.");
-                        }
                     }
 
                     continue;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Network.Transmission;
 using Throne.World.Network.Handling;
 using Throne.World.Structures.Objects;
 

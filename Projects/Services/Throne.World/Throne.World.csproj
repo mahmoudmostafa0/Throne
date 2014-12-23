@@ -172,16 +172,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="Throne.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Build\Throne.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Database\CreateDatabaseCommand.cs" />
     <Compile Include="Commands\Database\DropDatabaseCommand.cs" />
     <Compile Include="Commands\Database\ExportSchemaCommand.cs" />
-    <Compile Include="Commands\Npc\AddNpcCommand.cs" />
     <Compile Include="Commands\Scripting\RefreshScriptsCommand.cs" />
     <Compile Include="Commands\User\Items\CreateItemCommand.cs" />
     <Compile Include="Commands\User\Character States and Titles\CharacterStateCommand.cs" />
@@ -214,6 +209,7 @@
     <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
     <Compile Include="Network\Messages\[2030] NPC Information.cs" />
     <Compile Include="Network\Messages\[2031] NPC Action.cs" />
+    <Compile Include="Network\Messages\[2032] Task Dialog.cs" />
     <Compile Include="Network\WorldPacket.cs" />
     <Compile Include="Database\Records\Item Record.cs" />
     <Compile Include="Database\Records\Server Info Record.cs" />
@@ -262,14 +258,20 @@
     <Compile Include="Scripting\Interfaces.cs" />
     <Compile Include="Scripting\Script Attributes.cs" />
     <Compile Include="Managers\Script Manager.cs" />
+    <Compile Include="Scripting\Scripts\Npc Script.cs" />
     <Compile Include="Scripting\Scripts\Script Base.cs" />
     <Compile Include="Scripting\Scripts\Item Script.cs" />
     <Compile Include="Scripting\Scripts\Map Script.cs" />
     <Compile Include="Security\Incident Severity Levels.cs" />
     <Compile Include="Security\Security Violation EventArgs.cs" />
     <Compile Include="Security\Security Violation Exception.cs" />
-    <Compile Include="Structures\Objects\Non-player Entity\DynamicNpc.cs" />
-    <Compile Include="Structures\Objects\Non-player Entity\Npc.cs" />
+    <Compile Include="Sessions\NpcSession.cs" />
+    <Compile Include="Structures\Task Dialog\Dialog.cs" />
+    <Compile Include="Structures\Task Dialog\DialogFeedback.cs" />
+    <Compile Include="Structures\Task Dialog\DialogMessage.cs" />
+    <Compile Include="Structures\Task Dialog\DialogOption.cs" />
+    <Compile Include="Structures\Objects\Non-player Entity\Actors\Npc.cs" />
+    <Compile Include="Structures\Objects\Non-player Entity\Actors\Npc.Properties.cs" />
     <Compile Include="Structures\Objects\WorldObject.Enumerators.cs" />
     <Compile Include="Structures\Gear\Gear.cs" />
     <Compile Include="Structures\Objects\Item\Item.Enumerators.cs" />
@@ -280,12 +282,10 @@
     <Compile Include="Structures\Storage\Item Storage Implementations\Inventory.cs" />
     <Compile Include="Structures\Storage\Item Storage.cs" />
     <Compile Include="Structures\Storage\Item Storage Implementations\Depository.cs" />
-    <Compile Include="Structures\Objects\Player Character\Character.Timer.cs" />
+    <Compile Include="Structures\Objects\Player Character\Character.Threading.cs" />
     <Compile Include="Structures\Objects\WorldObject.cs" />
     <Compile Include="Structures\Objects\IWorldObject.cs" />
     <Compile Include="Structures\Objects\Item\Item.cs" />
-    <Compile Include="Structures\Objects\Model.cs" />
-    <Compile Include="Structures\Objects\Non-player Entity\Creature\Creature.cs" />
     <Compile Include="Structures\Objects\Player Character\Character.cs" />
     <Compile Include="Structures\Objects\Player Character\Character.Properties.cs" />
     <Compile Include="Structures\Objects\Player Character\Character.Vision.cs" />
@@ -294,6 +294,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>EntitySettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Structures\Task Dialog\DialogPicture.cs" />
     <Compile Include="Structures\Travel\Jump.cs" />
     <Compile Include="Structures\Travel\Position.cs">
       <SubType>Code</SubType>
@@ -317,7 +318,7 @@
       <DependentUpon>StrRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Structures\World\Map\Map.Items.cs" />
-    <Compile Include="Structures\World\Map\Map.NPCs.cs" />
+    <Compile Include="Structures\World\Map\Map.Npcs.cs" />
     <Compile Include="World Server.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -361,7 +362,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Throne.Shared\Throne.Framework.csproj">
+      <Project>{cc15de31-b6b0-4fe6-bc98-57b76e9ea76c}</Project>
+      <Name>Throne.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Structures\Objects\Non-player Entity\Creatures\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

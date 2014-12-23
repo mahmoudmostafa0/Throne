@@ -1,4 +1,4 @@
-﻿using Throne.Shared.Network.Transmission;
+﻿using Throne.Framework.Network.Transmission;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages

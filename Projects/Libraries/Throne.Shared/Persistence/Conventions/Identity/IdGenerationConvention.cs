@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Throne.Shared.Persistence.Conventions.Identity
+namespace Throne.Framework.Persistence.Conventions.Identity
 {
     internal sealed class IdGenerationConvention : IIdConvention, IIdConventionAcceptance
     {

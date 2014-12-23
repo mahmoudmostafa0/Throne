@@ -3,10 +3,10 @@
  */
 
 using System;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Runtime;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Runtime;
 
-namespace Throne.Shared.Network.Transmission
+namespace Throne.Framework.Network.Transmission
 {
     public abstract class Packet : Processor, IDisposableResource
     {

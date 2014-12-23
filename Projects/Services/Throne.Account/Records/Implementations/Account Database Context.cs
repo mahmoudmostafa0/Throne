@@ -3,7 +3,7 @@ using FluentNHibernate;
 
 namespace Throne.Login.Records.Implementations
 {
-    using Shared.Persistence;
+    using Framework.Persistence;
 
     public sealed class AccountDatabaseContext : GameDatabaseContext
     {

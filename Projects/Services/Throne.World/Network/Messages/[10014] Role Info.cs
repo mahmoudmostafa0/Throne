@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Transmission;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages
@@ -18,7 +18,7 @@ namespace Throne.World.Network.Messages
         private void AddCharacterInfo(Character c)
         {
             WriteInt(Environment.TickCount);
-            WriteInt(c.Look.Id);
+            WriteInt(c.Look);
             WriteUInt(c.ID);
             WriteInt(0); // guild id
             WriteInt(0); // guild rank
@@ -41,7 +41,7 @@ namespace Throne.World.Network.Messages
             SeekForward(sizeof(short) + 1); // unknown
             WriteShort(c.Location.Position.X);
             WriteShort(c.Location.Position.Y);
-            WriteShort(c.Look.Hairstyle);
+            WriteShort(c.Hairstyle);
             WriteByte((byte)c.Direction);
             WriteShort(0); // pose
             SeekForward(sizeof(short) * 2 + 1); // unknown + padding, todo: is this a place for strings?
@@ -59,7 +59,6 @@ namespace Throne.World.Network.Messages
             WriteShort(0); // headgear color
             WriteInt(0); // quiz points
             WriteUShort(0); // mount composition
-           // SeekForward(sizeof(int)); // unknown.. todo: expirement with this value
             WriteInt(0); // mount color, argb?..
             WriteInt(0); // available enlightenment points
             WriteInt(0); // merit status

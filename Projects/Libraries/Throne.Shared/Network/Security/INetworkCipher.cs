@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 
-namespace Throne.Shared.Network.Security
+namespace Throne.Framework.Network.Security
 {
     [ContractClass(typeof (PacketCipherContracts))]
     public interface INetworkCipher

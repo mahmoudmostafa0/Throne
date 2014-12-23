@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Throne.Shared.Utilities
+namespace Throne.Framework.Utilities
 {
     /// <summary>
     /// Thread-safe provider for "Random" instances. Use whenever no custom

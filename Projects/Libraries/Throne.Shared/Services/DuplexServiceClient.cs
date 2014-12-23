@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace Throne.Shared.Services
+namespace Throne.Framework.Services
 {
     public sealed class DuplexServiceClient<TService, TCallback> : DuplexClientBase<TService>
         where TService : class

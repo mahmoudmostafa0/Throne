@@ -1,7 +1,7 @@
 ﻿using System;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Transmission;
-using Throne.Shared.Cryptography;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Transmission;
+using Throne.Framework.Cryptography;
 
 namespace Throne.World.Network.Exchange
 {

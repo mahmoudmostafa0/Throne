@@ -21,10 +21,23 @@ namespace Throne.World.Scripting.Scripts
         { }
         public virtual void OnCreation(Character chr, Item item)
         { }
+        public virtual void OnPickup(Character chr, Item item)
+        { }
+        public virtual void OnDrop(Character chr, Item item)
+        { }
+        public virtual void OnEnterScreen(Character chr, Item item)
+        { }
+        public virtual void OnExitScreen(Character chr, Item item)
+        { }
 
         public virtual void Hook(Int32 itemId)
         {
             HookedItemID = itemId;
         }
+    }
+
+    public sealed class DummyItemScript : ItemScript
+    {
+        
     }
 }

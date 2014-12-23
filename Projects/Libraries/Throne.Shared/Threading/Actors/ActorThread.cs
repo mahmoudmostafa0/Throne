@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Throne.Shared.Threading.Actors
+namespace Throne.Framework.Threading.Actors
 {
     public sealed class ActorThread
     {
@@ -22,7 +22,7 @@ namespace Throne.Shared.Threading.Actors
         {
             _thread = new Thread(ThreadBody)
             {
-                Name = "Actor Thread {0}".Interpolate(_threadCount++),
+                Name = "Actor Thread {0}".Interpolate(++_threadCount),
                 IsBackground = true
             };
             _thread.Start();

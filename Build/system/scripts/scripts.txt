@@ -6,3 +6,4 @@
 
 include "scripts_items.txt"
 include "scripts_maps.txt"
+include "scripts_npcs.txt"

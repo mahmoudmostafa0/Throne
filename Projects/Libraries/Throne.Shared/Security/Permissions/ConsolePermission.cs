@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Security.Permissions
+﻿namespace Throne.Framework.Security.Permissions
 {
     /// <summary>
     ///     Should not be assigned to any entity. This is a permission reserved

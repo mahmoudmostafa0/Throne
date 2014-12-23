@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using Throne.Shared.Collections;
-using Throne.Shared.Math;
+using Throne.Framework.Collections;
+using Throne.Framework.Math;
 
-namespace Throne.Shared.Cryptography
+namespace Throne.Framework.Cryptography
 {
     public sealed class NetDragonDHKeyExchange : DiffieHellman
     {

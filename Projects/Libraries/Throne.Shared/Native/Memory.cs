@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Throne.Shared.Native
+namespace Throne.Framework.Native
 {
     public static partial class NativeMethods
     {

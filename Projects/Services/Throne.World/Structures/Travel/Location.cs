@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Drawing;
-using FluentNHibernate.Conventions.AcceptanceCriteria;
-using Throne.Shared;
-using Throne.World.Database;
+using Throne.Framework;
 using Throne.World.Structures.World;
 
 namespace Throne.World.Structures.Travel
@@ -41,6 +38,23 @@ namespace Throne.World.Structures.Travel
             get { return new Location(MapId, Position); }
         }
 
+        public Location RandomLocalCopy(CellType type, Int32 radius)
+        {
+            var result = new Location(MapId, Position);
+            Position pos = result.Position.GetRandomLocal(radius, new Random());
+            bool valid = !Map.GetCell(pos)[type];
+            //TODO: Better method for getting valid randoms...
+            while (!valid)
+            {
+                pos = result.Position.GetRandomLocal(radius, new Random());
+                valid = !Map.GetCell(pos)[type];
+            }
+
+            result.Position = pos;
+
+            return result;
+        }
+
         public static Boolean operator ==(Location loc1, Location loc2)
         {
             var objThis = loc1 as object;
@@ -60,7 +74,7 @@ namespace Throne.World.Structures.Travel
         }
 
         /// <summary>
-        /// Checks if the location is not null and valid.
+        ///     Checks if the location is not null and valid.
         /// </summary>
         /// <param name="loc"></param>
         /// <returns>True only if the location is not null, has a valid map id, instance, and position.</returns>
@@ -71,17 +85,17 @@ namespace Throne.World.Structures.Travel
 
         public override Int32 GetHashCode()
         {
-            return Position.GetHashCode() ^ (Int32)MapId;
+            return Position.GetHashCode() ^ (Int32) MapId;
         }
 
         public override Boolean Equals(object obj)
         {
-            return obj is Location && this == (Location)obj;
+            return obj is Location && this == (Location) obj;
         }
 
         public override String ToString()
         {
-            var map = Map;
+            Map map = Map;
             return "(Location: {0} {1}, {2})".Interpolate(MapId, map.Instance > 0 ? "#" + map.Instance : "", Position);
         }
     }

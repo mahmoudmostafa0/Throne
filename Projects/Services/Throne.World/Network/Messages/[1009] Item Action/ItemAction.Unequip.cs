@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared;
+using Throne.Framework;
 using Throne.World.Properties.Settings;
 using Throne.World.Security;
 using Throne.World.Structures;

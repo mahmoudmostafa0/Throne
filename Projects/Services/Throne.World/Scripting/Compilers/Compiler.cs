@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
-using Throne.Shared.Logging;
+using Throne.Framework.Logging;
 
 namespace Throne.World.Scripting.Compiler
 {

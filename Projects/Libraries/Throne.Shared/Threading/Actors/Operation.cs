@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Threading.Actors
+﻿namespace Throne.Framework.Threading.Actors
 {
     public enum Operation : byte
     {

@@ -1,6 +1,6 @@
 ﻿using NHibernate.Tool.hbm2ddl;
 
-namespace Throne.Shared.Persistence.Schema
+namespace Throne.Framework.Persistence.Schema
 {
     public sealed class SchemaInfo
     {

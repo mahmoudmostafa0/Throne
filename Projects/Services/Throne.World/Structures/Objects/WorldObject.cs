@@ -19,13 +19,13 @@ namespace Throne.World.Structures.Objects
         public const UInt32 PlayerIdMin = 1000000, PlayerIdMax = 10000000;
         public const UInt32 ItemIdMin = 10000001, ItemIdMax = UInt32.MaxValue;
 
-        private readonly UInt32 id;
+        private UInt32 _id;
 
         public Orientation Direction;
 
-        protected WorldObject(UInt32 ID)
+        protected WorldObject(UInt32 id)
         {
-            id = ID;
+            _id = id;
         }
 
         public virtual String Name { get; set; }
@@ -33,32 +33,32 @@ namespace Throne.World.Structures.Objects
 
         public Boolean IsPlayer
         {
-            get { return id >= PlayerIdMin && id <= PlayerIdMax; }
+            get { return _id >= PlayerIdMin && _id <= PlayerIdMax; }
         }
 
         public Boolean IsMonster
         {
-            get { return id >= MonsterIdMin && id <= MonsterIdMax; }
+            get { return _id >= MonsterIdMin && _id <= MonsterIdMax; }
         }
 
         public Boolean IsPet
         {
-            get { return id >= PetIdMin && id <= PetIdMax; }
+            get { return _id >= PetIdMin && _id <= PetIdMax; }
         }
 
         public Boolean IsCallPet
         {
-            get { return id >= CallPetIdMin && id <= CallPetIdMax; }
+            get { return _id >= CallPetIdMin && _id <= CallPetIdMax; }
         }
 
         public Boolean IsNPC
         {
-            get { return id >= NpcIdMin && id <= NpcIdMax && !IsMonster && !IsPet; }
+            get { return _id >= NpcIdMin && _id <= NpcIdMax && !IsMonster && !IsPet; }
         }
 
         public Boolean IsTerrainNPC
         {
-            get { return id >= DynaNpcIdMin && id <= DynaNpcIdMax; }
+            get { return _id >= DynaNpcIdMin && _id <= DynaNpcIdMax; }
         }
 
         public virtual Location Location { get; set; }
@@ -69,7 +69,8 @@ namespace Throne.World.Structures.Objects
         /// </summary>
         public UInt32 ID
         {
-            get { return id; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         public abstract void DespawnFor(WorldClient observer);

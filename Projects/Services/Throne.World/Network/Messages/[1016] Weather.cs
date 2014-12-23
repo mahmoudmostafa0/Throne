@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Transmission;
 
 namespace Throne.World.Network.Messages
 {

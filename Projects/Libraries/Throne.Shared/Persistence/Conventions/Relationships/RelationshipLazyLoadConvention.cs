@@ -4,7 +4,7 @@ using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 using FluentNHibernate.Mapping;
 
-namespace Throne.Shared.Persistence.Conventions.Relationships
+namespace Throne.Framework.Persistence.Conventions.Relationships
 {
     internal sealed class RelationshipLazyLoadConvention : IHasManyConvention, IHasManyConventionAcceptance,
         IHasManyToManyConvention,

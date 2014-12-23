@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Throne.Shared.Math
+namespace Throne.Framework.Math
 {
     public class MathUtils
     {

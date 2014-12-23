@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Throne.Shared.Security
+namespace Throne.Framework.Security
 {
     /// <summary>
     ///     An abstract way to manage permissions on an object.

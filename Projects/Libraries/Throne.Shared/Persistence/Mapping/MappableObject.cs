@@ -1,6 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 
-namespace Throne.Shared.Persistence.Mapping
+namespace Throne.Framework.Persistence.Mapping
 {
     /// <summary>
     ///     Wrapper/abstraction class that covers FluentNHibernate.Mapping.ClassMap

@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Transmission;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages
@@ -25,7 +25,7 @@ namespace Throne.World.Network.Messages
         private readonly byte
             Level;
 
-        private readonly int
+        private readonly Role.Model
             Model;
 
         private readonly int
@@ -102,7 +102,7 @@ namespace Throne.World.Network.Messages
             CharacterName = character.Name;
             if (character.Spouse != null)
                 SpouseName = character.Spouse.Name;
-            Model = character.Look.Id;
+            Model = character.Look;
             Guid = character.ID;
             Level = character.Level;
             CurrentJob = character.CurrentJob;

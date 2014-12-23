@@ -1,18 +1,20 @@
-﻿
-namespace Throne.World.Structures.Travel
+﻿namespace Throne.World.Structures.Travel
 {
+    /// <summary> These directions are relative to the screen. </summary>
+    /// <remarks>
+    ///     NW  N  NE
+    ///      W  P  E
+    ///     SW  S  SE
+    /// </remarks>
     public enum Orientation
     {
-        North,
-        Northwest,
-        West,
         Southwest,
-        South,
-        Southeast,
-        East,
+        West,
+        Northwest,
+        North,
         Northeast,
-
-        First = North,
-        Last = Northeast
+        East,
+        Southeast,
+        South
     }
 }

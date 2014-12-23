@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Throne.Shared.Properties {
+namespace Throne.Framework.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Throne.Shared.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Throne.Shared.Properties.StrRes", typeof(StrRes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Throne.Framework.Properties.StrRes", typeof(StrRes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace Throne.Shared.Exceptions
+namespace Throne.Framework.Exceptions
 {
     /// <summary>
     ///     Provides data for the <see cref="ExceptionManager.ExceptionOccurred" /> event.

@@ -1,8 +1,8 @@
 using System;
-using Throne.Shared.Security;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Security;
+using Throne.Framework.Security.Permissions;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     internal sealed class ConsoleCommandUser : RestrictedObject, ICommandUser
     {
@@ -19,7 +19,6 @@ namespace Throne.Shared.Commands
 
         public void Respond(byte[] response)
         {
-            throw new NotImplementedException();
         }
     }
 }

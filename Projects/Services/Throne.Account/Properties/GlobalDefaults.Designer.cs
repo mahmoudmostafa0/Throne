@@ -35,9 +35,9 @@ namespace Throne.Login.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("MySql")]
-        public global::Throne.Shared.Persistence.DatabaseType DatabaseType {
+        public global::Throne.Framework.Persistence.DatabaseType DatabaseType {
             get {
-                return ((global::Throne.Shared.Persistence.DatabaseType)(this["DatabaseType"]));
+                return ((global::Throne.Framework.Persistence.DatabaseType)(this["DatabaseType"]));
             }
         }
         

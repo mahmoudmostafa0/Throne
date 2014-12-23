@@ -1,4 +1,4 @@
-﻿using Throne.Shared.Network.Handling;
+﻿using Throne.Framework.Network.Handling;
 
 namespace Throne.World.Network.Handling
 {

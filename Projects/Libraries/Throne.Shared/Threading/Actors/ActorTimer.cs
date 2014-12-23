@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using Throne.Shared.Runtime;
+using Throne.Framework.Runtime;
 
-namespace Throne.Shared.Threading.Actors
+namespace Throne.Framework.Threading.Actors
 {
     public class ActorTimer : IDisposableResource
     {

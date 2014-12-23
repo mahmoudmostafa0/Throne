@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Throne.Login.Accounts;
-using Throne.Shared;
-using Throne.Shared.Commands;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework;
+using Throne.Framework.Commands;
+using Throne.Framework.Security.Permissions;
 
 namespace Throne.Login.Commands.Accounts
 {

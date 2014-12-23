@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Throne.Shared.Configuration
+namespace Throne.Framework.Configuration
 {
     /// <summary>
     ///     The exception that is thrown when a configuration value is invalid.

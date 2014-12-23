@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Throne.Shared.Persistence.Conventions.Properties
+namespace Throne.Framework.Persistence.Conventions.Properties
 {
     internal sealed class PropertyNullableConvention : IPropertyConvention, IPropertyConventionAcceptance
     {

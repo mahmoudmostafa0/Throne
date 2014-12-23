@@ -1,5 +1,5 @@
 ﻿using System;
-using Throne.Shared.Persistence.Mapping;
+using Throne.Framework.Persistence.Mapping;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Structures.Objects;
 using Throne.World.Structures.Storage;

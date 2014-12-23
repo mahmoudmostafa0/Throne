@@ -2,12 +2,12 @@
 using System.Net;
 using System.Net.Sockets;
 using JetBrains.Annotations;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Security.Firewall;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Security.Firewall;
 
-namespace Throne.Shared.Network.Communication
+namespace Throne.Framework.Network.Communication
 {
     public sealed class TcpServer : Socket
     {

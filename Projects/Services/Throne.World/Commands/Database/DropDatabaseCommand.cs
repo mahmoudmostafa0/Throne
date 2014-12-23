@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Throne.Shared.Commands;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Commands;
+using Throne.Framework.Security.Permissions;
 using Throne.World.Properties.Settings;
 
 namespace Throne.World.Commands.Database

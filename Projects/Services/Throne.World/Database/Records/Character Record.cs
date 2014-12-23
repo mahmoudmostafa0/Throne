@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Throne.Shared.Persistence.Mapping;
+using Throne.Framework.Persistence.Mapping;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Structures.Objects;
 

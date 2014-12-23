@@ -22,9 +22,9 @@
 // * ************************************************************
 
 using System;
-using Throne.Shared.Native;
+using Throne.Framework.Native;
 
-namespace Throne.Shared.Cryptography
+namespace Throne.Framework.Cryptography
 {
     public unsafe class CAST5
     {

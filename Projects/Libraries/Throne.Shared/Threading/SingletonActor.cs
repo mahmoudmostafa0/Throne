@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Throne.Shared.Reflection;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework.Reflection;
+using Throne.Framework.Threading.Actors;
 
-namespace Throne.Shared.Threading
+namespace Throne.Framework.Threading
 {
     public abstract class SingletonActor<T> : Actor<T>
         where T : SingletonActor<T>

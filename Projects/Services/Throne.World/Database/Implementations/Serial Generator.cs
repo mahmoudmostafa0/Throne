@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Throne.Shared.Logging;
-using Throne.Shared.Persistence.Mapping;
-using Throne.Shared.Threading;
+using Throne.Framework.Logging;
+using Throne.Framework.Persistence.Mapping;
+using Throne.Framework.Threading;
 
 namespace Throne.World.Database.Records.Implementations
 {
@@ -74,7 +74,7 @@ namespace Throne.World.Database.Records.Implementations
         {
             SerialGenerator sg = null;
             WorldServer.Instance.WorldDbContext.PostWait(
-                ctx => sg = ctx.Find<SerialGenerator>(g => g.Id == @for).First()).Wait();
+                ctx => sg = ctx.Find<SerialGenerator>(g => g.Id == @for).First());
 
             return sg ?? new SerialGenerator(@for, minVal, maxVal);
         }

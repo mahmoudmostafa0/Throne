@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Throne.Shared;
-using Throne.Shared.Logging;
-using Throne.Shared.Persistence.Mapping;
-using Throne.Shared.Threading;
+using Throne.Framework;
+using Throne.Framework.Logging;
+using Throne.Framework.Persistence.Mapping;
+using Throne.Framework.Threading;
 
 namespace Throne.Login.Records.Implementations
 {

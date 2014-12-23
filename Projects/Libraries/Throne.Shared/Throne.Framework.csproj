@@ -7,8 +7,8 @@
     <ProjectGuid>{CC15DE31-B6B0-4FE6-BC98-57B76E9EA76C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Throne.Shared</RootNamespace>
-    <AssemblyName>Throne.Shared</AssemblyName>
+    <RootNamespace>Throne.Framework</RootNamespace>
+    <AssemblyName>Throne.Framework</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\Build\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -190,6 +190,7 @@
     <Compile Include="Extensions\Extensions.Enumerations.cs" />
     <Compile Include="Extensions\Extensions.Misc.cs" />
     <Compile Include="Extensions\Extensions.Networking.cs" />
+    <Compile Include="Extensions\Extensions.Runtime.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
     <Compile Include="Logging\LogManager.cs" />
@@ -243,11 +244,7 @@
     <Compile Include="Runtime\IMemberwiseSerializable.cs" />
     <Compile Include="Security\Permissions\ConsolePermission.cs" />
     <Compile Include="Security\Permissions\RootPermission.cs" />
-    <Compile Include="Services\Account\AccountData.cs" />
-    <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\DuplexServiceClient.cs" />
-    <Compile Include="Services\EmptyServiceCallback.cs" />
-    <Compile Include="Services\IEmptyCallbackService.cs" />
     <Compile Include="Services\IpcDevice.cs" />
     <Compile Include="Services\ServiceHost.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -265,7 +262,6 @@
     <Compile Include="Threading\Actors\Actor.cs" />
     <Compile Include="Threading\Actors\ActorContext.cs" />
     <Compile Include="Threading\Actors\ActorTimer.cs" />
-    <Compile Include="Threading\Actors\ActorWaitHandle.cs" />
     <Compile Include="Threading\Actors\IActor.cs" />
     <Compile Include="Threading\Actors\Operation.cs" />
     <Compile Include="Threading\Actors\ActorThread.cs" />

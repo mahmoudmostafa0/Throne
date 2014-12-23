@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Runtime
+﻿namespace Throne.Framework.Runtime
 {
     public interface IMemberwiseSerializable<T>
     {

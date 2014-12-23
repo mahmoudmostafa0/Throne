@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using FluentNHibernate.Conventions;
-using Throne.Shared.Persistence.Conventions.Identity;
-using Throne.Shared.Persistence.Conventions.Naming;
-using Throne.Shared.Persistence.Conventions.Properties;
-using Throne.Shared.Persistence.Conventions.Relationships;
+using Throne.Framework.Persistence.Conventions.Identity;
+using Throne.Framework.Persistence.Conventions.Naming;
+using Throne.Framework.Persistence.Conventions.Properties;
+using Throne.Framework.Persistence.Conventions.Relationships;
 
-namespace Throne.Shared.Persistence
+namespace Throne.Framework.Persistence
 {
     public abstract class GameDatabaseContext : DatabaseContext
     {

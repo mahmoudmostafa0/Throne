@@ -1,7 +1,7 @@
 ﻿using System;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Transmission;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages

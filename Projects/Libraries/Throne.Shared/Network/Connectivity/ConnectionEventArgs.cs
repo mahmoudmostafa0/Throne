@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.Sockets;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Security;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Security;
 
-namespace Throne.Shared.Network.Connectivity
+namespace Throne.Framework.Network.Connectivity
 {
     public sealed class ConnectionEventArgs : EventArgs
     {

@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Services
+﻿namespace Throne.Framework.Services
 {
     public sealed class EmptyCallbackService : IEmptyCallbackService
     {

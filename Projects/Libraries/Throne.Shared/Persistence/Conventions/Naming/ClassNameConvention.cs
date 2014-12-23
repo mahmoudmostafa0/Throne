@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Throne.Shared.Persistence.Conventions.Naming
+namespace Throne.Framework.Persistence.Conventions.Naming
 {
     internal sealed class ClassNameConvention : IClassConvention
     {

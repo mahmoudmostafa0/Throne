@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared.Persistence.Interfaces
+﻿namespace Throne.Framework.Persistence.Interfaces
 {
     public interface IActiveRecord
     {

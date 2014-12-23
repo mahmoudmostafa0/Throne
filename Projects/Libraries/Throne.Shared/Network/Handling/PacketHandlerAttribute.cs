@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Throne.Shared.Network.Handling
+namespace Throne.Framework.Network.Handling
 {
     public abstract class PacketHandlerAttribute : Attribute
     {

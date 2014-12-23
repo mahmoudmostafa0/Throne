@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace Throne.Shared.Collections
+namespace Throne.Framework.Collections
 {
     public sealed class BooleanArray<TIndexer> : ICloneable, IEnumerable
         where TIndexer : IConvertible

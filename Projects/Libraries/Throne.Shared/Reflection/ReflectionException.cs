@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Throne.Shared.Reflection
+namespace Throne.Framework.Reflection
 {
     /// <summary>
     ///     The exception that is thrown when some functionality which relies on reflection

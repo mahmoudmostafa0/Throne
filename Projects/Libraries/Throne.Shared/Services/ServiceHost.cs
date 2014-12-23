@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace Throne.Shared.Services
+namespace Throne.Framework.Services
 {
     public sealed class ServiceHost<TInterface, TService> : ServiceHost
         where TInterface : class

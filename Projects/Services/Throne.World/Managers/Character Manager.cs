@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Throne.Shared;
-using Throne.Shared.Logging;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Threading;
+using Throne.Framework;
+using Throne.Framework.Logging;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Threading;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Network;
 using Throne.World.Properties.Settings;

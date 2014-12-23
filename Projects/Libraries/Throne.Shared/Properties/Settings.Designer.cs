@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Throne.Shared.Properties {
+namespace Throne.Framework.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

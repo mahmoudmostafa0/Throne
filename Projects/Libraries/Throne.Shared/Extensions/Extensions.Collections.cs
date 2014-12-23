@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Throne.Shared
+namespace Throne.Framework
 {
     public static partial class Extensions
     {

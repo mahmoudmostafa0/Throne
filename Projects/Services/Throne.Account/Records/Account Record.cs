@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using Throne.Login.Records.Implementations;
-using Throne.Shared.Persistence.Mapping;
+using Throne.Framework.Persistence.Mapping;
 
 namespace Throne.Login.Records
 {

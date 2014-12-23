@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Throne.Shared;
-using Throne.Shared.Commands;
-using Throne.Shared.Threading;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework;
+using Throne.Framework.Commands;
+using Throne.Framework.Threading;
+using Throne.Framework.Threading.Actors;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using Throne.Shared;
-using Throne.Shared.Commands;
-using Throne.Shared.Cryptography;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Logging;
-using Throne.Shared.Math;
-using Throne.Shared.Network.Communication;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Handling;
-using Throne.Shared.Network.Security;
-using Throne.Shared.Threading.Actors;
+using Throne.Framework;
+using Throne.Framework.Commands;
+using Throne.Framework.Cryptography;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Logging;
+using Throne.Framework.Math;
+using Throne.Framework.Network.Communication;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Handling;
+using Throne.Framework.Network.Security;
+using Throne.Framework.Threading.Actors;
 using Throne.World.Network.Exchange;
 using Throne.World.Network.Messages;
 using Throne.World.Structures.Objects;
-using TcpClient = Throne.Shared.Network.Communication.TcpClient;
+using TcpClient = Throne.Framework.Network.Communication.TcpClient;
 
 namespace Throne.World.Network
 {
@@ -253,9 +253,7 @@ namespace Throne.World.Network
 
         public override string ToString()
         {
-            string name = Character ? " Name: {0}".Interpolate(Character.Name) : String.Empty;
-            return "({0} IP: {1} )".Interpolate(name,
-                ClientAddress ?? IPAddress.None);
+            return Character ? " Name: {0}".Interpolate(Character.Name) : String.Empty;
         }
 
         protected override void Dispose(bool disposing)

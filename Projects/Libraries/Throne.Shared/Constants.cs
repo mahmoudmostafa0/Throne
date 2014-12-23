@@ -1,4 +1,4 @@
-﻿namespace Throne.Shared
+﻿namespace Throne.Framework
 {
     public static class Constants
     {

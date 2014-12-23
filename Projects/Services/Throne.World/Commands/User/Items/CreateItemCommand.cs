@@ -1,4 +1,4 @@
-﻿using Throne.Shared.Commands;
+﻿using Throne.Framework.Commands;
 
 namespace Throne.World.Commands.User.Items
 {

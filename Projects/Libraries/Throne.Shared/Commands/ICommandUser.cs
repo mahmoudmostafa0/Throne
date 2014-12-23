@@ -1,7 +1,7 @@
 using System;
-using Throne.Shared.Security;
+using Throne.Framework.Security;
 
-namespace Throne.Shared.Commands
+namespace Throne.Framework.Commands
 {
     public interface ICommandUser : IPermissible
     {

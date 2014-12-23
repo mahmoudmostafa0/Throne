@@ -2,7 +2,7 @@
 
 namespace Throne.World.Structures.Travel
 {
-    using Shared;
+    using Framework;
 
     /// <summary>
     ///     Describes the current position of an entity.
@@ -26,14 +26,14 @@ namespace Throne.World.Structures.Travel
 
         static Position()
         {
-            North = new Direction(0, 1);
-            Northwest = new Direction(-1, 1);
-            West = new Direction(-1, 0);
-            Southwest = new Direction(-1, -1);
-            South = new Direction(0, -1);
-            Southeast = new Direction(1, -1);
-            East = new Direction(1, 0);
-            Northeast = new Direction(1, 1);
+            North = new Direction(-1, -1);
+            Northwest = new Direction(-1, 0);
+            West = new Direction(-1, 1);
+            Southwest = new Direction(0, 1);
+            South = new Direction(1, 1);
+            Southeast = new Direction(1, 0);
+            East = new Direction(1, -1);
+            Northeast = new Direction(0, -1);
         }
 
         public Position(Int16 x, Int16 y)
@@ -211,22 +211,22 @@ namespace Throne.World.Structures.Travel
             {
                 switch (movementOrientation)
                 {
-                    case Orientation.North:
-                        return this + North;
-                    case Orientation.Northwest:
-                        return this + Northwest;
-                    case Orientation.West:
-                        return this + West;
                     case Orientation.Southwest:
                         return this + Southwest;
-                    case Orientation.South:
-                        return this + South;
-                    case Orientation.Southeast:
-                        return this + Southeast;
-                    case Orientation.East:
-                        return this + East;
+                    case Orientation.West:
+                        return this + West;
+                    case Orientation.Northwest:
+                        return this + Northwest;
+                    case Orientation.North:
+                        return this + North;
                     case Orientation.Northeast:
                         return this + Northeast;
+                    case Orientation.East:
+                        return this + East;
+                    case Orientation.Southeast:
+                        return this + Southeast;
+                    case Orientation.South:
+                        return this + South;
                 }
                 return this;
             }

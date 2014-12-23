@@ -1,9 +1,9 @@
 ﻿//From Phonenix, thanks Spirited Fang
 
 using System;
-using Throne.Shared.Network.Security;
+using Throne.Framework.Network.Security;
 
-namespace Throne.Shared.Cryptography
+namespace Throne.Framework.Cryptography
 {
     /// <summary>
     ///     This class encapsulates an implementation of NetDragon Websoft, Inc. and TQ Digital Entertainment's

@@ -2,7 +2,7 @@
 using System.Globalization;
 using JetBrains.Annotations;
 
-namespace Throne.Shared.Logging
+namespace Throne.Framework.Logging
 {
     /// <summary>
     ///     A "proxy" to be instantiated in classes for shorter logging calls.

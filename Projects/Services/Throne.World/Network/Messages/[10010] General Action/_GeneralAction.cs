@@ -1,7 +1,7 @@
 ﻿using System;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Network.Transmission;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
+using Throne.Framework.Security.Permissions;
 using Throne.World.Network.Handling;
 using Throne.World.Structures.Objects;
 using Throne.World.Structures.Travel;
@@ -12,8 +12,7 @@ namespace Throne.World.Network.Messages
     public sealed partial class GeneralAction : WorldPacket
     {
         private const Int32 SIZE = 50;
-
-        private Creature Creature;
+        
         private Character Character;
 
         /// <summary>
@@ -38,7 +37,6 @@ namespace Throne.World.Network.Messages
 
             //will be null if the object is not of the type.
             Character = obj as Character;
-            Creature = obj as Creature;
         }
 
         public Int32 SentTimestamp
@@ -86,12 +84,15 @@ namespace Throne.World.Network.Messages
         {
             Character = ((WorldClient)client).Character;
 
+            if (!Character) 
+                client.Send(this);
+
             switch (Type)
             {
-                #region Logon Actions
+                    #region Logon Actions
 
                 case ActionType.ConfirmLocation:
-                    SendLocation(Character);
+                    SendLocation();
                     break;
                 case ActionType.ConfirmAssets:
                     SendAssets(Character);
@@ -112,7 +113,7 @@ namespace Throne.World.Network.Messages
                     VerifyLogon(Character);
                     break;
 
-                #endregion
+                    #endregion
 
                 case ActionType.UpdateCombatMode: SetCombatMode(); break;
                 case ActionType.Jump: Jump(); break;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
 using Throne.Login.Records;
-using Throne.Shared.Runtime;
-using Throne.Shared.Services.Account;
+using Throne.Framework.Runtime;
+using Throne.Framework.Services.Account;
 
 namespace Throne.Login.Accounts
 {

@@ -2,7 +2,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace Throne.Shared.Native
+namespace Throne.Framework.Native
 {
     /// <summary>
     ///     This class encapsulates the console control handler. When the application is terminated in some way or another,

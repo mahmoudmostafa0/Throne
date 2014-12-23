@@ -172,10 +172,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="Throne.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Build\Throne.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Network\AuthenticationClient.cs" />
@@ -244,6 +240,12 @@
       <LastGenOutput>StrRes1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Throne.Shared\Throne.Framework.csproj">
+      <Project>{cc15de31-b6b0-4fe6-bc98-57b76e9ea76c}</Project>
+      <Name>Throne.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

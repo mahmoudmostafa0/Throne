@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using csscript;
 using CSScriptLibrary;
-using Throne.Shared.Exceptions;
+using Throne.Framework.Exceptions;
 
 namespace Throne.World.Scripting.Compiler
 {

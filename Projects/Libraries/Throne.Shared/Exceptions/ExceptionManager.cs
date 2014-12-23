@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Throne.Shared.Logging;
+using Throne.Framework.Logging;
 
-namespace Throne.Shared.Exceptions
+namespace Throne.Framework.Exceptions
 {
     /// <summary>
     ///     Class used to log exceptions, so they can be viewed later.

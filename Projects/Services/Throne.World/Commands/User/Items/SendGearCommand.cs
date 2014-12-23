@@ -1,4 +1,4 @@
-﻿using Throne.Shared.Commands;
+﻿using Throne.Framework.Commands;
 using Throne.World.Network.Messages;
 
 namespace Throne.World.Commands.User.Items

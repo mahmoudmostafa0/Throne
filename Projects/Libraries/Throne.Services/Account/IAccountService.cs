@@ -1,8 +1,7 @@
-﻿using System;
-using System.Net.Security;
+﻿using System.Net.Security;
 using System.ServiceModel;
 
-namespace Throne.Shared.Services.Account
+namespace Throne.Framework.Services.Account
 {
     [ServiceContract(ProtectionLevel = ProtectionLevel.None, SessionMode = SessionMode.Required,
         CallbackContract = typeof (IEmptyCallbackService))]
@@ -12,6 +11,6 @@ namespace Throne.Shared.Services.Account
         AccountData? GetAccount(int session);
 
         [OperationContract]
-        Boolean Authorize(int session, int password);
+        bool Authorize(int session, int password);
     }
 }

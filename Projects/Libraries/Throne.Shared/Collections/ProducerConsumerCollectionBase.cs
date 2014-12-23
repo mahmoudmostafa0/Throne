@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Throne.Shared.Collections
+namespace Throne.Framework.Collections
 {
     [Serializable]
     public abstract class ProducerConsumerCollectionBase<T> : IProducerConsumerCollection<T>

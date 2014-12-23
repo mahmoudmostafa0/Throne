@@ -1,7 +1,7 @@
 ﻿using System.Net.Sockets;
-using Throne.Shared.Network.Communication;
+using Throne.Framework.Network.Communication;
 
-namespace Throne.Shared
+namespace Throne.Framework
 {
     public static partial class Extensions
     {

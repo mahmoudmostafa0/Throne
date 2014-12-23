@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using NHibernate.Mapping;
-using Throne.Shared.Native;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Runtime;
+using Throne.Framework.Native;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Runtime;
 
-namespace Throne.Shared.Network.Transmission.Stream
+namespace Throne.Framework.Network.Transmission.Stream
 {
     /// <summary>
     ///     The cause of this class is to join multiple packets together.

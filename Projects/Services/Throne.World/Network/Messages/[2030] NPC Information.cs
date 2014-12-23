@@ -1,6 +1,6 @@
 ﻿using System;
-using Throne.Shared.Network.Transmission;
-using Throne.World.Structures.Objects;
+using Throne.Framework.Network.Transmission;
+using Throne.World.Structures.Objects.Actors;
 
 namespace Throne.World.Network.Messages
 {
@@ -45,9 +45,9 @@ namespace Throne.World.Network.Messages
 
         public Int16 Action;
         public UInt32 ID;
-        public Int32 Unknown;
-        public UInt16 TypeFace;
+        public Npc.Model Look;
         public Types Type;
+        public Int32 Unknown;
         public Int16 X, Y;
 
         public NpcInformation()
@@ -60,8 +60,8 @@ namespace Throne.World.Network.Messages
         {
             Action = npc.Action;
             ID = npc.ID;
-            TypeFace = npc.TypeAndFacing;
             Type = npc.Type;
+            Look = npc.Look;
             X = npc.Location.Position.X;
             Y = npc.Location.Position.Y;
         }
@@ -70,10 +70,10 @@ namespace Throne.World.Network.Messages
         {
             WriteUInt(ID); // local id?
             WriteUInt(ID); // task id?
-            WriteInt(Unknown); // unknown
+            WriteInt(88); // unknown
             WriteShort(X);
             WriteShort(Y);
-            WriteUShort(TypeFace);
+            WriteUShort(Look);
             WriteShort((Int16) Type);
             WriteShort(Action); // action
             return base.Build();

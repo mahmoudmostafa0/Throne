@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Throne.Shared.Security.Permissions;
+using Throne.Framework.Security.Permissions;
 
-namespace Throne.Shared.Commands.System
+namespace Throne.Framework.Commands.System
 {
     [Command("Exit", "Close", "Bye", "Shutdown", "Die", "Kill")]
     public sealed class ExitCommand : Command

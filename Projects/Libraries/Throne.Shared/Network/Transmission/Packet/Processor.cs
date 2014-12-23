@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Throne.Shared.Logging;
-using Throne.Shared.Math;
-using Throne.Shared.Native;
+using Throne.Framework.Logging;
+using Throne.Framework.Math;
+using Throne.Framework.Native;
 
-namespace Throne.Shared.Network.Transmission
+namespace Throne.Framework.Network.Transmission
 {
     public abstract unsafe class Processor
     {
@@ -189,6 +189,11 @@ namespace Throne.Shared.Network.Transmission
         {
             fixed (byte* ptr = Array)
                 return *(long*) (ptr + PositionAndAdvance(sizeof (long)));
+        }
+
+        public string ReadString()
+        {
+            return ReadString(ReadByte());
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

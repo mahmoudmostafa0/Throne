@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Throne.Shared;
+using Throne.Framework;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Structures.Storage;
@@ -155,6 +155,5 @@ namespace Throne.World.Structures.Objects
         
 
         #endregion
-
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-using Throne.Shared.Exceptions;
-using Throne.Shared.Security;
+using System.Threading.Tasks;
+using Throne.Framework.Exceptions;
+using Throne.Framework.Security;
 
-namespace Throne.Shared.Threading.Actors
+namespace Throne.Framework.Threading.Actors
 {
     public class Actor : RestrictedObject, IActor
     {
-        private readonly AutoResetEvent _disposeEvent;
         private readonly IEnumerator<Operation> _mainIterator;
         private readonly IEnumerator<Operation> _msgIterator;
 
@@ -23,7 +23,6 @@ namespace Throne.Shared.Threading.Actors
         public Actor(ActorContext context)
         {
             Context = context;
-            _disposeEvent = new AutoResetEvent(false);
 
             _msgIterator = EnumerateMessages();
             _mainIterator = Main();
@@ -39,11 +38,6 @@ namespace Throne.Shared.Threading.Actors
         public ActorContext Context { get; private set; }
         public bool IsDisposed { get; private set; }
 
-        public void Join()
-        {
-            _disposeEvent.WaitOne();
-        }
-
         public void PostAsync(Action msg)
         {
             _msgQueue.Enqueue(msg);
@@ -53,24 +47,31 @@ namespace Throne.Shared.Threading.Actors
                 if (_msgQueue.Count == 0)
                     return; // The message was processed immediately, and we can just return.
 
-            if (msg == tmp)
-            // The message was sent while the actor was idle; restart it to continue processing.
-                Thread.AddActor(this);
+            if (msg != tmp) return;
+            Thread.AddActor(this);
         }
 
-        public IWaitable PostWait(Action msg)
+        /// <summary>
+        ///     Post a non-blocking awaited action.
+        /// </summary>
+        /// <param name="msg"></param>
+        public Task PostWait(Action msg)
         {
-            var eventHandle = new AutoResetEvent(false);
+            var eventHandle = new SemaphoreSlim(0);
 
-            PostAsync(() =>
+            try
             {
-                msg();
-
-                // Signal that message processing has happened.
-                eventHandle.Set();
-            });
-
-            return new ActorWaitHandle(eventHandle);
+                //limit execution time to 5 seconds.
+                return eventHandle.WaitAsync(5000);
+            }
+            finally
+            {
+                PostAsync(() =>
+                {
+                    msg();
+                    eventHandle.Release();
+                });
+            }
         }
 
         public void Dispose()
@@ -90,7 +91,7 @@ namespace Throne.Shared.Threading.Actors
         ~Actor()
         {
             Console.WriteLine("Actor disposed.");
-            Dispose(false);//disposed unmanaged
+            Dispose(false); //disposed unmanaged
         }
 
         private void InternalDispose()
@@ -100,7 +101,6 @@ namespace Throne.Shared.Threading.Actors
 
             Dispose(true);
             IsDisposed = true;
-            _disposeEvent.Set();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -110,19 +110,19 @@ namespace Throne.Shared.Threading.Actors
         internal bool ProcessMessages()
         {
             _msgIterator.MoveNext();
-
+            // No disposing here.
             return _msgQueue.Count > 0;
         }
 
         internal bool ProcessMain()
         {
-            var result = _mainIterator.MoveNext();
+            bool result = _mainIterator.MoveNext();
 
             // Happens if a yield break occurs.
             if (!result)
                 return false;
 
-            var operation = _mainIterator.Current;
+            Operation operation = _mainIterator.Current;
 
             if (operation == Operation.Dispose)
                 Dispose();
@@ -142,7 +142,7 @@ namespace Throne.Shared.Threading.Actors
                 Action msg;
                 if (_msgQueue.TryDequeue(out msg))
                 {
-                    var op = OnMessage(msg);
+                    Operation? op = OnMessage(msg);
                     if (op != null)
                         yield return (Operation) op;
                 }
@@ -169,12 +169,20 @@ namespace Throne.Shared.Threading.Actors
     public abstract class Actor<TThis> : Actor, IActor<TThis>
         where TThis : Actor<TThis>
     {
+        /// <summary>
+        ///     Post a non-blocking action.
+        /// </summary>
+        /// <param name="msg"></param>
         public void PostAsync(Action<TThis> msg)
         {
             PostAsync(() => msg((TThis) this));
         }
 
-        public IWaitable PostWait(Action<TThis> msg)
+        /// <summary>
+        ///     Post a non-blocking awaited action.
+        /// </summary>
+        /// <param name="msg"></param>
+        public Task PostWait(Action<TThis> msg)
         {
             return PostWait(() => msg((TThis) this));
         }

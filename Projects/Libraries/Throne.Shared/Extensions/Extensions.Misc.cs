@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using JetBrains.Annotations;
 
-namespace Throne.Shared
+namespace Throne.Framework
 {
     public static partial class Extensions
     {
-
         /// <summary>
         ///     Checks if an IntPtr object is null (0).
         /// </summary>
@@ -45,7 +46,7 @@ namespace Throne.Shared
         }
 
         /// <summary>
-        /// Performs an action with one parameter on a single object.
+        ///     Performs an action with one parameter on a single object.
         /// </summary>
         /// <typeparam name="T">Type same as object to use on the action.</typeparam>
         /// <param name="obj"></param>
@@ -61,19 +62,20 @@ namespace Throne.Shared
 
         public static string Format(this TimeSpan time)
         {
-            return "{0}{1:00}h {2:00}m {3:00}s {4:00}ms".Interpolate(time.TotalDays > 0 ? (int)time.TotalDays + "d " : "",
-                                 time.Hours, time.Minutes, time.Seconds, time.Milliseconds);
+            return
+                "{0}{1:00}h {2:00}m {3:00}s {4:00}ms".Interpolate(time.TotalDays > 0 ? (int) time.TotalDays + "d " : "",
+                    time.Hours, time.Minutes, time.Seconds, time.Milliseconds);
         }
 
         public static string FormatMillis(this DateTime time)
         {
             return "{0:00}h {1:00}m {2:00}s {3:00}ms".Interpolate(time.Hour, time.Minute,
-                                 time.Second, time.Millisecond);
+                time.Second, time.Millisecond);
         }
 
 
         /// <summary>
-        /// Raises event with thread and null-ref safety.
+        ///     Raises event with thread and null-ref safety.
         /// </summary>
         public static void Raise<T>(this Action<T> handler, T args)
         {
@@ -82,7 +84,7 @@ namespace Throne.Shared
         }
 
         /// <summary>
-        /// Raises event with thread and null-ref safety.
+        ///     Raises event with thread and null-ref safety.
         /// </summary>
         public static void Raise<T1, T2>(this Action<T1, T2> handler, T1 args1, T2 args2)
         {
@@ -91,7 +93,7 @@ namespace Throne.Shared
         }
 
         /// <summary>
-        /// Raises event with thread and null-ref safety.
+        ///     Raises event with thread and null-ref safety.
         /// </summary>
         public static void Raise<T1, T2, T3>(this Action<T1, T2, T3> handler, T1 args1, T2 args2, T3 args3)
         {

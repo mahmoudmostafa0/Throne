@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Text;
 
-namespace Throne.Shared.Math
+namespace Throne.Framework.Math
 {
     public class BigInteger
     {

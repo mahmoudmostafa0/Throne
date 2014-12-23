@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Throne.Shared.Collections
+namespace Throne.Framework.Collections
 {
     public sealed class ObjectPool<T> : ProducerConsumerCollectionBase<T>
     {

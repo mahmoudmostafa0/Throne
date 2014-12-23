@@ -1,7 +1,8 @@
 ﻿using System;
-using Throne.Shared.Collections;
+using Throne.Framework.Collections;
 using Throne.World.Network;
 using Throne.World.Records;
+using Throne.World.Sessions;
 
 namespace Throne.World.Structures.Objects
 {
@@ -19,6 +20,11 @@ namespace Throne.World.Structures.Objects
         ///     The user controlling this character.
         /// </summary>
         public WorldClient User { get; private set; }
+
+        /// <summary>
+        /// The current NPC activity session for this character.
+        /// </summary>
+        public NpcSession NpcSession { get; private set; }
 
         #region Constant Region
 
@@ -150,7 +156,7 @@ namespace Throne.World.Structures.Objects
             set
             {
                 _look = value;
-                Record.Look = value.Id;
+                Record.Look = _look;
                 Record.Update();
             }
         }

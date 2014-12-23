@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Throne.Shared.Runtime;
+using Throne.Framework.Runtime;
 
-namespace Throne.Shared.Threading.Actors
+namespace Throne.Framework.Threading.Actors
 {
     public sealed class ActorContext : IDisposableResource
     {
@@ -41,7 +41,7 @@ namespace Throne.Shared.Threading.Actors
 
         private ActorThread PickThread()
         {
-            //TODO: Try to pick actor threads based on lowest current stack clear time.
+            //TODO: Try to pick actor threads based on lowest queue clear time.
             var sched =
                 _threads.Aggregate((acc, current) => current.ActorCount < acc.ActorCount ? current : acc);
             return sched;

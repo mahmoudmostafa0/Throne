@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Throne.Shared.Network.Security;
+using Throne.Framework.Network.Security;
 
-namespace Throne.Shared.Cryptography
+namespace Throne.Framework.Cryptography
 {
     public unsafe class GameCipher : CAST5, INetworkCipher
     {

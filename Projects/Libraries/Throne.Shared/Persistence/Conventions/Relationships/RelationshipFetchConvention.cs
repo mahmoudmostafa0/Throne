@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Throne.Shared.Persistence.Conventions.Relationships
+namespace Throne.Framework.Persistence.Conventions.Relationships
 {
     internal sealed class RelationshipFetchConvention : IHasManyConvention, IHasManyConventionAcceptance,
         IHasManyToManyConvention,

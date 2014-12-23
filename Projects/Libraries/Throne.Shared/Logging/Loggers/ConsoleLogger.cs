@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Throne.Shared.Properties;
+using Throne.Framework.Properties;
 
-namespace Throne.Shared.Logging.Loggers
+namespace Throne.Framework.Logging.Loggers
 {
     /// <summary>
     ///     A logger that outputs text to the console.

@@ -2,13 +2,13 @@
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
-using Throne.Shared.Logging;
-using Throne.Shared.Network.Connectivity;
-using Throne.Shared.Reflection;
-using Throne.Shared.Security.Permissions;
-using Throne.Shared.Network.Transmission;
+using Throne.Framework.Logging;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Reflection;
+using Throne.Framework.Security.Permissions;
+using Throne.Framework.Network.Transmission;
 
-namespace Throne.Shared.Network.Handling
+namespace Throne.Framework.Network.Handling
 {
     public abstract class PacketPropagatorBase<TAttribute, TPacket> : IPacketPropagator
         where TAttribute : PacketHandlerAttribute
