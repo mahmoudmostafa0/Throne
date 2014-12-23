@@ -69,14 +69,25 @@ namespace Throne.World.Scripting.Scripts
             }
             catch (OperationCanceledException)
             {
-                Ended();
+                InteractionEnded();
             }
             InteractionState = InteractionStates.Ended;
         }
 
-        public virtual void End()
+        /// <summary>
+        /// Ends the await for feedback in the scripts.
+        /// </summary>
+        public virtual void EndInteraction()
         {
             _cancelToken.Cancel();
+        }        
+        
+        /// <summary>
+        /// Called only when the player tells the NPC to eff off. (Or the player logged out)
+        /// </summary>
+        public virtual void InteractionEnded()
+        {
+            Character.User.Send("You ended the conversation with {0}.".Interpolate(Npc.Name));
         }
 
         public NpcScript Clone(Character forChr)
@@ -147,13 +158,7 @@ namespace Throne.World.Scripting.Scripts
             await Task.Yield();
         }
 
-        /// <summary>
-        /// Called only when the player tells the NPC to eff off. (Or the player logged out)
-        /// </summary>
-        public virtual void Ended()
-        {
-            Character.User.Send("You ended the conversation with {0}.".Interpolate(Npc.Name));
-        }
+
 
         protected async Task<DialogFeedback> Response()
         {
