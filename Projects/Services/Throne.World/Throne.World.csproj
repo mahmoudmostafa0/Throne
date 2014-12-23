@@ -363,6 +363,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Throne.Services\Throne.Services.csproj">
+      <Project>{4ef7f0e7-af7d-4b5a-bc9f-b849747e3259}</Project>
+      <Name>Throne.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Throne.Shared\Throne.Framework.csproj">
       <Project>{cc15de31-b6b0-4fe6-bc98-57b76e9ea76c}</Project>
       <Name>Throne.Framework</Name>
