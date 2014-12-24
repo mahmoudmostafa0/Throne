@@ -24,12 +24,12 @@ namespace Throne.World.Scripting.Scripts
         private readonly SemaphoreSlim _resumeSignal;
 
         private Character _character;
-        private DialogFeedback _feedback;
+        protected DialogFeedback Feedback { get; private set; }
 
         protected NpcScript()
         {
             Npc = new Npc();
-            _feedback = new DialogFeedback();
+            Feedback = new DialogFeedback();
             _resumeSignal = new SemaphoreSlim(0, 1);
             _cancelToken = new CancellationTokenSource();
         }
@@ -164,12 +164,12 @@ namespace Throne.World.Scripting.Scripts
             InteractionState = InteractionStates.Feedback;
             await _resumeSignal.WaitAsync(_cancelToken.Token);
             InteractionState = InteractionStates.Ongoing;
-            return _feedback;
+            return Feedback;
         }
 
         public Boolean Resume(DialogFeedback feedback)
         {
-            if (feedback.Time == _feedback.Time)
+            if (feedback.Time == Feedback.Time)
                 return true;
             if (feedback.Option == 0)
             {
@@ -177,7 +177,7 @@ namespace Throne.World.Scripting.Scripts
                 return false;
             }
 
-            _feedback = feedback;
+            Feedback = feedback;
             _resumeSignal.Release();
             return true;
         }
