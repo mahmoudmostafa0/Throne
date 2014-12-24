@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Throne.Framework;
 using Throne.World.Network.Messages;
@@ -20,6 +19,7 @@ public sealed class GuildDirector : NpcScript
 
     protected override async Task Talk()
     {
+        start:
         Message("Hello {0}, this is Throne's first interactive dialog.".Interpolate(Character.Name),
             Option("Option 0 (Close)"),
             Option("Option 1", 1),
@@ -37,15 +37,22 @@ public sealed class GuildDirector : NpcScript
                 break;
             case 2:
                 Message("Input test...\nType test to get an alternate message",
-                    Input(name: "Test", op: 1, szInput: 255));
+                    Input("Test", 1, 255),
+                    Option("Go Back", 2));
 
-                if (await Response() == "test")
+                await Response();
+
+                if (Feedback == "test")
                 {
-                    Message("You wrote \"test\"");
+                    Message("You wrote test.");
                     break;
                 }
 
-                Message("Input Result\n________________\n\nOption:{0}\nText:{1}\n\n".Interpolate(Feedback.Option, Feedback.Input));
+                if (Feedback == 2)
+                    goto start;
+
+                Message("Input Result\n________________\n\nOption:{0}\nText:{1}\n\n".Interpolate(Feedback.Option,
+                    Feedback.Input));
                 break;
             case 255:
                 Message("255 was your option.", Option("Close"));
