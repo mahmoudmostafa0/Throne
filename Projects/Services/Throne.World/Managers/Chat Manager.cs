@@ -39,7 +39,7 @@ namespace Throne.World
                     msg.Message.Contains(new String(CommandPrefix, 2)));
                 CommandManager.Instance.PostAsync(cm => cm.ExecuteCommand(arguments, msg.Client));
             }
-            msg.Color = MessageColor.Green;
+            msg.Color = System.Drawing.Color.Green;
 
             switch (msg.Type)
             {
