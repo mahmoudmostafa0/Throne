@@ -134,6 +134,7 @@ namespace Throne.World.Scripting.Scripts
 
         protected void SetName(String name)
         {
+            Npc.SendName = true;
             Npc.Name = name;
         }
 

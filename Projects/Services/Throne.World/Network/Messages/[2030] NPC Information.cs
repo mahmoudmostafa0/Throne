@@ -49,14 +49,15 @@ namespace Throne.World.Network.Messages
         public Types Type;
         public Int32 Unknown;
         public Int16 X, Y;
-
+        public string Name;
+        public bool SendName;
         public NpcInformation()
-            : base(PacketTypes.NpcInformation, 34)
+            : base(PacketTypes.NpcInformation, 52)
         {
         }
 
         public NpcInformation(Npc npc)
-            : base(PacketTypes.NpcInformation, 34)
+            : base(PacketTypes.NpcInformation, 52)
         {
             Action = npc.Action;
             ID = npc.ID;
@@ -64,6 +65,8 @@ namespace Throne.World.Network.Messages
             Look = npc.Look;
             X = npc.Location.Position.X;
             Y = npc.Location.Position.Y;
+            Name = npc.Name;
+            SendName = npc.SendName;
         }
 
         protected override byte[] Build()
@@ -76,6 +79,8 @@ namespace Throne.World.Network.Messages
             WriteUShort(Look);
             WriteShort((Int16) Type);
             WriteShort(Action); // action
+            WriteBoolean(SendName);
+            WriteStringWithLength(Name);
             return base.Build();
         }
     }
