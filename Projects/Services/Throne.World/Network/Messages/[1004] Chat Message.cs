@@ -15,7 +15,7 @@ namespace Throne.World.Network.Messages
         public const String SYSTEM = "SYSTEM", ALLUSERS = "ALLUSERS";
         private const Int32 MINIMUM_LENGTH = 33, MINIMUM_STRINGS = 7;
 
-        public MessageColor Color;
+        public System.Drawing.Color Color;
 
         public WorldClient Client;
 
@@ -41,7 +41,7 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
-            Color = MessageColor.White;
+            Color = System.Drawing.Color.White;
             Sender = SYSTEM;
             Recipient = ALLUSERS;
             Message = message;
@@ -54,14 +54,14 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
-            Color = MessageColor.White;
+            Color = System.Drawing.Color.White;
             Sender = SYSTEM;
             Identity = to.ID;
             Recipient = to.Name;
             Message = message;
         }
 
-        public ChatMessage(MessageChannel type, String message, MessageStyle style, MessageColor color)
+        public ChatMessage(MessageChannel type, String message, MessageStyle style, System.Drawing.Color color)
             : base(0)
         {
             TypeId = (short)PacketTypes.ChatMessage;
@@ -91,7 +91,7 @@ namespace Throne.World.Network.Messages
             Client = (WorldClient)client;
 
             ReadInt();
-            Color = (MessageColor)ReadInt();
+            Color = System.Drawing.Color.FromArgb(ReadInt());
             Type = (MessageChannel)ReadUShort();
             Style = (MessageStyle)ReadUShort();
             Identity = ReadUInt();
@@ -141,7 +141,7 @@ namespace Throne.World.Network.Messages
         {
             Resize(Length + 8);
             WriteInt(Environment.TickCount);
-            WriteInt((int)Color);
+            WriteInt(Color.ToArgb());
             WriteUShort((ushort)Type);
             WriteUShort((ushort)Style);
             WriteUInt(Identity);
@@ -213,17 +213,5 @@ namespace Throne.World.Network.Messages
         Scroll = 1 << 0,
         Flash = 1 << 1,
         Blast = 1 << 2
-    }
-
-    public enum MessageColor
-    {
-        None = -1,
-        White = 0xFFFFFF,
-        Black = 0x000000,
-        Yellow = 0x00FFFF,
-        Pink = 0xFF00FF,
-        Green = 0x00FF00,
-        Blue = 0x0000FF,
-        Red = 0xFF0000
     }
 }
