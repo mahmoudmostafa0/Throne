@@ -51,10 +51,10 @@ namespace Throne.World.Structures.Objects
             foreach (Character nc in newVisibleCharacters)
             {
                 ExchangeAerialSpawns(nc, jmp);
-                nc.User.PostAsync(() => AddVisibleCharacter(this, false));
+                nc.User.PostAsync(() => nc.AddVisibleCharacter(this, false));
             }
             foreach (Character rc in removeVisibleCharacters)
-                rc.User.PostAsync(() => RemoveVisibleCharacter(this));
+                rc.User.PostAsync(() => rc.RemoveVisibleCharacter(this));
 
             #endregion
 
@@ -104,9 +104,9 @@ namespace Throne.World.Structures.Objects
             _currentVisibleCharacters = updatedCharacters.ToDictionary(c => c.ID);
 
             foreach (Character nc in newVisibleCharacters)
-                nc.User.PostAsync(() => AddVisibleCharacter(this));
+                nc.User.PostAsync(() => nc.AddVisibleCharacter(this));
             foreach (Character rc in removeVisibleCharacters)
-                rc.User.PostAsync(() => RemoveVisibleCharacter(this));
+                rc.User.PostAsync(() => rc.RemoveVisibleCharacter(this));
 
             #endregion
 
@@ -155,7 +155,7 @@ namespace Throne.World.Structures.Objects
         {
             Location.Map.RemoveUser(this);
             foreach (Character rc in _currentVisibleCharacters.Values)
-                rc.User.PostAsync(() => RemoveVisibleCharacter(this, true));
+                rc.User.PostAsync(() => rc.RemoveVisibleCharacter(this, true));
 
             ClearScreen();
         }

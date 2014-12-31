@@ -19,6 +19,8 @@ namespace Throne.World.Network.Messages
             if (!cellInf[CellType.Portal])
                 Character.Log.Error(StrRes.MSG_NoPortalHere.Interpolate(Character.Location));
 
+            Character.ExitCurrentRegion();
+
             var dst = Location.None;
             using (var pkt = new GeneralAction(ActionType.Teleport, Character))
                 if (!(map.Script is DummyMapScript) && map.Script.Warps.TryGetValue(cellInf.Argument, out dst))
@@ -28,7 +30,7 @@ namespace Throne.World.Network.Messages
                     Character.User.Send(pkt.Teleport(dst = map.ReviveLocation));
                     Log.Error(StrRes.SMSG_WarpNotFound, cellInf.Argument, map.Id);
                 }
-            Character.ExitCurrentRegion();
+
             Character.EnterRegion(dst.Copy);
         }
     }

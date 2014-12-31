@@ -2,6 +2,7 @@
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Transmission;
 using Throne.Framework.Security.Permissions;
+using Throne.World.Network.Messages.Mail;
 using Throne.World.Structures.Travel;
 
 namespace Throne.World.Network.Messages
@@ -53,7 +54,6 @@ namespace Throne.World.Network.Messages
         public override void Handle(IClient client)
         {
             var c = ((WorldClient) client).Character;
-
             c.GroundMovement(this);
         }
     }

@@ -157,5 +157,10 @@ namespace Throne.World.Structures.Objects
         {
             User.Send(packet);
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -121,6 +121,8 @@ namespace Throne.World.Network.Messages
                 case ActionType.Away: Away(); break;
                 case ActionType.ChangeMap: UsePortal(); break;
                 case ActionType.SetAppearance: SetAppearance(); break;
+                    case ActionType.ChangeFace:
+                    break;
             }
         }
 
