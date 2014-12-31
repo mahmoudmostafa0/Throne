@@ -61,7 +61,7 @@ namespace Throne.World.Scripting.Scripts
         }
 
         /// <summary>
-        ///     Adds subscribtions based on "On" attribute on methods.
+        ///     Adds subscriptions based on "On" attribute on methods.
         /// </summary>
         public void AutoLoad()
         {

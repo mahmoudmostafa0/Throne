@@ -22,7 +22,7 @@ namespace Throne.World.Sessions
 
             State = withNpc.Script.Clone(chr);
 
-            State.InteractAsync();
+            State.Interact();
         }
 
         /// <summary>
@@ -30,7 +30,8 @@ namespace Throne.World.Sessions
         /// </summary>
         public void Clear()
         {
-            State.EndInteraction();
+            if (State)
+                State.EndInteraction();
             State = null;
         }
 

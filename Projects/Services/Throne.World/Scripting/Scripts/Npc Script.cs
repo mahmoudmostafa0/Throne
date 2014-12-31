@@ -53,15 +53,15 @@ namespace Throne.World.Scripting.Scripts
             Load();
             Npc.Script = this;
 
-            if (!Npc.Location)
-                Log.Error("{0} could not be spawned.", Npc.Name);
+            if (!Npc.Location.Map)
+                Log.Error("{0}/{1} could not be spawned.", Npc.LongName, Npc.DisplayName);
             else
                 Npc.SpawnAtLocation();
 
             return true;
         }
 
-        public virtual async void InteractAsync()
+        public virtual async void Interact()
         {
             InteractionState = InteractionStates.Ongoing;
             try
@@ -88,7 +88,7 @@ namespace Throne.World.Scripting.Scripts
         /// </summary>
         public virtual void InteractionEnded()
         {
-            Character.User.Send("You ended the conversation with {0}.".Interpolate(Npc.Name));
+            Character.User.Send("You ended the conversation with {0}.".Interpolate(Npc.LongName));
         }
 
         public NpcScript Clone(Character forChr)
@@ -132,9 +132,14 @@ namespace Throne.World.Scripting.Scripts
             Npc.ID = id;
         }
 
-        protected void SetName(String name)
+        protected void SetLongName(String name)
         {
-            Npc.Name = name;
+            Npc.LongName = name;
+        }
+
+        protected void SetDisplayName(String name)
+        {
+            Npc.DisplayName = name;
         }
 
         protected void SetType(NpcInformation.Types type)

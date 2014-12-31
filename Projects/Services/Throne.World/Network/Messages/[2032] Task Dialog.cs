@@ -52,7 +52,7 @@ namespace Throne.World.Network.Messages
 
         public override void Handle(IClient client)
         {
-            var session = _character.NpcSession;
+            NpcSession session = _character.NpcSession;
             var feedback = new DialogFeedback(Seek(14).ReadByte(),
                 Seek(16).ReadStrings().FirstOrDefault() ?? String.Empty, Seek(4).ReadInt());
 
@@ -96,18 +96,18 @@ namespace Throne.World.Network.Messages
             return this;
         }
 
-        public TaskDialog ShowDialog()
-        {
-            Seek(15).WriteByte((Byte) Types.ShowDialog);
-            return this;
-        }
-
         public TaskDialog Input(Byte op, UInt16 szInput, String name)
         {
             Seek(12).WriteUShort(szInput);
             WriteByte(op);
             WriteByte((Byte) Types.Input);
             WriteStrings(name);
+            return this;
+        }
+
+        public TaskDialog ShowDialog()
+        {
+            Seek(15).WriteByte((Byte) Types.ShowDialog);
             return this;
         }
 

@@ -48,15 +48,16 @@ namespace Throne.World.Network.Messages
         public Npc.Model Look;
         public Types Type;
         public Int32 Unknown;
+        public String DisplayName;
         public Int16 X, Y;
 
         public NpcInformation()
-            : base(PacketTypes.NpcInformation, 34)
+            : base(PacketTypes.NpcInformation, 52)
         {
         }
 
         public NpcInformation(Npc npc)
-            : base(PacketTypes.NpcInformation, 34)
+            : base(PacketTypes.NpcInformation, 52)
         {
             Action = npc.Action;
             ID = npc.ID;
@@ -64,18 +65,22 @@ namespace Throne.World.Network.Messages
             Look = npc.Look;
             X = npc.Location.Position.X;
             Y = npc.Location.Position.Y;
+            DisplayName = npc.DisplayName;
         }
 
         protected override byte[] Build()
         {
             WriteUInt(ID); // local id?
             WriteUInt(ID); // task id?
-            WriteInt(88); // unknown
+            WriteShort(0); // unknown
+            WriteShort(0); // unknown
             WriteShort(X);
             WriteShort(Y);
             WriteUShort(Look);
             WriteShort((Int16) Type);
             WriteShort(Action); // action
+            if (!String.IsNullOrEmpty(DisplayName))
+                WriteStrings(DisplayName);
             return base.Build();
         }
     }
