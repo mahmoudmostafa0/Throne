@@ -16,7 +16,11 @@ namespace Throne.World.Network.Messages
         public const String SYSTEM = "SYSTEM", ALLUSERS = "ALLUSERS";
         private const Int32 MINIMUM_LENGTH = 33, MINIMUM_STRINGS = 7;
 
+<<<<<<< HEAD
         public Color Color;
+=======
+        public System.Drawing.Color Color;
+>>>>>>> origin/master
 
         public WorldClient Client;
 
@@ -43,7 +47,11 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
+<<<<<<< HEAD
             Color = Color.White;
+=======
+            Color = System.Drawing.Color.White;
+>>>>>>> origin/master
             Sender = SYSTEM;
             Recipient = ALLUSERS;
             Message = message;
@@ -56,14 +64,22 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
+<<<<<<< HEAD
             Color = Color.White;
+=======
+            Color = System.Drawing.Color.White;
+>>>>>>> origin/master
             Sender = SYSTEM;
             Identity = to.ID;
             Recipient = to.Name;
             Message = message;
         }
 
+<<<<<<< HEAD
         public ChatMessage(MessageChannel type, String message, MessageStyle style, Color color)
+=======
+        public ChatMessage(MessageChannel type, String message, MessageStyle style, System.Drawing.Color color)
+>>>>>>> origin/master
             : base(0)
         {
             TypeId = (short)PacketTypes.ChatMessage;
@@ -93,7 +109,11 @@ namespace Throne.World.Network.Messages
             Client = (WorldClient)client;
 
             ReadInt();
+<<<<<<< HEAD
             Color = Color.FromArgb(ReadInt());
+=======
+            Color = System.Drawing.Color.FromArgb(ReadInt());
+>>>>>>> origin/master
             Type = (MessageChannel)ReadUShort();
             Style = (MessageStyle)ReadUShort();
             Identity = ReadUInt();
@@ -209,17 +229,5 @@ namespace Throne.World.Network.Messages
         Scroll = 1 << 0,
         Flash = 1 << 1,
         Blast = 1 << 2
-    }
-
-    public enum MessageColor
-    {
-        None = -1,
-        White = 0xFFFFFF,
-        Black = 0x000000,
-        Yellow = 0x00FFFF,
-        Pink = 0xFF00FF,
-        Green = 0x00FF00,
-        Blue = 0x0000FF,
-        Red = 0xFF0000
     }
 }
