@@ -2,3 +2,6 @@
 // Npc Script list file
 
 npcs/GuildDirector.cs
+npcs/MailManager.cs
+npcs/AuctionManager.cs
+npcs/Surgeon.cs
