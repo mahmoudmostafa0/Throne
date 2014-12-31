@@ -11,7 +11,6 @@ namespace Throne.World
         /// </summary>
         public event Action<SecurityViolationEventArgs> SecurityViolation;
         public void OnSecurityViolation(SecurityViolationEventArgs args) { SecurityViolation.Raise(args); }
-
     }
 
     public static class EventHandlerExtensions
