@@ -8,9 +8,8 @@ using Throne.Framework.Network.Communication;
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Handling;
 using Throne.Framework.Network.Security;
+using Throne.Login.Accounts;
 using TcpClient = Throne.Framework.Network.Communication.TcpClient;
-
-#pragma warning disable 618
 
 namespace Throne.Login.Network
 {
@@ -50,7 +49,7 @@ namespace Throne.Login.Network
 
                 try
                 {
-                    if (!socket.SendAsync(sndSocketArgs))
+                    if (!Socket.SendAsync(sndSocketArgs))
                         OnSend(sndSocketArgs);
                 }
                 catch (Exception ex)
@@ -63,18 +62,13 @@ namespace Throne.Login.Network
                     ExceptionManager.RegisterException(ex);
                 }
             }
-            else if (!disconnected) Disconnect();
+            else if (!Disconnected) Disconnect();
         }
 
         public IPAddress ClientAddress
         {
-            get { return ((IPEndPoint)socket.RemoteEndPoint).Address; }
+            get { return ((IPEndPoint) Socket.RemoteEndPoint).Address; }
         }
-
-        /// <summary>
-        ///     This dynamic variable holds authentication data for login, then the account once verified and loaded.
-        /// </summary>
-        public dynamic UserData { get; set; }
 
         public void DisconnectWithMessage(Byte[] message)
         {
@@ -90,19 +84,29 @@ namespace Throne.Login.Network
             get { return _log; }
         }
 
+        public void Respond(string response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Respond(byte[] response)
+        {
+            Send(response);
+        }
+
         protected override unsafe void OnReceive()
         {
             if (BytesTransferred >= _minStreamSize)
             {
-                var decipheredBuffer = StreamCipher.Decrypt(rcvBuffer, BytesTransferred);
+                byte[] decipheredBuffer = StreamCipher.Decrypt(rcvBuffer, BytesTransferred);
                 var position = new Int32();
 
-                while (position < BytesTransferred && !disconnected)
+                while (position < BytesTransferred && !Disconnected)
                     fixed (Byte* src = decipheredBuffer)
                     {
                         byte* srcP = src + position;
-                        short msgSize = *(Int16*)srcP;
-                        short msgType = *(Int16*)(srcP + 2);
+                        short msgSize = *(Int16*) srcP;
+                        short msgType = *(Int16*) (srcP + 2);
 
                         if (!msgSize.IsBetween<Int16>(MIN_MSG_SIZE, MAX_MSG_SIZE))
                             break;
@@ -115,7 +119,7 @@ namespace Throne.Login.Network
                                 position++)
                                 *dstP++ = *srcP++;
 
-                        _propagator.Handle(this, msgType, msg, (Int16)msg.Length);
+                        _propagator.Handle(this, msgType, msg, (Int16) msg.Length);
                     }
             }
 
@@ -127,17 +131,5 @@ namespace Throne.Login.Network
             else
                 Receive();
         }
-
-        public void Respond(string response)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Respond(byte[] response)
-        {
-            Send(response);
-        }
     }
 }
-
-#pragma warning restore 618

@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using Throne.Login.Annotations;
-using Throne.Login.Records;
 using Throne.Framework;
 using Throne.Framework.Logging;
 using Throne.Framework.Threading;
+using Throne.Login.Records;
 
 namespace Throne.Login.Accounts
 {
-    [UsedImplicitly]
     public sealed class AccountManager : SingletonActor<AccountManager>
     {
         private static readonly LogProxy _log = new LogProxy("AccountManager");
@@ -24,7 +22,7 @@ namespace Throne.Login.Accounts
             IEnumerable<AccountRecord> accounts = AuthServer.Instance.AccountDbContext.FindAll<AccountRecord>();
             foreach (Account acc in accounts.Select(account => new Account(account)))
             {
-                Contract.Assume(acc != null);
+                acc.Online = false;
                 AddAccount(acc);
             }
 
@@ -59,14 +57,27 @@ namespace Throne.Login.Accounts
             RemoveAccount(acc);
         }
 
+        /// <summary>
+        /// Use to find multiple accounts matching a predicate.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<Account> FindAccounts(Func<Account, bool> predicate)
         {
             return _accounts.Where(predicate).Force();
         }
 
-        public Account FindAccount(Func<Account, bool> predicate)
+        public Boolean FindAccount(Func<Account, bool> predicate, out Account value)
         {
-            return _accounts.SingleOrDefault(predicate);
+            value = _accounts.SingleOrDefault(predicate);
+            return value;
+        }
+
+        public void UpdateAccount_Online(Int32 Guid, Boolean value)
+        {
+            var account = _accounts.SingleOrDefault(x => x.Guid == Guid);
+            if (account != null)
+                account.Online = value;
         }
     }
 }

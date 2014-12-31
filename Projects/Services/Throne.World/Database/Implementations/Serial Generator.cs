@@ -116,7 +116,7 @@ namespace Throne.World.Database.Records.Implementations
             Log.Info("Loaded serial generators.");
         }
 
-        private SerialGenerator CreateSerialGenerator(String @for, UInt32 minVal, UInt32 maxVal)
+        private SerialGenerator CreateGenerator(String @for, UInt32 minVal, UInt32 maxVal)
         {
             var generator = new SerialGenerator(@for, minVal, maxVal);
             generator.Create();
@@ -124,9 +124,9 @@ namespace Throne.World.Database.Records.Implementations
             return generator;
         }
 
-        public SerialGenerator GetSerialGenerator(String @for, UInt32 minVal, UInt32 maxVal)
+        public void GetGenerator(String @for, UInt32 minVal, UInt32 maxVal, ref SerialGenerator generator)
         {
-            return _generators.Find(generator => generator.Id == @for) ?? CreateSerialGenerator(@for, minVal, maxVal);
+            generator = _generators.Find(g => g.Id == @for) ?? CreateGenerator(@for, minVal, maxVal);
         }
 
         /// <summary>

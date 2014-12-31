@@ -1,9 +1,9 @@
 ﻿using System;
+using Throne.Framework.Network.Connectivity;
+using Throne.Framework.Network.Transmission;
 using Throne.Login.Accounts;
 using Throne.Login.Network.Handling;
 using Throne.Login.Properties;
-using Throne.Framework.Network.Connectivity;
-using Throne.Framework.Network.Transmission;
 
 namespace Throne.Login.Network.Messages
 {
@@ -44,25 +44,36 @@ namespace Throne.Login.Network.Messages
         public override void Handle(IClient client)
         {
             //TODO: Better method for exchange IDs
-            //TODO: Send account already logged in
 
-            client.UserData = AccountManager.Instance.FindAccount(x => x.Username == Username);
-
-            if (client.UserData != null && client.UserData.Password.Equals(Password) && !client.UserData.Online)
+            Account userRecord;
+            if (AccountManager.Instance.FindAccount(x => x.Username == Username, out userRecord))
             {
-                client.UserData.MacAddress = MacAddress;
-                client.UserData.LastLogin = DateTime.Now;
-                client.UserData.LastIP = client.ClientAddress;
+                if (!userRecord.Password.Equals(Password))
+                {
+                    using (var packet = new AuthenticationAction((int) AuthenticationAction.Type.InvalidCredentials))
+                        client.Send(packet);
+                    return;
+                }
 
-                using (
-                    var packet = new AuthenticationAction(client.UserData.Guid, client.UserData.Password.GetHashCode(),
-                        GlobalDefaults.Default.TestServerPort, GlobalDefaults.Default.TestServerIp))
-                    client.Send(packet);
+
+                if (!userRecord.Online)
+                {
+                    userRecord.MacAddress = MacAddress;
+                    userRecord.LastLogin = DateTime.Now;
+                    userRecord.LastIP = client.ClientAddress;
+                    userRecord.Online = true;
+
+                    using (
+                        var packet = new AuthenticationAction(userRecord.Guid, userRecord.Password.GetHashCode(),
+                            GlobalDefaults.Default.TestServerPort, GlobalDefaults.Default.TestServerIp))
+                        client.Send(packet);
+                }
+                else
+                    using (var packet = new AuthenticationAction((int) AuthenticationAction.Type.TryAgainLater))
+                        client.Send(packet);
             }
             else
-
-                using (var packet = new AuthenticationAction((int) AuthenticationAction.Type.InvalidCredentials))
-                    client.Send(packet);
+                client.Disconnect();
         }
     }
 }

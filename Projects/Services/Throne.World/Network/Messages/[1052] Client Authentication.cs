@@ -30,26 +30,27 @@ namespace Throne.World.Network.Messages
 
         public override async void Handle(IClient client)
         {
+            var c = (WorldClient) client;
             await WorldServer.Instance.AccountService.PostWait(
                 asvc => asvc.Call(accService =>
                 {
                     if (!accService.Authorize(_session, _password))
                         return;
 
-                    client.UserData = accService.GetAccount(_session);
+                    c.AccountData = new AccountRecord(accService.GetAccount(_session));
                     client.AddPermission(new AuthenticatedPermission());
                 }));
 
             if (client.HasPermission(typeof (AuthenticatedPermission)))
             {
-                CharacterRecord @char = CharacterManager.Instance.FindCharacterRecord(client);
-                if (@char == null)
+                CharacterRecord chr = CharacterManager.Instance.FindCharacterRecord(c);
+                if (chr == null)
                     using (new Stream()
                            + Constants.LoginMessages.NewRole
                            + Constants.LoginMessages.ServerInfo
                            > client) return;
 
-                ((WorldClient) client).SetCharacter(CharacterManager.Instance.InitiaizeCharacter(client, @char));
+                ((WorldClient)client).SetCharacter(CharacterManager.Instance.InitiaizeCharacter(c, chr));
             }
             else
                 client.DisconnectWithMessage(Constants.LoginMessages.BadAuthentication);

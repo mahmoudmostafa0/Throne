@@ -10,6 +10,7 @@ namespace Throne.Login.Network.Messages
             Banned = 0,
             InvalidCredentials = 1,
             Forward = 2,
+            TryAgainLater = 11,
             AccountBanned = 25,
             AccountPermanentlyBanned = 26,
             OutdatedClient = 61,

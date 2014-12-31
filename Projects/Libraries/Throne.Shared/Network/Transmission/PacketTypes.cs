@@ -27,6 +27,7 @@
         RemoteMachineIdentification = 1100,
         MapItem = 1101,
         MapInfo = 1110,
+        BattleEffectiveness = 1032,
         QuestStatus = 1134,
         QuestDetailInfo = 1135,
         GenericRanking = 1151,

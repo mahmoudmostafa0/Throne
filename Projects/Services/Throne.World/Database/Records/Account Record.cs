@@ -1,33 +1,27 @@
 ﻿using System;
 using System.Net;
-using Throne.Login.Records.Implementations;
 using Throne.Framework.Persistence.Mapping;
+using Throne.Framework.Services.Account;
+using Throne.World.Database.Records.Implementations;
 
-namespace Throne.Login.Records
+namespace Throne.World.Records
 {
-    public class AccountRecord : AccountDatabaseRecord
+    public class AccountRecord : WorldDatabaseRecord
     {
-        /// <summary>
-        ///     Constructs a new AccountRecord object.
-        ///     This should be used only by the underlying database layer.
-        /// </summary>
         protected AccountRecord()
         {
         }
 
-        /// <summary>
-        ///     Constructs a new AccountRecord object.
-        ///     Should be inserted into the database.
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="macaddress"></param>
-        public AccountRecord(string username, string password, string macaddress)
+        public AccountRecord(AccountData loginData)
         {
-            Username = username;
-            Password = password;
-            MacAddress = macaddress;
-            CreationTime = DateTime.Now;
+            Guid = loginData.UserGuid;
+            Username = loginData.Username;
+            Password = loginData.Password;
+            Email = loginData.Email;
+            MacAddress = loginData.MacAddress;
+            LastLogin = loginData.LastLogin;
+            IP = loginData.LastIP;
+            CreationTime = loginData.CreationTime;
         }
 
         public virtual int Guid { get; protected set; }
@@ -50,7 +44,7 @@ namespace Throne.Login.Records
 
         public override void Update()
         {
-            AuthServer.Instance.AccountDbContext.Update(this);
+            WorldServer.Instance.WorldDbContext.Update(this);
         }
     }
 
@@ -59,6 +53,7 @@ namespace Throne.Login.Records
         public AccountMapping()
         {
             Id(r => r.Guid);
+
             Map(r => r.Username);
             Map(r => r.Password);
             Map(r => r.Email).Nullable();

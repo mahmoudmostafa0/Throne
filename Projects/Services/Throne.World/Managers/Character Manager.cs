@@ -17,25 +17,22 @@ namespace Throne.World
     public sealed class CharacterManager : SingletonActor<CharacterManager>
     {
         private readonly LogProxy _log;
-        private SerialGenerator serialGenerator;
+        private readonly SerialGenerator _serialGenerator;
 
         private CharacterManager()
         {
             _log = new LogProxy("CharacterManager");
 
-            SerialGeneratorManager.Instance.PostAsync(
-                sg =>
-                    serialGenerator =
-                        sg.GetSerialGenerator(typeof(CharacterRecord).Name, WorldObject.PlayerIdMin,
-                            WorldObject.PlayerIdMax));
+            SerialGeneratorManager.Instance.GetGenerator(typeof (CharacterRecord).Name, WorldObject.PlayerIdMin,
+                WorldObject.PlayerIdMax, ref _serialGenerator);
         }
 
-        public void CreateCharacter(IClient client, String name, Byte job, String macAddr, Int16 look)
+        public void CreateCharacter(WorldClient client, String name, Byte job, String macAddr, Int16 look)
         {
             var record = new CharacterRecord
             {
-                Guid = serialGenerator.Next(),
-                OwnerGuid = client.UserData.UserGuid, //dynamic
+                Guid = _serialGenerator.Next(),
+                OwnerGuid = client.AccountData.Guid,
                 Name = name,
                 CurrentJob = job,
                 Level = 1,
@@ -55,15 +52,15 @@ namespace Throne.World
         /// </summary>
         /// <param name="client">The requesting client.</param>
         /// <returns>The character record requested.</returns>
-        public CharacterRecord FindCharacterRecord(IClient client)
+        public CharacterRecord FindCharacterRecord(WorldClient client)
         {
             return WorldServer.Instance.WorldDbContext.Find<CharacterRecord>(
-                c => c.OwnerGuid == client.UserData.UserGuid).FirstOrDefault();
+                c => c.OwnerGuid == client.AccountData.Guid).FirstOrDefault();
         }
 
-        public Character InitiaizeCharacter(IClient client, CharacterRecord record)
+        public Character InitiaizeCharacter(WorldClient client, CharacterRecord record)
         {
-            return new Character((WorldClient)client, record);
+            return new Character(client, record);
         }
 
         public Character FindCharacter(UInt32 uid)

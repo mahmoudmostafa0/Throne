@@ -93,21 +93,11 @@ namespace Throne.Login.Accounts
             get
             {
                 //TODO: No need for IP addresses being stored. We have mac addresses. Use IPs only for geolocation, set only by the auth server.
-                return Record.LastIP;
+                return Record.IP;
             }
             set
             {
-                Record.LastIP = value;
-                Record.Update();
-            }
-        }
-
-        public String Fingerprint
-        {
-            get { return Record.Fingerprint; }
-            set
-            {
-                Record.Fingerprint = value;
+                Record.IP = value;
                 Record.Update();
             }
         }
@@ -122,13 +112,24 @@ namespace Throne.Login.Accounts
             {
                 UserGuid = Guid,
                 Username = Username,
-                Fingerprint = Fingerprint,
                 Email = EmailAddress,
                 LastIP = LastIP,
                 LastLogin = LastLogin,
                 MacAddress = MacAddress,
-                Password = Password
+                Password = Password,
+                Online = Online,
+                CreationTime = Record.CreationTime
             };
+        }
+
+        public static implicit operator AccountData(Account acc)
+        {
+            return acc ? acc.Serialize() : null;
+        }
+
+        public static implicit operator Boolean(Account acc)
+        {
+            return acc != null;
         }
 
         /// <summary>

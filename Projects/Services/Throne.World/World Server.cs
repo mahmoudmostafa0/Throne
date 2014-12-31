@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Net;
-using System.Threading;
 using Throne.Framework;
 using Throne.Framework.Configuration;
 using Throne.Framework.Cryptography;
@@ -16,8 +15,6 @@ using Throne.World.Network;
 using Throne.World.Network.Handling;
 using Throne.World.Properties.Settings;
 using Throne.World.Records;
-using Throne.World.Structures.Objects;
-using Throne.World.Structures.Travel;
 
 namespace Throne.World
 {

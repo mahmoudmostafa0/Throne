@@ -9,18 +9,24 @@ namespace Throne.Login.Services
         ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public sealed class AccountService : IAccountService
     {
-        public AccountData? GetAccount(int session)
+        public AccountData GetAccount(int session)
         {
-            var acc = AccountManager.Instance.FindAccount(x => x.Guid == session);
-            return acc != null ? acc.Serialize() : (AccountData?) null;
+            Account result;
+            AccountManager.Instance.FindAccount(x => x.Guid == session, out result);
+            return result;
         }
 
         public Boolean Authorize(int session, int password)
         {
-            var acc = AccountManager.Instance.FindAccount(x => x.Guid == session);
-            if (acc == null) return false;
+            var acc = GetAccount(session);
+            if (!acc) return false;
             if ((DateTime.Now - acc.LastLogin).Value.TotalSeconds > 2) return false;
             return acc.Password.GetHashCode() == password;
+        }
+
+        public void SetOnline(Int32 guid, Boolean value)
+        {
+            AccountManager.Instance.UpdateAccount_Online(guid, value);
         }
     }
 }

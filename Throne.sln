@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Scripts.Npcs", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Services", "Projects\Libraries\Throne.Services\Throne.Services.csproj", "{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Scripts.Other", "Projects\Scripts\Throne.Scripts.Other\Throne.Scripts.Other.csproj", "{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Build x86|Any CPU = Build x86|Any CPU
@@ -205,6 +207,27 @@ Global
 		{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259}.Release|x64.ActiveCfg = Release|Any CPU
 		{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259}.Release|x86.ActiveCfg = Release|Any CPU
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|Any CPU.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|ARM.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|Mixed Platforms.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|Mixed Platforms.Build.0 = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|x64.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|x86.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Build x86|x86.Build.0 = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|ARM.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|x64.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|x86.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Debug|x86.Build.0 = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|Any CPU.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|ARM.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|Mixed Platforms.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|Mixed Platforms.Build.0 = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|x64.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|x86.ActiveCfg = Debug|x86
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}.Release|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -220,6 +243,7 @@ Global
 		{B96828E7-03B0-4789-9C59-FD5AA29F8190} = {A1D6596A-99D7-4D56-AB78-A0E540680F6D}
 		{0B24166B-AF65-4590-AEE4-BC9D594A74B0} = {A1D6596A-99D7-4D56-AB78-A0E540680F6D}
 		{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259} = {8A1F29C2-9D2E-4B0F-B4DF-0FACA148E4F9}
+		{646E7E91-BDC3-4B97-95B1-854A4B9E21BC} = {A1D6596A-99D7-4D56-AB78-A0E540680F6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .

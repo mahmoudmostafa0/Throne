@@ -13,11 +13,13 @@ namespace Throne.World.Database.Records.Implementations
         }
         protected override IEnumerable<IMappingProvider> CreateMappings()
         {
+            yield return new AccountMapping();
             yield return new CharacterMapping();
             yield return new SerialGeneratorMapping();
             yield return new MapInfoMapping();
             yield return new ItemMapping();
             yield return new ServerInfoMapping();
+            yield return new MailMapping();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Text;
+using NHibernate.Linq.Functions;
 using Throne.Framework.Logging;
 using Throne.Framework.Math;
 using Throne.Framework.Native;
@@ -48,7 +49,7 @@ namespace Throne.Framework.Network.Transmission
             {
                 int request = _operatorPosition + advance;
                 if (request > ArrayLength)
-                    Log.Error("{0} : Cannot advance past the end of an array.", GetType().Name);
+                    Log.Error("{0} : Cannot advance {1} bytes past the end of an {2} byte array.", GetType().Name, System.Math.Abs(ArrayLength - request), ArrayLength);
                 return _operatorPosition;
             }
             finally

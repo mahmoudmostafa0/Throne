@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using NHibernate.Exceptions;
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Security.Permissions;
 using Throne.Framework.Threading.Actors;
@@ -12,21 +11,43 @@ namespace Throne.Framework.Network.Communication
     {
         protected const Int32 RcvBufferLength = UInt16.MaxValue;
 
+        protected Boolean Disconnected;
         protected Byte[] rcvBuffer;
-
-        protected Socket socket;
-
-        protected Boolean disconnected;
-        protected SocketAsyncEventArgs rcvSaeArgs;
+        protected SocketAsyncEventArgs RcvSaeArgs;
+        protected readonly Socket Socket;
 
         protected TcpClient(ConnectionEventArgs args)
         {
-            socket = args.Sock;
-            socket.NoDelay = socket.DontFragment = true;
+            Socket = args.Sock;
+            Socket.NoDelay = Socket.DontFragment = true;
 
             rcvBuffer = new Byte[RcvBufferLength];
 
             BeginReceive();
+        }
+
+        public IPAddress IP
+        {
+            get
+            {
+                var ipEndPoint = Socket.RemoteEndPoint as IPEndPoint;
+                return ipEndPoint != null ? ipEndPoint.Address : null;
+            }
+        }
+
+        public Int32 SocketId
+        {
+            get { return Socket.GetHashCode(); }
+        }
+
+        protected Int32 BytesTransferred
+        {
+            get { return RcvSaeArgs.BytesTransferred; }
+        }
+
+        protected Boolean Connected
+        {
+            get { return Socket.Connected && !Disconnected; }
         }
 
         ~TcpClient()
@@ -34,34 +55,10 @@ namespace Throne.Framework.Network.Communication
             Console.Write("TcpClient disposed");
         }
 
-        public IPAddress IP
-        {
-            get
-            {
-                var ipEndPoint = socket.RemoteEndPoint as IPEndPoint;
-                return ipEndPoint != null ? ipEndPoint.Address : null;
-            }
-        }
-
-        public Int32 SocketId
-        {
-            get { return socket.GetHashCode(); }
-        }
-
-        protected Int32 BytesTransferred
-        {
-            get { return rcvSaeArgs.BytesTransferred; }
-        }
-
-        protected Boolean Connected
-        {
-            get { return socket.Connected && !disconnected; }
-        }
-
         protected virtual void BeginReceive()
         {
-            rcvSaeArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
-            rcvSaeArgs.SetBuffer(rcvBuffer, 0, RcvBufferLength);
+            RcvSaeArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
+            RcvSaeArgs.SetBuffer(rcvBuffer, 0, RcvBufferLength);
             Receive();
         }
 
@@ -69,11 +66,11 @@ namespace Throne.Framework.Network.Communication
         {
             if (!Connected)
             {
-                if (!disconnected) Disconnect();
+                if (!Disconnected) Disconnect();
             }
             else
             {
-                if (!socket.ReceiveAsync(rcvSaeArgs))
+                if (!Socket.ReceiveAsync(RcvSaeArgs))
                     OnReceive();
             }
         }
@@ -90,7 +87,7 @@ namespace Throne.Framework.Network.Communication
 
         protected void IOComplete(object caller, SocketAsyncEventArgs io)
         {
-            if (!Connected && io.SocketError != SocketError.Success && !disconnected)
+            if (!Connected && io.SocketError != SocketError.Success && !Disconnected)
                 Disconnect();
             else
                 switch (io.LastOperation)
@@ -112,16 +109,16 @@ namespace Throne.Framework.Network.Communication
             if (!HasPermission(typeof (ConnectedPermission))) return;
 
             RemovePermission(typeof (ConnectedPermission));
-            rcvSaeArgs.Completed -= IOComplete;
+            RcvSaeArgs.Completed -= IOComplete;
 
-            socket.Terminate();
+            Socket.Terminate();
 
-            disconnected = true;
+            Disconnected = true;
         }
 
         protected override void Dispose(bool disposing)
         {
-            rcvSaeArgs.Release();
+            RcvSaeArgs.Release();
             base.Dispose(disposing);
         }
 

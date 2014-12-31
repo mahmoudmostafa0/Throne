@@ -142,7 +142,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Properties\Throne.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build x86|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -169,11 +170,13 @@
       <HintPath>..\..\..\Dependencies\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Shared\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Commands\Database\CreateDatabaseCommand.cs" />
     <Compile Include="Commands\Database\DropDatabaseCommand.cs" />
     <Compile Include="Commands\Database\ExportSchemaCommand.cs" />
@@ -187,12 +190,20 @@
     <Compile Include="Commands\World\MapInfoCommand.cs" />
     <Compile Include="Commands\World\WeatherCommand.cs" />
     <Compile Include="Database\Implementations\Conventions\Naming\WorldClassNamingConvention.cs" />
+    <Compile Include="Database\Records\Account Record.cs" />
+    <Compile Include="Database\Records\Mail Record.cs" />
     <Compile Include="Managers\Character Manager.cs" />
     <Compile Include="Managers\Chat Manager.cs" />
     <Compile Include="Managers\Item Manager.cs" />
+    <Compile Include="Managers\Mail Manager.cs" />
     <Compile Include="Managers\World Manager.cs" />
     <Compile Include="Network\Handling\WorldPacketHandlerAttribute.cs" />
     <Compile Include="Network\Handling\WorldPacketPropagator.cs" />
+    <Compile Include="Network\Messages\Mail\[1045] Operation.cs" />
+    <Compile Include="Network\Messages\Mail\[1046] List.cs" />
+    <Compile Include="Network\Messages\Mail\[1047] Notify.cs" />
+    <Compile Include="Network\Messages\Mail\[1048] Content.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ChangeFace.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.GetWarp.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Away.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.RoleQuery.cs" />
@@ -206,6 +217,7 @@
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Use.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Remove.cs" />
     <Compile Include="Network\Messages\[1016] Weather.cs" />
+    <Compile Include="Network\Messages\[1032] Battle Effectiveness.cs" />
     <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
     <Compile Include="Network\Messages\[2030] NPC Information.cs" />
     <Compile Include="Network\Messages\[2031] NPC Action.cs" />
@@ -241,7 +253,6 @@
     <Compile Include="Network\Messages\[1004] Chat Message.cs" />
     <Compile Include="Network\WorldClient.cs" />
     <Compile Include="Properties\Program.cs" />
-    <Compile Include="Properties\SolutionInfo.cs" />
     <Compile Include="Database\Records\Character Record.cs" />
     <Compile Include="Database\Implementations\Serial Generator.cs" />
     <Compile Include="Database\Implementations\World Database Context.cs" />
@@ -266,6 +277,9 @@
     <Compile Include="Security\Security Violation EventArgs.cs" />
     <Compile Include="Security\Security Violation Exception.cs" />
     <Compile Include="Sessions\NpcSession.cs" />
+    <Compile Include="Structures\Mail\Inbox.cs" />
+    <Compile Include="Structures\Mail\Letter.cs" />
+    <Compile Include="Structures\Mail\Parcel.cs" />
     <Compile Include="Structures\Task Dialog\Dialog.cs" />
     <Compile Include="Structures\Task Dialog\DialogFeedback.cs" />
     <Compile Include="Structures\Task Dialog\DialogInput.cs" />
@@ -340,6 +354,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Shared\Throne.snk">
+      <Link>Properties\Throne.snk</Link>
+    </None>
     <None Include="app.config" />
     <None Include="Properties\app.config" />
     <None Include="Properties\Settings\SystemSettings.settings">
@@ -350,7 +367,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>EntitySettings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Properties\Throne.snk" />
     <None Include="Properties\Settings\MapSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>MapSettings.Designer.cs</LastGenOutput>
@@ -373,9 +389,7 @@
       <Name>Throne.Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Structures\Objects\Non-player Entity\Creatures\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

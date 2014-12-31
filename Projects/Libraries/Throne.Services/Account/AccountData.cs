@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Throne.Framework.Services.Account
 {
     [DataContract]
-    public struct AccountData
+    public class AccountData
     {
         [DataMember] public string Email;
         [DataMember] public string Fingerprint;
@@ -15,5 +15,12 @@ namespace Throne.Framework.Services.Account
         [DataMember] public string Password;
         [DataMember] public Int32 UserGuid;
         [DataMember] public string Username;
+        [DataMember] public DateTime? CreationTime;
+        [DataMember] public Boolean Online;
+
+        public static implicit operator Boolean(AccountData data)
+        {
+            return data != null;
+        }
     }
 }
