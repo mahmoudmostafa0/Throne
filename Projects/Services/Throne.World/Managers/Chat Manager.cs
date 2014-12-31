@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using Throne.Framework;
 using Throne.Framework.Commands;
@@ -39,7 +40,7 @@ namespace Throne.World
                     msg.Message.Contains(new String(CommandPrefix, 2)));
                 CommandManager.Instance.PostAsync(cm => cm.ExecuteCommand(arguments, msg.Client));
             }
-            msg.Color = MessageColor.Green;
+            msg.Color = Color.Green;
 
             switch (msg.Type)
             {

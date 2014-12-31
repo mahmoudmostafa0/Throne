@@ -1,14 +1,12 @@
 ﻿using System;
 using Throne.Framework.Network.Connectivity;
-using Throne.Framework.Network.Handling;
 using Throne.Framework.Network.Transmission;
-using Throne.World.Database.Records;
+using Throne.World.Network.Handling;
 using Throne.World.Properties;
-using Throne.World.Records;
 
 namespace Throne.World.Network.Messages
 {
-    [Handling.WorldPacketHandler(PacketTypes.Register)]
+    [WorldPacketHandler(PacketTypes.Register)]
     public class CharacterCreation : WorldPacket
     {
         private Action _action;
@@ -31,7 +29,8 @@ namespace Throne.World.Network.Messages
             _name = SeekForward(16).ReadString(16);
             _model = SeekForward(32).ReadShort();
             _job = ReadShort();
-            _macAddress = SeekForward(4).ReadString(16);
+            SeekForward(4); //entity id?
+            _macAddress = ReadString(16);
             return true;
         }
 
@@ -45,7 +44,7 @@ namespace Throne.World.Network.Messages
                             client.Send(Constants.CharacterManagementMessages.NameInvalid);
                         else
                         {
-                            mgr.CreateCharacter(client, _name, (byte) _job, _macAddress, _model);
+                            mgr.CreateCharacter((WorldClient)client, _name, (byte) _job, _macAddress, _model);
                             client.Send(Constants.CharacterManagementMessages.AnswerOk);
                         }
                     });

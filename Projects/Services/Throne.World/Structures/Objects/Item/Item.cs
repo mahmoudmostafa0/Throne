@@ -45,7 +45,7 @@ namespace Throne.World.Structures.Objects
             AlternateGarment = 29
         }
 
-        private readonly ItemRecord Record;
+        public readonly ItemRecord Record;
 
         public Item(ItemRecord record)
             : base(record.Guid)

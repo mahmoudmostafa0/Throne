@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.Remoting;
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Transmission;
@@ -15,7 +16,7 @@ namespace Throne.World.Network.Messages
         public const String SYSTEM = "SYSTEM", ALLUSERS = "ALLUSERS";
         private const Int32 MINIMUM_LENGTH = 33, MINIMUM_STRINGS = 7;
 
-        public MessageColor Color;
+        public Color Color;
 
         public WorldClient Client;
 
@@ -33,6 +34,7 @@ namespace Throne.World.Network.Messages
         public MessageStyle Style;
         public MessageChannel Type;
         public String[] Strings = new String[7];
+        private Boolean received;
 
         public ChatMessage(MessageChannel type, String message)
             : base(0)
@@ -41,7 +43,7 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
-            Color = MessageColor.White;
+            Color = Color.White;
             Sender = SYSTEM;
             Recipient = ALLUSERS;
             Message = message;
@@ -54,14 +56,14 @@ namespace Throne.World.Network.Messages
 
             Type = type;
             Style = MessageStyle.Normal;
-            Color = MessageColor.White;
+            Color = Color.White;
             Sender = SYSTEM;
             Identity = to.ID;
             Recipient = to.Name;
             Message = message;
         }
 
-        public ChatMessage(MessageChannel type, String message, MessageStyle style, MessageColor color)
+        public ChatMessage(MessageChannel type, String message, MessageStyle style, Color color)
             : base(0)
         {
             TypeId = (short)PacketTypes.ChatMessage;
@@ -72,7 +74,6 @@ namespace Throne.World.Network.Messages
             Sender = SYSTEM;
             Recipient = ALLUSERS;
             Message = message;
-            MessageSuffix = "asdfg";
         }
 
 
@@ -84,6 +85,7 @@ namespace Throne.World.Network.Messages
         public ChatMessage(byte[] array)
             : base(array)
         {
+            received = true;
         }
 
         public override bool Read(IClient client)
@@ -91,7 +93,7 @@ namespace Throne.World.Network.Messages
             Client = (WorldClient)client;
 
             ReadInt();
-            Color = (MessageColor)ReadInt();
+            Color = Color.FromArgb(ReadInt());
             Type = (MessageChannel)ReadUShort();
             Style = (MessageStyle)ReadUShort();
             Identity = ReadUInt();
@@ -140,21 +142,15 @@ namespace Throne.World.Network.Messages
         protected override byte[] Build()
         {
             Resize(Length + 8);
+            if (received) Seek(4);
             WriteInt(Environment.TickCount);
-            WriteInt((int)Color);
+            WriteInt(Color.ToArgb());
             WriteUShort((ushort)Type);
             WriteUShort((ushort)Style);
             WriteUInt(Identity);
             WriteUInt(RecipientMesh);
             WriteUInt(SenderMesh);
-            WriteByte(MINIMUM_STRINGS);
-            WriteStringWithLength(Sender);
-            WriteStringWithLength(Recipient);
-            WriteStringWithLength(MessageSuffix);
-            WriteStringWithLength(Message);
-            WriteByte(0);//unknown
-            WriteByte(0);//unknown 
-            WriteStringWithLength(MessagePrefix);
+            WriteStrings(Sender, Recipient, MessageSuffix, Message, String.Empty, String.Empty, MessagePrefix);
             return base.Build();
         }
     }

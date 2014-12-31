@@ -10,24 +10,21 @@ namespace Throne.World
     public sealed class ItemManager : SingletonActor<ItemManager>
     {
         private readonly LogProxy _log;
-        private SerialGenerator serialGenerator;
+        private readonly SerialGenerator _serialGenerator;
 
         private ItemManager()
         {
             _log = new LogProxy("ItemManager");
 
-            SerialGeneratorManager.Instance.PostAsync(
-                sg =>
-                    serialGenerator =
-                        sg.GetSerialGenerator(typeof (ItemRecord).Name, WorldObject.ItemIdMin,
-                            WorldObject.ItemIdMax));
+            SerialGeneratorManager.Instance.GetGenerator(typeof (ItemRecord).Name, WorldObject.ItemIdMin,
+                WorldObject.ItemIdMax, ref _serialGenerator);
         }
 
         public Item CreateItem(Character chr, Int32 type)
         {
             var record = new ItemRecord
             {
-                Guid = serialGenerator.Next(),
+                Guid = _serialGenerator.Next(),
                 Owner = chr.Record,
                 Type = type
             };
