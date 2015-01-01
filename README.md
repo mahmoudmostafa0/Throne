@@ -32,6 +32,7 @@ Features
    - Limited chat support
    - Users can see others (screening works)
    - Limited NPC support (async dialogs, support for script hooking incoming)
+   - Inbox and mail
 
 Getting Started
 ----
