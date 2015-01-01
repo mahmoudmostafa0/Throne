@@ -199,10 +199,10 @@
     <Compile Include="Managers\World Manager.cs" />
     <Compile Include="Network\Handling\WorldPacketHandlerAttribute.cs" />
     <Compile Include="Network\Handling\WorldPacketPropagator.cs" />
-    <Compile Include="Network\Messages\Mail\[1045] Operation.cs" />
-    <Compile Include="Network\Messages\Mail\[1046] List.cs" />
-    <Compile Include="Network\Messages\Mail\[1047] Notify.cs" />
-    <Compile Include="Network\Messages\Mail\[1048] Content.cs" />
+    <Compile Include="Network\Messages\Inbox\[1045] Operation.cs" />
+    <Compile Include="Network\Messages\Inbox\[1046] List.cs" />
+    <Compile Include="Network\Messages\Inbox\[1047] Notify.cs" />
+    <Compile Include="Network\Messages\Inbox\[1048] Content.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ChangeFace.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.GetWarp.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Away.cs" />
@@ -278,8 +278,7 @@
     <Compile Include="Security\Security Violation Exception.cs" />
     <Compile Include="Sessions\NpcSession.cs" />
     <Compile Include="Structures\Mail\Inbox.cs" />
-    <Compile Include="Structures\Mail\Letter.cs" />
-    <Compile Include="Structures\Mail\Parcel.cs" />
+    <Compile Include="Structures\Mail\Mail.cs" />
     <Compile Include="Structures\Task Dialog\Dialog.cs" />
     <Compile Include="Structures\Task Dialog\DialogFeedback.cs" />
     <Compile Include="Structures\Task Dialog\DialogInput.cs" />

@@ -10,9 +10,23 @@ namespace Throne.World.Structures.Objects
     partial class Character
     {
         /// TODO: If no space to add a new item in inventory, send to mailbox. (quest rewards and such)
+        public void AddItem(Item itm)
+        {
+            itm.OwnerInfo = Record;
+            MoveToInventory(itm);
+        }
+
+        public Item RemoveItem(Item itm)
+        {
+            itm.OwnerInfo = null;
+            if (itm.Position > Item.Positions.Inventory)
+                UnequipGearSlot(GetGearSlot(itm.Position));
+            return RemoveFromInventory(itm.ID);
+        }
 
         #region Currency
-        public Int32 Money
+
+        public UInt32 Money
         {
             get { return Record.Money; }
             set
@@ -22,7 +36,7 @@ namespace Throne.World.Structures.Objects
             }
         }
 
-        public Int32 EMoney
+        public uint EMoney
         {
             get { return Record.EMoney; }
             set
@@ -31,22 +45,24 @@ namespace Throne.World.Structures.Objects
                 Record.Update();
             }
         }
+
         #endregion Currency
 
         #region Inventory
 
         private readonly Inventory _inventory;
 
-        public void AddInventoryItem(Item itm)
+        public void MoveToInventory(Item itm)
         {
             if (_inventory.Add(itm))
                 User.Send(itm);
-            //else send to mailbox
+            
+
         }
 
-        public Item RemoveInventoryItem(UInt32 guid)
+        public Item RemoveFromInventory(UInt32 guid)
         {
-            using (var pkt = new ItemAction().Remove(guid))
+            using (ItemAction pkt = new ItemAction().Remove(guid))
                 User.Send(pkt);
 
             return _inventory.Remove(guid);
@@ -54,7 +70,7 @@ namespace Throne.World.Structures.Objects
 
         public Item GetInventoryItem(UInt32 guid)
         {
-            var item = _inventory.Items.SingleOrDefault(i => i.Guid == guid);
+            Item item = _inventory.Items.SingleOrDefault(i => i.Guid == guid);
             if (!item)
                 User.Send(StrRes.CMSG_InventoryNoItem);
             return item;
@@ -75,29 +91,29 @@ namespace Throne.World.Structures.Objects
 
         private readonly Gear _gear;
 
-        public GearSlot getGearSlot(Item.Positions pos)
+        public GearSlot GetGearSlot(Item.Positions pos)
         {
             if (pos == Item.Positions.Inventory)
                 throw new ArgumentException("{0} is not part of the gear collection.".Interpolate(pos));
             return _gear[pos];
         }
 
-        public Int32 getGearType(Item.Positions pos)
+        public Int32 GetGearType(Item.Positions pos)
         {
-            return getGearSlot(pos).ContainedType;
+            return GetGearSlot(pos).ContainedType;
         }
 
-        public UInt32 getGearGuid(Item.Positions pos)
+        public UInt32 GetGearGuid(Item.Positions pos)
         {
-            return getGearSlot(pos).ContainedGuid;
+            return GetGearSlot(pos).ContainedGuid;
         }
 
         public void EquipGearSlot(Item item, Item.Positions pos)
         {
-            var slot = getGearSlot(pos);
+            GearSlot slot = GetGearSlot(pos);
             if (!slot.Equip(item)) return;
 
-            using (var pkt = new ItemAction().Equip(item, pos))
+            using (ItemAction pkt = new ItemAction().Equip(item, pos))
                 User.Send(pkt);
 
             item.Position = pos;
@@ -120,14 +136,14 @@ namespace Throne.World.Structures.Objects
 
         public void UnequipGearSlot(GearSlot slot)
         {
-            using (var pkt = new ItemAction().Unequip((uint)slot.Slot, slot.ContainedGuid))
+            using (ItemAction pkt = new ItemAction().Unequip((uint) slot.Slot, slot.ContainedGuid))
                 User.Send(pkt);
 
-            var item = slot.Unequip();
+            Item item = slot.Unequip();
             if (item)
             {
                 item.Position = Item.Positions.Inventory;
-                AddInventoryItem(item);
+                MoveToInventory(item);
             }
 
             switch (slot.Slot)
@@ -146,14 +162,6 @@ namespace Throne.World.Structures.Objects
             }
         }
 
-
-
         #endregion Gear
-
-        #region Depositories
-
-        
-
-        #endregion
     }
 }

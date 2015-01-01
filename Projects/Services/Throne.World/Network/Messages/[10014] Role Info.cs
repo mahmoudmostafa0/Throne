@@ -25,15 +25,15 @@ namespace Throne.World.Network.Messages
             SeekForward(sizeof(short)); // unknown
             WriteArray(c.PublicStates);
             WriteShort((short) c.Appearance); //Appearance type
-            WriteInt(c.getGearType(Item.Positions.Headgear));
-            WriteInt(c.getGearType(Item.Positions.Garment));
-            WriteInt(c.getGearType(Item.Positions.Armor));
-            WriteInt(c.getGearType(Item.Positions.RightHand));
-            WriteInt(c.getGearType(Item.Positions.LeftHand));
-            WriteInt(c.getGearType(Item.Positions.RightWeaponAccessory));
-            WriteInt(c.getGearType(Item.Positions.LeftWeaponAccessory));
-            WriteInt(c.getGearType(Item.Positions.Mount));
-            WriteInt(c.getGearType(Item.Positions.MountArmor));
+            WriteInt(c.GetGearType(Item.Positions.Headgear));
+            WriteInt(c.GetGearType(Item.Positions.Garment));
+            WriteInt(c.GetGearType(Item.Positions.Armor));
+            WriteInt(c.GetGearType(Item.Positions.RightHand));
+            WriteInt(c.GetGearType(Item.Positions.LeftHand));
+            WriteInt(c.GetGearType(Item.Positions.RightWeaponAccessory));
+            WriteInt(c.GetGearType(Item.Positions.LeftWeaponAccessory));
+            WriteInt(c.GetGearType(Item.Positions.Mount));
+            WriteInt(c.GetGearType(Item.Positions.MountArmor));
             SeekForward(sizeof(short) * 2); // unknown
             WriteUInt(0); // creature health
             SeekForward(sizeof(short)); // unknown

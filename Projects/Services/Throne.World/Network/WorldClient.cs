@@ -122,6 +122,12 @@ namespace Throne.World.Network
                 Disconnect();
         }
 
+        public void SendMany(params Byte[][] arrays)
+        {
+            foreach (var array in arrays)
+                Send(array);
+        }
+
         public void Send(String msg)
         {
             Send(new ChatMessage(MessageChannel.Talk, msg));

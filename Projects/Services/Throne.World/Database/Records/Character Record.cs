@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Throne.Framework.Persistence.Mapping;
+using Throne.World.Database.Records;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Structures.Objects;
 
@@ -22,8 +23,8 @@ namespace Throne.World.Records
         public virtual UInt32 InstanceId { get; set; }
         public virtual Int16 X { get; set; }
         public virtual Int16 Y { get; set; }
-        public virtual Int32 EMoney { get; set; }
-        public virtual Int32 Money { get; set; }
+        public virtual UInt32 EMoney { get; set; }
+        public virtual UInt32 Money { get; set; }
         public virtual UInt64 Experience { get; set; }
         public virtual Int16 CrimeLevel { get; set; }
         public virtual UInt16 Strength { get; set; }
@@ -35,6 +36,7 @@ namespace Throne.World.Records
         public virtual DateTime? CreationTime { get; set; }
         public virtual String CreatorMacAddress { get; set; }
         public virtual IList<ItemRecord> ItemPayload { get; set; }
+        public virtual IList<MailRecord> MailPayload { get; set; }
 
         public override void Update()
         {
@@ -77,7 +79,10 @@ namespace Throne.World.Records
             References(x => x.Spouse).Nullable();
 
             HasMany(r => r.ItemPayload).Not.LazyLoad().KeyColumn("OwnerId")
-                .Inverse(); //NOTE: Items will be saved individually with the inverse option, may be best.
+                .Inverse();
+
+            HasMany(r => r.MailPayload).Not.LazyLoad().KeyColumn("recipientId")
+                .Inverse();
         }
     }
 }

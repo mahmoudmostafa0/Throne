@@ -16,7 +16,7 @@ namespace Throne.World.Network.Messages
         private readonly byte
             CurrentJob;
 
-        private readonly int
+        private readonly uint
             EMoney;
 
         private readonly uint
@@ -28,7 +28,7 @@ namespace Throne.World.Network.Messages
         private readonly Role.Model
             Model;
 
-        private readonly int
+        private readonly uint
             Money;
 
         private readonly string
@@ -118,8 +118,8 @@ namespace Throne.World.Network.Messages
             WriteUShort(0); // appearance type
             WriteInt(Model);
             WriteUShort(Hairstyle);
-            WriteInt(Money);
-            WriteInt(EMoney);
+            WriteUInt(Money);
+            WriteUInt(EMoney);
             WriteULong(Experience);
             WriteUInt(0); //deed
             WriteUInt(0); //medal

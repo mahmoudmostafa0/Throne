@@ -11,13 +11,8 @@ namespace Throne.World.Structures.Objects.Actors
         public UInt32 Health;
         public Model Look;
         public UInt32 MaxHealth;
-<<<<<<< HEAD
         public String LongName = "the nameless one";
         public String DisplayName;
-=======
-        public String Name = "the nameless one";
-        public bool SendName;
->>>>>>> origin/master
         public NpcScript Script;
         public NpcInformation.Types Type;
 

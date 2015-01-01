@@ -1,7 +1,7 @@
 // Throne
 // Npc Script list file
 
-npcs/GuildDirector.cs
-npcs/MailManager.cs
-npcs/AuctionManager.cs
-npcs/Surgeon.cs
+npcs/Twin City/GuildDirector.cs
+npcs/Twin City/MailManager.cs
+npcs/Twin City/AuctionManager.cs
+npcs/Twin City/Surgeon.cs

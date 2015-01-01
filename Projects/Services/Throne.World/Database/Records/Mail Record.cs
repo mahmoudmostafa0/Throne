@@ -30,6 +30,8 @@ namespace Throne.World.Database.Records
         {
             Id(r => r.Guid).GeneratedBy.Assigned();
 
+            References(r => r.Recipient);
+
             Map(r => r.Sender);
             Map(r => r.Header);
             Map(r => r.Content);
@@ -39,7 +41,6 @@ namespace Throne.World.Database.Records
             Map(r => r.Creation);
 
             References(r => r.Item);
-            References(r => r.Recipient);
         }
     }
 }

@@ -50,8 +50,7 @@ namespace Throne.World.Network.Messages
         public Int32 Unknown;
         public String DisplayName;
         public Int16 X, Y;
-        public string Name;
-        public bool SendName;
+
         public NpcInformation()
             : base(PacketTypes.NpcInformation, 52)
         {
@@ -66,12 +65,7 @@ namespace Throne.World.Network.Messages
             Look = npc.Look;
             X = npc.Location.Position.X;
             Y = npc.Location.Position.Y;
-<<<<<<< HEAD
             DisplayName = npc.DisplayName;
-=======
-            Name = npc.Name;
-            SendName = npc.SendName;
->>>>>>> origin/master
         }
 
         protected override byte[] Build()
@@ -85,13 +79,8 @@ namespace Throne.World.Network.Messages
             WriteUShort(Look);
             WriteShort((Int16) Type);
             WriteShort(Action); // action
-<<<<<<< HEAD
             if (!String.IsNullOrEmpty(DisplayName))
                 WriteStrings(DisplayName);
-=======
-            WriteBoolean(SendName);
-            WriteStringWithLength(Name);
->>>>>>> origin/master
             return base.Build();
         }
     }

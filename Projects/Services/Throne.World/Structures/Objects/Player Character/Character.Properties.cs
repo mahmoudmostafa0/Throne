@@ -3,6 +3,7 @@ using Throne.Framework.Collections;
 using Throne.World.Network;
 using Throne.World.Records;
 using Throne.World.Sessions;
+using Throne.World.Structures.Mail;
 
 namespace Throne.World.Structures.Objects
 {
@@ -22,9 +23,14 @@ namespace Throne.World.Structures.Objects
         public WorldClient User { get; private set; }
 
         /// <summary>
-        /// The current NPC activity session for this character.
+        ///     The current NPC activity session for this character.
         /// </summary>
         public NpcSession NpcSession { get; private set; }
+
+        /// <summary>
+        ///     Mail service for this character.
+        /// </summary>
+        public Inbox Inbox { get; private set; }
 
         #region Constant Region
 

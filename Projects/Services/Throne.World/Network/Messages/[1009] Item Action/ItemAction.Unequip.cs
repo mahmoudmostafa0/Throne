@@ -14,7 +14,7 @@ namespace Throne.World.Network.Messages
             //TODO: Set suspicious where necessary.
 
             var position = (Item.Positions) Argument;
-            GearSlot slot = Character.getGearSlot(position);
+            GearSlot slot = Character.GetGearSlot(position);
 
             if (slot.Empty || !slot.Item) 
                 throw new MildViolation(StrRes.VMSG_NoEquip.Interpolate(Character.Name));

@@ -11,6 +11,7 @@ using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Records;
 using Throne.World.Sessions;
+using Throne.World.Structures.Mail;
 using Throne.World.Structures.Objects.Actors;
 using Throne.World.Structures.Storage;
 using Throne.World.Structures.Travel;
@@ -61,6 +62,8 @@ namespace Throne.World.Structures.Objects
             _currentVisibleMapItems = new Dictionary<UInt32, Item>();
             _currentVisibleNpcs = new Dictionary<UInt32, Npc>();
             EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
+
+            Inbox = new Inbox(Record.MailPayload.Select(mailRecord=> new Mail.Mail(mailRecord)));
 
             Log.Info(StrRes.SMSG_LoggedIn);
         }

@@ -177,7 +177,8 @@ namespace Throne.World.Structures.World
                         int portalY = BR.ReadInt32() - 1;
                         int destinationId = BR.ReadInt32();
 
-                        PortalPositions.Add(destinationId, new Position((short) portalX, (short) portalY));
+                        //some portals will override another
+                        PortalPositions[destinationId] = new Position((short) portalX, (short) portalY);
 
                         //thanks Fang for the idea of unavoidable portals
                         for (int x = 0; x < 3; x++)

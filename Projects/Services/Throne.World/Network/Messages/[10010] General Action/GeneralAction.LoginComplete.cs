@@ -1,4 +1,5 @@
 ﻿using System;
+using Throne.World.Managers;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World.Network.Messages
@@ -13,6 +14,8 @@ namespace Throne.World.Network.Messages
             chr.LoggedIn = true;
 
             chr.BeginWaitTask(chr.Save, new TimeSpan(0, 5, 0), new TimeSpan(0, 5, 0), CharacterTask.AutoSave);
+            
+            MailManager.Instance.CheckUnread(chr);
         }
     }
 }

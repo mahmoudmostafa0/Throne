@@ -13,33 +13,33 @@ namespace Throne.World.Network.Messages
             Seek(36);
             if (chr.AlternateGearActive)
             {
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateHeadgear));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateLavalier));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateArmor));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateRightHand));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateLeftHand));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateBand));
-                WriteUInt(chr.getGearGuid(Item.Positions.Talisman));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateBoots));
-                WriteUInt(chr.getGearGuid(Item.Positions.AlternateGarment));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateHeadgear));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateLavalier));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateArmor));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateRightHand));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateLeftHand));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateBand));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Talisman));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateBoots));
+                WriteUInt(chr.GetGearGuid(Item.Positions.AlternateGarment));
             }
             else
             {
-                WriteUInt(chr.getGearGuid(Item.Positions.Headgear));
-                WriteUInt(chr.getGearGuid(Item.Positions.Lavalier));
-                WriteUInt(chr.getGearGuid(Item.Positions.Armor));
-                WriteUInt(chr.getGearGuid(Item.Positions.RightHand));
-                WriteUInt(chr.getGearGuid(Item.Positions.LeftHand));
-                WriteUInt(chr.getGearGuid(Item.Positions.Band));
-                WriteUInt(chr.getGearGuid(Item.Positions.Talisman));
-                WriteUInt(chr.getGearGuid(Item.Positions.Boots));
-                WriteUInt(chr.getGearGuid(Item.Positions.Garment));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Headgear));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Lavalier));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Armor));
+                WriteUInt(chr.GetGearGuid(Item.Positions.RightHand));
+                WriteUInt(chr.GetGearGuid(Item.Positions.LeftHand));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Band));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Talisman));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Boots));
+                WriteUInt(chr.GetGearGuid(Item.Positions.Garment));
             }
 
-            WriteUInt(chr.getGearGuid(Item.Positions.RightWeaponAccessory));
-            WriteUInt(chr.getGearGuid(Item.Positions.LeftWeaponAccessory));
-            WriteUInt(chr.getGearGuid(Item.Positions.MountArmor));
-            WriteUInt(chr.getGearGuid(Item.Positions.MountTalisman));
+            WriteUInt(chr.GetGearGuid(Item.Positions.RightWeaponAccessory));
+            WriteUInt(chr.GetGearGuid(Item.Positions.LeftWeaponAccessory));
+            WriteUInt(chr.GetGearGuid(Item.Positions.MountArmor));
+            WriteUInt(chr.GetGearGuid(Item.Positions.MountTalisman));
             return this;
         }
     }
