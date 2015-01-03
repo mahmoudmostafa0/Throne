@@ -31,6 +31,7 @@ namespace Throne.World.Structures.World
         private Cell[,] _cells;
 
         public Location _reviveLocation;
+        public Color _environmentColor;
         private MapScript _script;
 
         public Map(MapInfoRecord record)
@@ -45,6 +46,7 @@ namespace Throne.World.Structures.World
             Load(record.MapId);
 
             _reviveLocation = new Location(record.SpawnMapId, new Position(record.SpawnPointX, record.SpawnPointY));
+            _environmentColor = Color.FromName(_record.EnvironmentColor);
             _users = new Dictionary<UInt32, Character>();
             _items = new Dictionary<UInt32, Item>();
             _itemTimers = new ConcurrentDictionary<UInt32, ActorTimer>();
@@ -65,6 +67,17 @@ namespace Throne.World.Structures.World
                 _record.SpawnMapId = value.Map.Id;
                 _record.SpawnPointX = value.Position.X;
                 _record.SpawnPointY = value.Position.Y;
+                _record.Update();
+            }
+        }
+
+        public Color EnvironmentColor
+        {
+            get { return _environmentColor; }
+            set
+            {
+                _environmentColor = value;
+                _record.EnvironmentColor = value.ToString();
                 _record.Update();
             }
         }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Threading;
 using Throne.Framework;
 using Throne.Framework.Collections;
 using Throne.Framework.Logging;
-using Throne.Framework.Network.Transmission.Stream;
 using Throne.Framework.Runtime;
 using Throne.World.Network;
 using Throne.World.Network.Messages;
@@ -22,6 +23,8 @@ namespace Throne.World.Structures.Objects
     /// <summary> An in-game user controlled entity with an archetype. </summary>
     public sealed partial class Character : Role, IDisposableResource
     {
+        public readonly SemaphoreSlim InitializationSignal;
+
         /// <summary>
         ///     Initializes a new character object.
         /// </summary>
@@ -36,6 +39,7 @@ namespace Throne.World.Structures.Objects
             Record = record;
 
             User.Log = new LogProxy("{0}:{1}".Interpolate(Name, user.ClientAddress));
+            Log.Info(StrRes.SMSG_LoggedIn);
 
             _timers = new Dictionary<CharacterTask, CharacterTimer>();
 
@@ -48,24 +52,14 @@ namespace Throne.World.Structures.Objects
                 _inventory = new Inventory(items);
             }
 
-            (new Stream() +
-             Constants.LoginMessages.ServerInfo +
-             Constants.LoginMessages.AnswerOk +
-             new CharacterInformation(this) +
-             new TimeSynchronize(DateTime.Now) +
-             (List<Byte[]>) _inventory +
-             (List<Byte[]>) _gear
-             > User).Dispose();
-
+            Inbox = new Inbox(Record.MailPayload.Select(mailRecord => new Mail.Mail(mailRecord)));
 
             _currentVisibleCharacters = new Dictionary<UInt32, Character>();
             _currentVisibleMapItems = new Dictionary<UInt32, Item>();
             _currentVisibleNpcs = new Dictionary<UInt32, Npc>();
-            EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
 
-            Inbox = new Inbox(Record.MailPayload.Select(mailRecord=> new Mail.Mail(mailRecord)));
-
-            Log.Info(StrRes.SMSG_LoggedIn);
+            InitializationSignal = new SemaphoreSlim(0, 1);
+            Initialize();
         }
 
         public LogProxy Log
@@ -75,7 +69,9 @@ namespace Throne.World.Structures.Objects
 
         public void Dispose()
         {
-            ExitCurrentRegion();
+            if (Location)
+                ExitCurrentRegion();
+
             ClearScreen();
             NpcSession.Clear();
 
@@ -84,8 +80,87 @@ namespace Throne.World.Structures.Objects
 
         public bool IsDisposed { get; private set; }
 
+        public async void Initialize()
+        {
+            User.PostAsync(() => Send(new LoadMap(Record.MapID)));
+
+            try
+            {
+                await InitializationSignal.WaitAsync(5000);
+            }
+            catch (OperationCanceledException)
+            {
+                Log.Error("Map load signal not received from client.");
+                Logout();
+                return;
+            }
+
+            User.SendArrays(
+                new CharacterInformation(this)
+                //mentor
+                //goodwill ranks
+                //guild
+                //title
+                );
+
+            EnterRegion(new Location(Record.MapID, Record.X, Record.Y));
+        }
+
+        public void Save()
+        {
+            if (Location)
+            {
+                Record.X = Location.Position.X;
+                Record.Y = Location.Position.Y;
+                Record.MapID = Location.MapId;
+                Record.InstanceId = Location.Map.Instance;
+            }
+
+            Record.Update();
+        }
+
+        public void Logout()
+        {
+            User.Disconnect();
+        }
+
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        #region Sending
+
+        public void SendToLocal(WorldPacket packet = null, Boolean includeSelf = false)
+        {
+            if (!packet) packet = this;
+            if (includeSelf) User.Send(packet);
+
+            foreach (Character user in _currentVisibleCharacters.Values)
+                user.User.Send(packet);
+        }
+
+        public override void SpawnFor(WorldClient observer)
+        {
+            ExchangeSpawns(observer.Character);
+        }
+
+        public override void DespawnFor(WorldClient observer)
+        {
+            using (var pkt = new GeneralAction(ActionType.RemoveEntity, this))
+                observer.Send(pkt);
+        }
+
+        public void Send(WorldPacket packet)
+        {
+            User.Send(packet);
+        }
+
         public void ExchangeSpawns(Character with)
         {
+            //TODO: goodwill suits
+
             with.User.Send((RoleInfo) this);
             User.Send((RoleInfo) with);
         }
@@ -121,49 +196,6 @@ namespace Throne.World.Structures.Objects
             return new RoleInfo(characterToSpawn);
         }
 
-        public void Save()
-        {
-            Record.X = Location.Position.X;
-            Record.Y = Location.Position.Y;
-            Record.MapID = Location.MapId;
-            Record.InstanceId = Location.Map.Instance;
-
-            Record.Update();
-        }
-
-        public void Logout()
-        {
-            User.Disconnect();
-        }
-
-        public void SendToLocal(WorldPacket packet = null, Boolean includeSelf = false)
-        {
-            if (!packet) packet = this;
-            if (includeSelf) User.Send(packet);
-
-            foreach (Character user in _currentVisibleCharacters.Values)
-                user.User.Send(packet);
-        }
-
-        public override void SpawnFor(WorldClient observer)
-        {
-            ExchangeSpawns(observer.Character);
-        }
-
-        public override void DespawnFor(WorldClient observer)
-        {
-            using (var pkt = new GeneralAction(ActionType.RemoveEntity, this))
-                observer.Send(pkt);
-        }
-
-        public void Send(WorldPacket packet)
-        {
-            User.Send(packet);
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        #endregion
     }
 }

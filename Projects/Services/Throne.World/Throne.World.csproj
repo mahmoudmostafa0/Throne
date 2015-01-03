@@ -204,6 +204,7 @@
     <Compile Include="Network\Messages\Inbox\[1047] Notify.cs" />
     <Compile Include="Network\Messages\Inbox\[1048] Content.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ChangeFace.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.EnvironmentColor.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.GetWarp.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Away.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.RoleQuery.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Network\Messages\[2030] NPC Information.cs" />
     <Compile Include="Network\Messages\[2031] NPC Action.cs" />
     <Compile Include="Network\Messages\[2032] Task Dialog.cs" />
+    <Compile Include="Network\Messages\[2082] User City Info.cs" />
     <Compile Include="Network\WorldPacket.cs" />
     <Compile Include="Database\Records\Item Record.cs" />
     <Compile Include="Database\Records\Server Info Record.cs" />

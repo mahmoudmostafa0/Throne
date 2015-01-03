@@ -1,6 +1,6 @@
-﻿using Throne.Framework.Network.Connectivity;
+﻿using System;
+using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Transmission;
-using Throne.Framework.Network.Transmission.Stream;
 using Throne.Framework.Security.Permissions;
 using Throne.World.Network.Handling;
 using Throne.World.Properties;
@@ -28,29 +28,35 @@ namespace Throne.World.Network.Messages
             return true;
         }
 
-        public override async void Handle(IClient client)
+        public override void Handle(IClient client)
         {
             var c = (WorldClient) client;
-            await WorldServer.Instance.AccountService.PostWait(
-                asvc => asvc.Call(accService =>
-                {
-                    if (!accService.Authorize(_session, _password))
-                        return;
 
-                    c.AccountData = new AccountRecord(accService.GetAccount(_session));
-                    client.AddPermission(new AuthenticatedPermission());
-                }));
+            WorldServer.Instance.AccountService.Call(accService =>
+            {
+                if (!accService.Authorize(_session, _password))
+                    return;
+
+                c.AccountData = new AccountRecord(accService.GetAccount(_session));
+                client.AddPermission(new AuthenticatedPermission());
+            });
 
             if (client.HasPermission(typeof (AuthenticatedPermission)))
             {
-                CharacterRecord chr = CharacterManager.Instance.FindCharacterRecord(c);
-                if (chr == null)
-                    using (new Stream()
-                           + Constants.LoginMessages.NewRole
-                           + Constants.LoginMessages.ServerInfo
-                           > client) return;
+                c.SendArrays(
+                    Constants.LoginMessages.ServerInfo,
+                    Constants.LoginMessages.AnswerOk,
+                    new TimeSynchronize(DateTime.Now));
 
-                ((WorldClient)client).SetCharacter(CharacterManager.Instance.InitiaizeCharacter(c, chr));
+                CharacterRecord chr = CharacterManager.Instance.FindCharacterRecord(c);
+
+                if (chr == null)
+                {
+                    client.Send(Constants.LoginMessages.NewRole);
+                    return;
+                }
+
+                ((WorldClient) client).SetCharacter(CharacterManager.Instance.InitiaizeCharacter(c, chr));
             }
             else
                 client.DisconnectWithMessage(Constants.LoginMessages.BadAuthentication);

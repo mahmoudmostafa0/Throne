@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
@@ -147,14 +148,20 @@ namespace Throne.World.Structures.Objects
         {
             Location = location;
             Location.Map.AddUser(this);
-            using (var pkt = new MapInfo(Location.Map)) User.Send(pkt);
-            LookAround();
+
+            User.SendArrays(
+                new GeneralAction(ActionType.MapEnvironmentColor, this).UpdateEnvironmentColor(),
+                new WeatherInformation(WeatherInformation.WeatherType.Fine, 14, 0, Color.Black),
+                new MapInfo(Location.Map));
+
+            if (LoggedIn)
+                LookAround();
         }
 
         public void ExitCurrentRegion()
         {
             Location.Map.RemoveUser(this);
-            foreach (Character rc in _currentVisibleCharacters.Values)
+            foreach (var rc in _currentVisibleCharacters.Values)
                 rc.User.PostAsync(() => rc.RemoveVisibleCharacter(this, true));
 
             ClearScreen();

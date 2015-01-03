@@ -4,9 +4,9 @@ namespace Throne.World.Network.Messages
 {
     public partial class GeneralAction
     {
-        public void SendAssets(Character chr)
+        private void SendAssets(Character chr)
         {
-            chr.User.Send(this);
+            chr.User.Send(chr.ItemStream.Join(this));
         }
     }
 }

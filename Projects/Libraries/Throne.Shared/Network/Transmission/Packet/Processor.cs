@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Text;
-using NHibernate.Linq.Functions;
 using Throne.Framework.Logging;
 using Throne.Framework.Math;
 using Throne.Framework.Native;

@@ -11,7 +11,6 @@ namespace Throne.World.Network.Messages
         public ServerInfo()
             : base(PacketTypes.ServerInfo, SIZE)
         {
-            //Unknown size 4 at offset 4 is unnecessary.
         }
     }
 }

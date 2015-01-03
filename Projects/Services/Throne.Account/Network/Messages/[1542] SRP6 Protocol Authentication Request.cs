@@ -7,7 +7,7 @@ using Throne.Login.Properties;
 
 namespace Throne.Login.Network.Messages
 {
-    [AuthenticationPacketHandler(PacketTypes.SRP6ProtocolAuthenticationReqeust)]
+    [AuthenticationPacketHandler(PacketTypes.SRP6ProtocolAuthenticationRequest)]
     public sealed class SRP6ProtocolAuthenticationRequest : AuthenticationPacket
     {
         private const int LENGTH = 312;

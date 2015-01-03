@@ -49,9 +49,9 @@ namespace Throne.World.Structures
                         as IReadOnlyCollection<Item>;
         }
 
-        public static implicit operator List<Byte[]>(Gear gear)
+        public static implicit operator Byte[][](Gear gear)
         {
-            return gear.Values.Where(gSlot => !gSlot.Empty).Select(gSlot => (byte[])gSlot.Item).ToList();
+            return gear.Values.Where(gSlot => !gSlot.Empty).Select(gSlot => (byte[])gSlot.Item).ToArray();
         }
     }
 }

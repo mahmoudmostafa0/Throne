@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Throne.Framework;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Structures.Storage;
+using Stream = Throne.Framework.Network.Transmission.Stream.Stream;
 
 namespace Throne.World.Structures.Objects
 {
@@ -22,6 +25,11 @@ namespace Throne.World.Structures.Objects
             if (itm.Position > Item.Positions.Inventory)
                 UnequipGearSlot(GetGearSlot(itm.Position));
             return RemoveFromInventory(itm.ID);
+        }
+
+        public Stream ItemStream
+        {
+            get { return new Stream().Join((Byte[][]) _inventory).Join((Byte[][]) _gear); }
         }
 
         #region Currency

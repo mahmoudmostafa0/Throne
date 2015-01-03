@@ -36,13 +36,14 @@
         Auction = 1320,
         Auctionitem = 1321,
         AuctionQuery = 1322,
-        SRP6ProtocolAuthenticationReqeust = 1542,
+        SRP6ProtocolAuthenticationRequest = 1542,
         NpcInformation = 2030,
         NpcAction = 2031,
         TaskDialog = 2032,
         FriendInfo = 2033,
         PetInfo = 2035,
         ServerInfo = 2079,
+        UserCityInfo = 2082,
 
 
         GroundMovement = 10005,

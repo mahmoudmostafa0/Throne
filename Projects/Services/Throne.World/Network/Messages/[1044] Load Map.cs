@@ -1,12 +1,11 @@
 ﻿using System;
 using Throne.Framework.Network.Connectivity;
-using Throne.Framework.Network.Handling;
 using Throne.Framework.Network.Transmission;
-using Throne.World.Structures.Objects;
+using Throne.World.Network.Handling;
 
 namespace Throne.World.Network.Messages
 {
-    [Handling.WorldPacketHandler(PacketTypes.LoadMap)]
+    [WorldPacketHandler(PacketTypes.LoadMap)]
     public class LoadMap : WorldPacket
     {
         /// <summary>
@@ -17,17 +16,21 @@ namespace Throne.World.Network.Messages
         {
         }
 
-        public LoadMap(Character @c)
+        public LoadMap(UInt32 mapId)
             : base(PacketTypes.LoadMap, 24)
         {
-            WriteInt(Environment.TickCount);
-            WriteInt(0); //progress
-            WriteInt(1); //ready
-            WriteUInt(@c.Location.Map.Document);
+            WriteBoolean(false); //teleport
+            WriteBoolean(false); //unknown
+            WriteBoolean(false); //ready
+            WriteBoolean(false); //unknown
+            WriteBoolean(true); //load
+            SeekForward(3);
+            WriteUInt(mapId);
         }
 
         public override bool Read(IClient client)
         {
+            ((WorldClient) client).Character.InitializationSignal.Release();
             return true;
         }
     }

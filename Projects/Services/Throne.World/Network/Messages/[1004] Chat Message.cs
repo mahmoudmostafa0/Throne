@@ -142,7 +142,7 @@ namespace Throne.World.Network.Messages
         protected override byte[] Build()
         {
             Resize(Length + 8);
-            if (received) Seek(4);
+            Seek(4);
             WriteInt(Environment.TickCount);
             WriteInt(Color.ToArgb());
             WriteUShort((ushort)Type);

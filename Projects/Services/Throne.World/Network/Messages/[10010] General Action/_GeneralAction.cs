@@ -8,11 +8,11 @@ using Throne.World.Structures.Travel;
 
 namespace Throne.World.Network.Messages
 {
-    [WorldPacketHandler(PacketTypes.Action, Permission = typeof(AuthenticatedPermission))]
+    [WorldPacketHandler(PacketTypes.Action, Permission = typeof (AuthenticatedPermission))]
     public sealed partial class GeneralAction : WorldPacket
     {
         private const Int32 SIZE = 50;
-        
+
         private Character Character;
 
         /// <summary>
@@ -65,14 +65,20 @@ namespace Throne.World.Network.Messages
 
         public ActionType Type
         {
-            get { return (ActionType)Seek(24).ReadShort(); }
-            private set { Seek(24).WriteShort((Int16)value); }
+            get { return (ActionType) Seek(24).ReadShort(); }
+            private set { Seek(24).WriteShort((Int16) value); }
         }
 
         public Orientation Direction
         {
-            get { return (Orientation)Seek(26).ReadShort(); }
-            set { Seek(26).WriteShort((Int16)value); }
+            get { return (Orientation) Seek(26).ReadShort(); }
+            set { Seek(26).WriteShort((Int16) value); }
+        }
+
+        public new Int32 this[Int32 ArgumentEx]
+        {
+            get { return Seek(ArgumentEx*4 + 28).ReadInt(); }
+            set { Seek(ArgumentEx*4 + 28).WriteInt(value); }
         }
 
         public override bool Read(IClient client)
@@ -82,17 +88,16 @@ namespace Throne.World.Network.Messages
 
         public override void Handle(IClient client)
         {
-            Character = ((WorldClient)client).Character;
+            Character = ((WorldClient) client).Character;
 
-            if (!Character) 
-                client.Send(this);
+            client.Respond(Type.ToString());
 
             switch (Type)
             {
                     #region Logon Actions
 
                 case ActionType.ConfirmLocation:
-                    SendLocation();
+                    Character.User.Send(ConfirmLocation());
                     break;
                 case ActionType.ConfirmAssets:
                     SendAssets(Character);
@@ -115,21 +120,27 @@ namespace Throne.World.Network.Messages
 
                     #endregion
 
-                case ActionType.UpdateCombatMode: SetCombatMode(); break;
-                case ActionType.Jump: Jump(); break;
-                case ActionType.QueryEntity: QueryEntity(); break;
-                case ActionType.Away: Away(); break;
-                case ActionType.ChangeMap: UsePortal(); break;
-                case ActionType.SetAppearance: SetAppearance(); break;
-                    case ActionType.ChangeFace:
+                case ActionType.UpdateCombatMode:
+                    SetCombatMode();
+                    break;
+                case ActionType.Jump:
+                    Jump();
+                    break;
+                case ActionType.QueryEntity:
+                    QueryEntity();
+                    break;
+                case ActionType.Away:
+                    Away();
+                    break;
+                case ActionType.ChangeMap:
+                    UsePortal();
+                    break;
+                case ActionType.SetAppearance:
+                    SetAppearance();
+                    break;
+                case ActionType.ChangeFace:
                     break;
             }
-        }
-
-        public new Int32 this[Int32 ArgumentEx]
-        {
-            get { return Seek(ArgumentEx * 4 + 28).ReadInt(); }
-            set { Seek(ArgumentEx * 4 + 28).WriteInt(value); }
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Throne.World.Managers
                     using (var mailPkt = new Content(mail.Content, id))
                         if (mail.Item)
                             using (var itemPkt = new ItemInformation(mail.Item, Item.Mode.Mail))
-                                forChr.User.SendMany(mailPkt, itemPkt);
+                                forChr.User.SendArrays(mailPkt, itemPkt);
                         else forChr.User.Send(mailPkt);
                 else
                     throw new ModerateViolation("Invalid mail ID.");

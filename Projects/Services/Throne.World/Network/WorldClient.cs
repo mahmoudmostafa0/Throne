@@ -122,7 +122,7 @@ namespace Throne.World.Network
                 Disconnect();
         }
 
-        public void SendMany(params Byte[][] arrays)
+        public void SendArrays(params Byte[][] arrays)
         {
             foreach (var array in arrays)
                 Send(array);

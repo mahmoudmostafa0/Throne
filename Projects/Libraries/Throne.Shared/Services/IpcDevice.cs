@@ -20,7 +20,7 @@ namespace Throne.Framework.Services
         }
 
         /// <summary>
-        /// Call remote remote process function.
+        ///     Call remote remote process function.
         /// </summary>
         /// <param name="action"></param>
         public void Call(Action<TService> action)
@@ -32,7 +32,11 @@ namespace Throne.Framework.Services
             catch (Exception ex)
             {
                 if (ex is CommunicationException)
-                    PostAsync(Reconnect);
+                {
+                    Reconnect();
+                    Call(action);
+                    return;
+                }
                 ExceptionManager.RegisterException(ex);
             }
         }
@@ -46,9 +50,10 @@ namespace Throne.Framework.Services
         private void Disconnect()
         {
             CommunicationState state = _client.State;
-            if (state != CommunicationState.Closing && state != CommunicationState.Closed && state != CommunicationState.Faulted)
+            if (state != CommunicationState.Closing && state != CommunicationState.Closed &&
+                state != CommunicationState.Faulted)
                 _client.Close();
-            
+
             _client = null;
         }
 

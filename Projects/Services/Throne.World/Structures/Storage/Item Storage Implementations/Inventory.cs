@@ -57,10 +57,10 @@ namespace Throne.World.Structures.Storage
         /// </summary>
         /// <param name="inv">Inventory to serialize</param>
         /// <returns></returns>
-        public static implicit operator List<Byte[]>(Inventory inv)
+        public static implicit operator Byte[][](Inventory inv)
         {
             lock (inv.SyncRoot)
-                return inv.Items.Select(item => (byte[])item).ToList();
+                return inv.Items.Select(item => (byte[])item).ToArray();
         }
     }
 }
