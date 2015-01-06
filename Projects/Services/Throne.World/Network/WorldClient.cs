@@ -98,10 +98,10 @@ namespace Throne.World.Network
             {
                 SocketAsyncEventArgs sndSocketArgs = SocketAsyncEventArgsPool.Acquire(IOComplete);
 
-                if (StreamCipher != null)
-                    value = StreamCipher.Encrypt(value, value.Length);
-
-                sndSocketArgs.SetBuffer(value, 0, value.Length);
+                sndSocketArgs.SetBuffer(
+                    StreamCipher != null ? StreamCipher.Encrypt(value, value.Length) : value, 
+                    0,
+                    value.Length);
 
                 try
                 {
@@ -148,11 +148,11 @@ namespace Throne.World.Network
             if (BytesTransferred > _minStreamSize && Connected && args.SocketError == SocketError.Success &&
                 !Disconnected)
             {
-                var GameCipher = StreamCipher as GameCipher;
-                if (GameCipher != null)
+                var gameCipher = StreamCipher as GameCipher;
+                if (gameCipher != null)
                 {
                     //GameCipher.throneGameCipher.Initialize(RcvBuffer[0]);
-                    GameCipher.Decrypt(rcvBuffer, null, BytesTransferred, 1);
+                    gameCipher.Decrypt(rcvBuffer, null, BytesTransferred, 1);
 
                     //Thanks to Spirited Fang for the proper method to handle NetDragon's Diffie-Hellman response.
                     fixed (byte* packet = rcvBuffer)
@@ -170,7 +170,7 @@ namespace Throne.World.Network
                             byte[] dhSecret = ExchangeData.HandleResponse(dhResponse);
                             byte[] c5Key = NetDragonDHKeyExchange.ProcessDHSecret(dhSecret);
 
-                            GameCipher.SetKey(c5Key);
+                            gameCipher.SetKey(c5Key);
                             Receive();
                             return;
                         }

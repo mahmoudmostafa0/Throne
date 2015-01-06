@@ -51,6 +51,12 @@ namespace Throne.World.Structures.Storage
             return Count + forCount <= SIZE;
         }
 
+        public Item this[UInt32 id]
+        {
+            get { return _items[id]; }
+            set { _items[id] = value; }
+        }
+
 
         /// <summary>
         /// To be used with a <see cref="T:Throne.Shared.Network.Transmission.Stream"/>

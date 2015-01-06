@@ -4,9 +4,9 @@ namespace Throne.World.Network.Messages
 {
     public partial class GeneralAction
     {
-        public void SendProficiencies(Character @c)
+        public void SendProficiencies()
         {
-            @c.User.Send(this);
+            Character.User.Send(this);
         }
     }
 }

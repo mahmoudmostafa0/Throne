@@ -1,12 +1,10 @@
-﻿using Throne.World.Structures.Objects;
-
-namespace Throne.World.Network.Messages
+﻿namespace Throne.World.Network.Messages
 {
     public partial class GeneralAction
     {
-        public void SendFriends(Character @c)
+        public void SendFriends()
         {
-            @c.User.Send(this);
+            Character.User.Send(this);
         }
     }
 }

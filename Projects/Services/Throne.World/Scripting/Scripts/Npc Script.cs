@@ -17,6 +17,7 @@ namespace Throne.World.Scripting.Scripts
         {
             Ongoing,
             Feedback,
+            Depository,
             Ended
         }
 
@@ -134,17 +135,12 @@ namespace Throne.World.Scripting.Scripts
 
         protected void SetLongName(String name)
         {
-<<<<<<< HEAD
             Npc.LongName = name;
         }
 
         protected void SetDisplayName(String name)
         {
             Npc.DisplayName = name;
-=======
-            Npc.SendName = true;
-            Npc.Name = name;
->>>>>>> origin/master
         }
 
         protected void SetType(NpcInformation.Types type)

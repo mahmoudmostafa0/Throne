@@ -4,9 +4,9 @@ namespace Throne.World.Network.Messages
 {
     public partial class GeneralAction
     {
-        public void SendGuild(Character @c)
+        public void SendGuild()
         {
-            @c.User.Send(this);
+            Character.User.Send(this);
         }
     }
 }

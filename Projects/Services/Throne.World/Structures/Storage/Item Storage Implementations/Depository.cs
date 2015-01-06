@@ -7,12 +7,12 @@ namespace Throne.World.Structures.Storage
 {
     public class Depository : ItemStorage
     {
-        public readonly DepsoitoryType Type;
+        public readonly DepositoryType Type;
         private readonly ConcurrentDictionary<UInt32, Item> _items;
         private readonly Int32 _size;
 
 
-        public Depository(DepsoitoryType location, Int32 size)
+        public Depository(DepositoryType location, Int32 size)
         {
             _items = new ConcurrentDictionary<uint, Item>();
             _size = size;
@@ -52,7 +52,7 @@ namespace Throne.World.Structures.Storage
         }
     }
 
-    public enum DepsoitoryType : byte
+    public enum DepositoryType : byte
     {
         None,
         TwinCity,
@@ -60,12 +60,6 @@ namespace Throne.World.Structures.Storage
         DesertCity,
         BirdIsland,
         AncientCity,
-        Marketplace,
-
-        ItemBoxMin = 10,
-        ItemBoxMax = 99,
-
-        SashMin = 100,
-        SashMax = 199
+        Marketplace
     }
 }

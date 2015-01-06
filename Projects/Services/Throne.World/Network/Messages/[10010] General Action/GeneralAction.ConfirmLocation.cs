@@ -1,17 +1,17 @@
-﻿using Throne.Framework.Math;
+﻿using Throne.World.Structures.World;
 
 namespace Throne.World.Network.Messages
 {
-    public partial class GeneralAction
+    partial class GeneralAction
     {
-        public GeneralAction ConfirmLocation()
+        private void SendLocation()
         {
-            var loc = Character.Location;
-
-            ObjectId = loc.Map.Id;
-            Argument = loc.Map.Document;
-            this[0] = MathUtils.BitFold32(loc.Position.X, loc.Position.Y);
-            return this;
+            Map map = Character.Location.Map;
+            ObjectId = map.Id;
+            Argument = map.Document;
+            ShortArgumentEx1 = Character.Location.Position.X;
+            ShortArgumentEx2 = Character.Location.Position.Y;
+            Character.User.Send(this);
         }
     }
 }

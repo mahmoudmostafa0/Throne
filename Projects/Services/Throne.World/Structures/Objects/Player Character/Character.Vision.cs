@@ -150,7 +150,10 @@ namespace Throne.World.Structures.Objects
             Location.Map.AddUser(this);
 
             User.SendArrays(
-                new GeneralAction(ActionType.MapEnvironmentColor, this).UpdateEnvironmentColor(),
+                new GeneralAction(ActionType.MapEnvironmentColor, this)
+                {
+                    Argument = Location.Map.EnvironmentColor.ToArgb()
+                },
                 new WeatherInformation(WeatherInformation.WeatherType.Fine, 14, 0, Color.Black),
                 new MapInfo(Location.Map));
 
@@ -161,7 +164,7 @@ namespace Throne.World.Structures.Objects
         public void ExitCurrentRegion()
         {
             Location.Map.RemoveUser(this);
-            foreach (var rc in _currentVisibleCharacters.Values)
+            foreach (Character rc in _currentVisibleCharacters.Values)
                 rc.User.PostAsync(() => rc.RemoveVisibleCharacter(this, true));
 
             ClearScreen();

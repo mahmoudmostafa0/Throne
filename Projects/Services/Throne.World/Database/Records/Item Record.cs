@@ -9,7 +9,7 @@ namespace Throne.World.Records
     public class ItemRecord : WorldDatabaseRecord
     {
         public virtual UInt32 Guid { get; set; }
-        public virtual DepsoitoryType Coffer { get; set; }
+        public virtual DepositoryType Depository { get; set; }
         public virtual Int32 Type { get; set; }
         public virtual Item.Positions Position { get; set; }
         public virtual Byte CraftLevel { get; set; }
@@ -38,7 +38,7 @@ namespace Throne.World.Records
             Map(r => r.CraftProgress);
             Map(r => r.FirstSlot);
             Map(r => r.SecondSlot);
-            Map(r => r.Coffer);
+            Map(r => r.Depository);
         }
     }
 }

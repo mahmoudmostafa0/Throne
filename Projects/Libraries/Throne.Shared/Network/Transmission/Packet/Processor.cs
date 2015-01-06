@@ -48,7 +48,8 @@ namespace Throne.Framework.Network.Transmission
             {
                 int request = _operatorPosition + advance;
                 if (request > ArrayLength)
-                    Log.Error("{0} : Cannot advance {1} bytes past the end of an {2} byte array.", GetType().Name, System.Math.Abs(ArrayLength - request), ArrayLength);
+                    Log.Error("{0} : Cannot advance {1} bytes past the end of an {2} byte array.", GetType().Name,
+                        System.Math.Abs(ArrayLength - request), ArrayLength);
                 return _operatorPosition;
             }
             finally
@@ -209,7 +210,7 @@ namespace Throne.Framework.Network.Transmission
         public string[] ReadStrings()
         {
             var result = new string[ReadByte()];
-            for (var i = 0; i < result.Length; i++)
+            for (int i = 0; i < result.Length; i++)
                 result[i] = ReadString(ReadByte());
             return result;
         }
@@ -321,7 +322,7 @@ namespace Throne.Framework.Network.Transmission
         {
             // Write the value:
             fixed (byte* ptr = Array)
-                *(long*) (ptr + PositionAndAdvance(sizeof(long))) = value;
+                *(long*) (ptr + PositionAndAdvance(sizeof (long))) = value;
         }
 
         public void WriteStrings(params string[] value)

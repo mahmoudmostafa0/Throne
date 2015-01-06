@@ -7,7 +7,7 @@
         Sell,
         Remove,
         Use,
-        Equip,
+        Equip,//sending equip or unequip, method changed, unsure of new structure.
         Unequip,
         Split,
         Combine,

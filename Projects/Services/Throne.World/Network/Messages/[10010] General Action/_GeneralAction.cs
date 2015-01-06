@@ -1,10 +1,12 @@
 ﻿using System;
 using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Network.Transmission;
+using Throne.Framework.Runtime;
 using Throne.Framework.Security.Permissions;
 using Throne.World.Network.Handling;
 using Throne.World.Structures.Objects;
 using Throne.World.Structures.Travel;
+using Throne.World.Structures.World;
 
 namespace Throne.World.Network.Messages
 {
@@ -37,6 +39,13 @@ namespace Throne.World.Network.Messages
 
             //will be null if the object is not of the type.
             Character = obj as Character;
+        }
+
+        public GeneralAction(ActionType type) : base(PacketTypes.Action, SIZE)
+        {
+            Type = type;
+            SentTimestamp = Environment.TickCount;
+            ProcessTimestamp = Environment.TickCount;
         }
 
         public Int32 SentTimestamp
@@ -75,10 +84,34 @@ namespace Throne.World.Network.Messages
             set { Seek(26).WriteShort((Int16) value); }
         }
 
-        public new Int32 this[Int32 ArgumentEx]
+        public Int32 ArgumentEx1
         {
-            get { return Seek(ArgumentEx*4 + 28).ReadInt(); }
-            set { Seek(ArgumentEx*4 + 28).WriteInt(value); }
+            get { return Seek(28).ReadInt(); }
+            set { Seek(28).WriteInt(value); }
+        }
+
+        public Int16 ShortArgumentEx1
+        {
+            get { return Seek(28).ReadShort(); }
+            set { Seek(28).WriteShort(value); }
+        }
+
+        public Int16 ShortArgumentEx2
+        {
+            get { return Seek(30).ReadShort(); }
+            set { Seek(30).WriteShort(value); }
+        }
+
+        public Int32 ArgumentEx2
+        {
+            get { return Seek(32).ReadInt(); }
+            set { Seek(32).WriteInt(value); }
+        }
+
+        public Int32 ArgumentEx3
+        {
+            get { return Seek(36).ReadInt(); }
+            set { Seek(36).WriteInt(value); }
         }
 
         public override bool Read(IClient client)
@@ -90,32 +123,30 @@ namespace Throne.World.Network.Messages
         {
             Character = ((WorldClient) client).Character;
 
-            client.Respond(Type.ToString());
-
             switch (Type)
             {
                     #region Logon Actions
 
                 case ActionType.ConfirmLocation:
-                    Character.User.Send(ConfirmLocation());
+                    SendLocation();
                     break;
                 case ActionType.ConfirmAssets:
-                    SendAssets(Character);
+                    SendAssets();
                     break;
                 case ActionType.ConfirmAssociations:
-                    SendFriends(Character);
+                    SendFriends();
                     break;
                 case ActionType.ConfirmWeaponSkills:
-                    SendProficiencies(Character);
+                    SendProficiencies();
                     break;
                 case ActionType.ConfirmMagics:
-                    SendSkills(Character);
+                    SendSkills();
                     break;
                 case ActionType.ConfirmGuild:
-                    SendGuild(Character);
+                    SendGuild();
                     break;
                 case ActionType.CompleteLogin:
-                    VerifyLogon(Character);
+                    VerifyLogon();
                     break;
 
                     #endregion

@@ -1,22 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Throne.Framework;
+using Throne.Framework.Network.Transmission.Stream;
 using Throne.World.Network.Messages;
 using Throne.World.Properties.Settings;
 using Throne.World.Structures.Storage;
-using Stream = Throne.Framework.Network.Transmission.Stream.Stream;
 
 namespace Throne.World.Structures.Objects
 {
     partial class Character
     {
+        public Stream ItemStream
+        {
+            get { return new Stream().Join((Byte[][])_inventory).Join((Byte[][])_gear); }
+        }
+
         /// TODO: If no space to add a new item in inventory, send to mailbox. (quest rewards and such)
         public void AddItem(Item itm)
         {
             itm.OwnerInfo = Record;
             MoveToInventory(itm);
+            User.Send(itm);
         }
 
         public Item RemoveItem(Item itm)
@@ -24,12 +28,7 @@ namespace Throne.World.Structures.Objects
             itm.OwnerInfo = null;
             if (itm.Position > Item.Positions.Inventory)
                 UnequipGearSlot(GetGearSlot(itm.Position));
-            return RemoveFromInventory(itm.ID);
-        }
-
-        public Stream ItemStream
-        {
-            get { return new Stream().Join((Byte[][]) _inventory).Join((Byte[][]) _gear); }
+            return MoveFromInventory(itm.ID);
         }
 
         #region Currency
@@ -62,13 +61,11 @@ namespace Throne.World.Structures.Objects
 
         public void MoveToInventory(Item itm)
         {
-            if (_inventory.Add(itm))
-                User.Send(itm);
-            
-
+            itm.Position = Item.Positions.Inventory;
+            _inventory[itm.ID] = itm;
         }
 
-        public Item RemoveFromInventory(UInt32 guid)
+        public Item MoveFromInventory(UInt32 guid)
         {
             using (ItemAction pkt = new ItemAction().Remove(guid))
                 User.Send(pkt);
@@ -78,7 +75,7 @@ namespace Throne.World.Structures.Objects
 
         public Item GetInventoryItem(UInt32 guid)
         {
-            Item item = _inventory.Items.SingleOrDefault(i => i.Guid == guid);
+            Item item = _inventory[guid];
             if (!item)
                 User.Send(StrRes.CMSG_InventoryNoItem);
             return item;
@@ -121,10 +118,10 @@ namespace Throne.World.Structures.Objects
             GearSlot slot = GetGearSlot(pos);
             if (!slot.Equip(item)) return;
 
-            using (ItemAction pkt = new ItemAction().Equip(item, pos))
-                User.Send(pkt);
-
             item.Position = pos;
+            User.Send(new ItemAction().Equip(item));
+            User.Send(new ItemAction().SendGear(this));
+
 
             switch (pos)
             {
@@ -144,14 +141,12 @@ namespace Throne.World.Structures.Objects
 
         public void UnequipGearSlot(GearSlot slot)
         {
-            using (ItemAction pkt = new ItemAction().Unequip((uint) slot.Slot, slot.ContainedGuid))
-                User.Send(pkt);
-
             Item item = slot.Unequip();
             if (item)
             {
-                item.Position = Item.Positions.Inventory;
                 MoveToInventory(item);
+                User.Send(new ItemAction().Unequip(slot.Slot, item.ID));
+                User.Send(new ItemAction().SendGear(this));
             }
 
             switch (slot.Slot)

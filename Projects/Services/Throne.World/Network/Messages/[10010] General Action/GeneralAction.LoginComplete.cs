@@ -6,18 +6,16 @@ namespace Throne.World.Network.Messages
 {
     public partial class GeneralAction
     {
-        private void VerifyLogon(Character chr)
+        private void VerifyLogon()
         {
-            using (var pkt = new ItemAction().SendGear(chr))
-                chr.User.Send(pkt);
+            Character.User.Send(new ItemAction().SendGear(Character));
 
-            chr.LoggedIn = true;
+            Character.LoggedIn = true;
+            Character.BeginWaitTask(Character.Save, new TimeSpan(0, 5, 0), new TimeSpan(0, 5, 0), CharacterTask.AutoSave);
 
-            chr.BeginWaitTask(chr.Save, new TimeSpan(0, 5, 0), new TimeSpan(0, 5, 0), CharacterTask.AutoSave);
-            
-            MailManager.Instance.CheckUnread(chr);
+            MailManager.Instance.CheckUnread(Character);
 
-            chr.LookAround();
+            Character.LookAround();
         }
     }
 }

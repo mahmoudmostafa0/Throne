@@ -3,11 +3,11 @@ using Throne.World.Structures.Objects;
 
 namespace Throne.World.Structures
 {
-    public struct GearSlot
+    public class GearSlot
     {
         private readonly Item.Positions _pos;
 
-        public GearSlot(Item.Positions pos, Item item = null) : this()
+        public GearSlot(Item.Positions pos, Item item = null)
         {
             _pos = pos;
             Item = item;

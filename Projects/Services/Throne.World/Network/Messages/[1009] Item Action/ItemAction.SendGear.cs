@@ -6,9 +6,9 @@ namespace Throne.World.Network.Messages
     {
         public ItemAction SendGear(Character chr)
         {
+            ActionType = ItemActionType.Gear;
             Guid = chr.ID;
             Argument = (uint) (chr.AlternateGearActive ? 1 : 0);
-            ActionType = ItemActionType.Gear;
 
             Seek(36);
             if (chr.AlternateGearActive)

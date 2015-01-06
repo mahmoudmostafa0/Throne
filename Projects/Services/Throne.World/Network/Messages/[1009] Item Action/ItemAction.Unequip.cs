@@ -36,10 +36,10 @@ namespace Throne.World.Network.Messages
             Character.UnequipGearSlot(slot);
         }
 
-        public ItemAction Unequip(UInt32 position, UInt32 guid)
+        public ItemAction Unequip(Item.Positions position, UInt32 guid)
         {
             ActionType = ItemActionType.Unequip;
-            Argument = position;
+            Argument = (UInt32)position;
             Guid = guid;
             return this;
         }

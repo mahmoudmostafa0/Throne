@@ -6,7 +6,7 @@ namespace Throne.World.Network.Messages
     {
         private void Drop()
         {
-            var item = Character.RemoveFromInventory(Guid);
+            var item = Character.MoveFromInventory(Guid);
             if (!item) return;
 
             var location = Character.Location.RandomLocalCopy(CellType.Item, 5);

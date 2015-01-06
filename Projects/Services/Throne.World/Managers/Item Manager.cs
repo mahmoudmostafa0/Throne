@@ -31,7 +31,7 @@ namespace Throne.World
             record.Create();
 
             var item = new Item(record);
-            chr.MoveToInventory(item);
+            chr.AddItem(item);
             item.Script.OnCreation(chr, item);
 
             return item;

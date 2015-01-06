@@ -204,7 +204,7 @@
     <Compile Include="Network\Messages\Inbox\[1047] Notify.cs" />
     <Compile Include="Network\Messages\Inbox\[1048] Content.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ChangeFace.cs" />
-    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.EnvironmentColor.cs" />
+    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmLocation.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.GetWarp.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.Away.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.RoleQuery.cs" />
@@ -213,10 +213,10 @@
     <Compile Include="Network\Messages\[1008] Item Information.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Drop.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Equip.cs" />
+    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Remove.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.SendGear.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Unequip.cs" />
     <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Use.cs" />
-    <Compile Include="Network\Messages\[1009] Item Action\ItemAction.Remove.cs" />
     <Compile Include="Network\Messages\[1016] Weather.cs" />
     <Compile Include="Network\Messages\[1032] Battle Effectiveness.cs" />
     <Compile Include="Network\Messages\[1101] Map Item Info.cs" />
@@ -234,7 +234,6 @@
     <Compile Include="Network\Messages\[10010] General Action\_GeneralAction.Enumerators.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmAssets.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmFriends.cs" />
-    <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmLocation.cs" />
     <Compile Include="Network\Messages\[10010] General Action\_GeneralAction.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmGuild.cs" />
     <Compile Include="Network\Messages\[10010] General Action\GeneralAction.ConfirmSkills.cs" />
