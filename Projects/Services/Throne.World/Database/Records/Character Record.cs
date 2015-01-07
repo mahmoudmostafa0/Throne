@@ -15,9 +15,9 @@ namespace Throne.World.Records
         public virtual Int32 Look { get; set; }
         public virtual RoleAppearance Appearance { get; set; }
         public virtual Int16 Hairstyle { get; set; }
-        public virtual Byte CurrentJob { get; set; }
-        public virtual Byte PreviousJob { get; set; }
-        public virtual Byte AncestorJob { get; set; }
+        public virtual Role.Profession CurrentJob { get; set; }
+        public virtual Role.Profession PreviousJob { get; set; }
+        public virtual Role.Profession AncestorJob { get; set; }
         public virtual Byte Level { get; set; }
         public virtual UInt32 MapID { get; set; }
         public virtual UInt32 InstanceId { get; set; }
@@ -41,6 +41,11 @@ namespace Throne.World.Records
         public override void Update()
         {
             WorldServer.Instance.WorldDbContext.Update(this);
+        }
+
+        public override void Create()
+        {
+            WorldServer.Instance.WorldDbContext.Commit(this);
         }
     }
 

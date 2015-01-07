@@ -3,7 +3,7 @@ using Throne.Framework;
 
 namespace Throne.World.Structures.Objects
 {
-    public abstract class Role : WorldObject
+    public abstract partial class Role : WorldObject
     {
         protected Model _look;
         protected Hair _hair;
@@ -59,7 +59,7 @@ namespace Throne.World.Structures.Objects
         }
 
         /// <remarks>Taken from COSV3</remarks>
-        public struct Model
+        public class Model
         {
             public enum SexType
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Throne.Framework;
 using Throne.Framework.Network.Transmission.Stream;
 using Throne.World.Network.Messages;
@@ -12,7 +11,7 @@ namespace Throne.World.Structures.Objects
     {
         public Stream ItemStream
         {
-            get { return new Stream().Join((Byte[][])_inventory).Join((Byte[][])_gear); }
+            get { return new Stream().Join((Byte[][]) _inventory).Join((Byte[][]) _gear); }
         }
 
         /// TODO: If no space to add a new item in inventory, send to mailbox. (quest rewards and such)

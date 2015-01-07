@@ -5,27 +5,27 @@ namespace Throne.World.Structures.World
     [Flags]
     public enum MapAttribute : long
     {
-        Normal = 0,
-        PkField = 1 << 0,
-        ChangeMapDisable = 1 << 1,
-        RecordDisable = 1 << 2,
-        PkDisable = 1 << 3,
-        BoothEnable = 1 << 4,
-        TeamDisable = 1 << 5,
-        TeleportDisable = 1 << 6,
-        GuildMap = 1 << 7,
-        PrisonMap = 1 << 8,
-        FlyingDisabled = 1 << 9,
-        House = 1 << 10,
-        MineField = 1 << 11,
-        NewbieSafetyArea = 1 << 12,
-        RebornNowEnable = 1 << 13,
-        NewbieProtect = 1 << 14,
-        TrainingDisable = 1 << 15,
-        MountMap = 1 << 25,
-        GuildMapActive = 1 << 26,
-        GuildCTFMap = 1 << 28,
-        TakeItemsInAttack = 1 << 43
+        Normal = 0x0,
+        PkField = 0x1,
+        ChangeMapDisable = 0x2,
+        RecordDisable = 0x4,
+        PkDisable = 0x8,
+        BoothEnable = 0x10,
+        TeamDisable = 0x20,
+        TeleportDisable = 0x40,
+        GuildMap = 0x80,
+        PrisonMap = 0x100,
+        FlyingDisabled = 0x200,
+        House = 0x400,
+        MineField = 0x800,
+        NewbieSafetyArea = 0x1000,
+        RebornNowEnable = 0x2000,
+        NewbieProtect = 0x4000,
+        TrainingDisable = 0x8000,
+        MountMap = 0x2000000,
+        GuildMapActive = 0x4000000,
+        GuildCTFMap = 0x10000000,
+        TakeItemsInAttack = 0x80000000000
     }
 
     [Flags]

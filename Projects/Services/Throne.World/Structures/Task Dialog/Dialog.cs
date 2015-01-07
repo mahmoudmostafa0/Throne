@@ -7,8 +7,6 @@ namespace Throne.World.Structures
 {
     public class Dialog
     {
-
-
         public Dialog()
         {
             Children = new List<Dialog>();

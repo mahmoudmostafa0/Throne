@@ -10,10 +10,13 @@ namespace Throne.World.Network.Messages
 
         #region Fields
 
+        private readonly Role.Profession
+            AncestorJob;
+
         private readonly string
             CharacterName;
 
-        private readonly byte
+        private readonly Role.Profession
             CurrentJob;
 
         private readonly uint
@@ -21,6 +24,9 @@ namespace Throne.World.Network.Messages
 
         private readonly uint
             Guid;
+
+        private readonly Role.Profession
+            LastJob;
 
         private readonly byte
             Level;
@@ -36,9 +42,6 @@ namespace Throne.World.Network.Messages
 
         private ushort
             Agility;
-
-        private byte
-            AncestorJob;
 
         private ushort
             Attributes;
@@ -64,9 +67,6 @@ namespace Throne.World.Network.Messages
 
         private uint
             HealthPoints;
-
-        private byte
-            LastJob;
 
         private ushort
             ManaPoints;
@@ -106,6 +106,8 @@ namespace Throne.World.Network.Messages
             Guid = character.ID;
             Level = character.Level;
             CurrentJob = character.CurrentJob;
+            LastJob = character.PreviousJob;
+            AncestorJob = character.AncestorJob;
             Money = character.Money;
             EMoney = character.EMoney;
         }
@@ -135,9 +137,9 @@ namespace Throne.World.Network.Messages
             WriteUShort(ManaPoints);
             WriteShort(CrimeLevel);
             WriteByte(Level);
-            WriteByte(CurrentJob);
-            WriteByte(LastJob);
-            WriteByte(AncestorJob);
+            WriteByte((byte) CurrentJob);
+            WriteByte((byte) LastJob);
+            WriteByte((byte) AncestorJob);
             WriteByte(0); //nobility
             WriteByte(Rebirth);
             WriteByte(0); //unknown

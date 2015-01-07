@@ -5,23 +5,17 @@ using Throne.World.Structures.Objects.Actors;
 
 namespace Throne.World.Sessions
 {
-    /// <summary>
-    ///     An NPC interaction session.
-    /// </summary>
     public sealed class NpcSession
     {
         public NpcScript State { get; set; }
 
         /// <summary>
-        ///     Start a new NPC session
+        ///     Create a new instance of the NPC's script and begin interaction with the user.
         /// </summary>
         /// <param name="withNpc"></param>
         public void Start(Npc withNpc, Character chr)
         {
-            if (State) Clear();
-
             State = withNpc.Script.Clone(chr);
-
             State.Interact();
         }
 

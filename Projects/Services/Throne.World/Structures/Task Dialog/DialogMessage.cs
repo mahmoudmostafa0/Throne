@@ -1,7 +1,6 @@
 ﻿using System;
 using Throne.World.Network;
 using Throne.World.Network.Messages;
-using Throne.World.Structures.Objects.Actors;
 
 namespace Throne.World.Structures
 {

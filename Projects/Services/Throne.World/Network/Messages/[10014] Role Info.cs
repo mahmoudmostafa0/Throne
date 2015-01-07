@@ -28,10 +28,10 @@ namespace Throne.World.Network.Messages
             WriteInt(c.GetGearType(Item.Positions.Headgear));
             WriteInt(c.GetGearType(Item.Positions.Garment));
             WriteInt(c.GetGearType(Item.Positions.Armor));
-            WriteInt(c.GetGearType(Item.Positions.RightHand));
             WriteInt(c.GetGearType(Item.Positions.LeftHand));
-            WriteInt(c.GetGearType(Item.Positions.RightWeaponAccessory));
+            WriteInt(c.GetGearType(Item.Positions.RightHand));
             WriteInt(c.GetGearType(Item.Positions.LeftWeaponAccessory));
+            WriteInt(c.GetGearType(Item.Positions.RightWeaponAccessory));
             WriteInt(c.GetGearType(Item.Positions.Mount));
             WriteInt(c.GetGearType(Item.Positions.MountArmor));
             SeekForward(sizeof(short) * 2); // unknown
@@ -45,8 +45,8 @@ namespace Throne.World.Network.Messages
             WriteByte((byte)c.Direction);
             WriteShort(0); // pose
             SeekForward(sizeof(short) * 2 + 1); // unknown + padding, todo: is this a place for strings?
-            WriteByte(2); // rebirth
-            WriteByte(c.Level);
+            WriteByte(0); // rebirth
+            WriteByte(0); //level
             SeekForward(sizeof (bool)); // unknown
             WriteBoolean(false); // show equipment window
             WriteBoolean(c.Away); // afk status
@@ -80,13 +80,13 @@ namespace Throne.World.Network.Messages
             WriteUInt(0u); // off-hand overlay
             WriteUInt(0u); // main-hand overlay
             WriteByte(0); // subclass
-            WriteShort(c.PreviousJob);
-            WriteShort(c.AncestorJob);
-            WriteShort(c.CurrentJob);
+            WriteShort((short) c.PreviousJob);
+            WriteShort((short) c.AncestorJob);
+            WriteShort((short) c.CurrentJob);
             WriteShort(0); // country
             WriteInt(0); // transform power, uses battlepower
             WriteInt(0); // transform color, uses battlepower
-            WriteByte(4); // jianghu talent count
+            WriteByte(0); // jianghu talent count
             WriteBoolean(true); // jianghu active
             SeekForward(1 + sizeof(short)); // pad + unknown
             WriteByte(0); // entourage size

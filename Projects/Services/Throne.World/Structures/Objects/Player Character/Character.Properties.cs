@@ -64,7 +64,7 @@ namespace Throne.World.Structures.Objects
             }
         }
 
-        public Byte CurrentJob
+        public Profession CurrentJob
         {
             get { return Record.CurrentJob; }
             set
@@ -74,7 +74,7 @@ namespace Throne.World.Structures.Objects
             }
         }
 
-        public Byte PreviousJob
+        public Profession PreviousJob
         {
             get { return Record.PreviousJob; }
             protected set
@@ -84,7 +84,7 @@ namespace Throne.World.Structures.Objects
             }
         }
 
-        public Byte AncestorJob
+        public Profession AncestorJob
         {
             get { return Record.AncestorJob; }
             protected set
