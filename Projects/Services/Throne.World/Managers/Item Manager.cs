@@ -36,5 +36,20 @@ namespace Throne.World
 
             return item;
         }
+
+        public void CreateItemRecord(CharacterRecord cRecord, Int32 type, Byte craftLevel, Byte firstSlot, Byte secondSlot, Item.Positions position)
+        {
+            var record = new ItemRecord
+            {
+                Guid = _serialGenerator.Next(),
+                Owner = cRecord,
+                Type = type,
+                CraftLevel = craftLevel,
+                FirstSlot = firstSlot,
+                SecondSlot = secondSlot,
+                Position = position
+            };
+            record.Create();
+        }
     }
 }

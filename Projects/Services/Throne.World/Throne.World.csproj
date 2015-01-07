@@ -165,6 +165,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\NHibernate.dll</HintPath>
@@ -270,6 +271,7 @@
     <Compile Include="Scripting\Interfaces.cs" />
     <Compile Include="Scripting\Script Attributes.cs" />
     <Compile Include="Managers\Script Manager.cs" />
+    <Compile Include="Scripting\Scripts\Dynamic Script.cs" />
     <Compile Include="Scripting\Scripts\Npc Script.cs" />
     <Compile Include="Scripting\Scripts\Script Base.cs" />
     <Compile Include="Scripting\Scripts\Item Script.cs" />
@@ -280,6 +282,7 @@
     <Compile Include="Sessions\NpcSession.cs" />
     <Compile Include="Structures\Mail\Inbox.cs" />
     <Compile Include="Structures\Mail\Mail.cs" />
+    <Compile Include="Structures\Objects\Role.Enumerators.cs" />
     <Compile Include="Structures\Task Dialog\Dialog.cs" />
     <Compile Include="Structures\Task Dialog\DialogFeedback.cs" />
     <Compile Include="Structures\Task Dialog\DialogInput.cs" />

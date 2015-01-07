@@ -56,8 +56,9 @@ namespace Throne.World.Scripting.Scripts
             return true;
         }
 
-        public virtual void Load()
+        protected virtual void Load()
         {
+
         }
 
         /// <summary>

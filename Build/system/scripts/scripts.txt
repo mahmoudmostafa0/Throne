@@ -7,3 +7,4 @@
 include "scripts_items.txt"
 include "scripts_maps.txt"
 include "scripts_npcs.txt"
+include "scripts_dynamic.txt"

@@ -23,10 +23,11 @@ namespace Throne.World
         private const string SystemIndexRoot = "system/scripts/";
         private const string IndexPath = SystemIndexRoot + "scripts.txt";
 
-        private readonly LogProxy Log = new LogProxy("ScriptManager");
+        public readonly LogProxy Log = new LogProxy("ScriptManager");
 
         private readonly CSharpCompiler _compiler;
 
+        private readonly Dictionary<String, DynamicScript> _dynamicScripts;
         private readonly Dictionary<Int32, ItemScript> _itemScripts; 
         private readonly Dictionary<UInt32, MapScript> _mapScripts;
         private readonly Dictionary<String, Type> _scripts;
@@ -40,6 +41,7 @@ namespace Throne.World
             _scripts = new Dictionary<String, Type>();
             _mapScripts = new Dictionary<UInt32, MapScript>();
             _itemScripts = new Dictionary<Int32, ItemScript>();
+            _dynamicScripts = new Dictionary<String, DynamicScript>();
 
             _scriptsToDispose = new List<IDisposableResource>();
         }
@@ -58,6 +60,7 @@ namespace Throne.World
             _itemScripts.Clear();
             _mapScripts.Clear();
             _scripts.Clear();
+            _dynamicScripts.Clear();
             _scriptsToDispose.Clear();
         }
 
@@ -324,6 +327,16 @@ namespace Throne.World
             ItemScript script;
             _itemScripts.TryGetValue(itm.Type, out script);
             return script ?? new DummyItemScript();
+        }
+
+        public void AddDynamicScript(DynamicScript script)
+        {
+            _dynamicScripts[script.Name] = script;
+        }
+
+        public DynamicScript GetDynamicScript(String name)
+        {
+            return _dynamicScripts[name];
         }
     }
 }

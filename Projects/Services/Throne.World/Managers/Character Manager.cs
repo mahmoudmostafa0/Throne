@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Throne.Framework;
 using Throne.Framework.Logging;
-using Throne.Framework.Network.Connectivity;
 using Throne.Framework.Threading;
 using Throne.World.Database.Records.Implementations;
 using Throne.World.Network;
-using Throne.World.Properties.Settings;
 using Throne.World.Records;
+using Throne.World.Scripting.Scripts;
 using Throne.World.Structures.Objects;
 
 namespace Throne.World
@@ -27,7 +25,7 @@ namespace Throne.World
                 WorldObject.PlayerIdMax, ref _serialGenerator);
         }
 
-        public void CreateCharacter(WorldClient client, String name, Byte job, String macAddr, Int16 look)
+        public Boolean CreateCharacter(WorldClient client, String name, Role.Profession job, String macAddr, Int16 look)
         {
             var record = new CharacterRecord
             {
@@ -37,14 +35,16 @@ namespace Throne.World
                 CurrentJob = job,
                 Level = 1,
                 Look = look,
-                MapID = EntitySettings.Default.NewCharacterMap,
-                X = (short)EntitySettings.Default.NewCharacterSpawn.X,
-                Y = (short)EntitySettings.Default.NewCharacterSpawn.Y,
                 CreationTime = DateTime.Now,
-                CreatorMacAddress = macAddr,
-                ItemPayload = new List<ItemRecord>()
+                CreatorMacAddress = macAddr
             };
-            record.Create();
+
+            DynamicScript.ExecutionResult rtn =
+                ScriptManager.Instance.GetDynamicScript("new_character").TryExecution(record);
+            if (rtn == DynamicScript.ExecutionResult.Success) return true;
+
+            _log.Error("Character creation script failed. Return: {0}", rtn);
+            return false;
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace Throne.World
 
         public Character FindCharacter(String name)
         {
-            var ingame = WorldManager.Instance.GetCharacter(name);
+            Character ingame = WorldManager.Instance.GetCharacter(name);
             if (ingame)
                 return ingame;
 
-            var inTheForest =
+            CharacterRecord inTheForest =
                 WorldServer.Instance.WorldDbContext.Find<CharacterRecord>(c => c.Name == name).SingleOrDefault();
             return inTheForest ? new Character(null, inTheForest) : null;
         }
@@ -83,7 +83,7 @@ namespace Throne.World
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Boolean NameValid(String name, Boolean checkDb = false)
         {
-            var valid =
+            bool valid =
                 name.Length <= 16 &&
                 name.Length >= 3 &&
                 name.All(c => c > ' ' && c <= '~') &&

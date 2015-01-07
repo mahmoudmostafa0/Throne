@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Scripts.Npcs", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Services", "Projects\Libraries\Throne.Services\Throne.Services.csproj", "{4EF7F0E7-AF7D-4B5A-BC9F-B849747E3259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Scripts.Other", "Projects\Scripts\Throne.Scripts.Other\Throne.Scripts.Other.csproj", "{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Throne.Scripts.Dynamic", "Projects\Scripts\Throne.Scripts.Dynamic\Throne.Scripts.Dynamic.csproj", "{646E7E91-BDC3-4B97-95B1-854A4B9E21BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
