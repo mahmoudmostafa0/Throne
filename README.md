@@ -3,7 +3,7 @@ Throne
 
 Conquer Online emulator in development.
 
-Written in C#, currently targeted at the patches of late 2014. 
+Written in C#, currently targeted at the patches of mid January 2015. 
 The goal of the Throne project aims to create a stable server platform for Conquer Online.
 
 Development was originally with Mono, but moved to Visual Studio. The project could be ported back to Mono with some effort.
