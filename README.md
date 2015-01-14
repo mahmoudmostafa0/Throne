@@ -40,8 +40,8 @@ Getting Started
    - Creating the database in Throne is easy. First, put your DB server information in the .settings files which you'll find    in the solutions's Properties folder. You can use MSSQL, MySQL, pretty much whatever is handy, just make sure you make the    proper connection string modifications. Create a new database for throne, you can name it whatever, just make sure you       modify the database info in both servers. Once you build the project and get it running, on the console of both servers,     type "createdb"
  - Configure IPs and ports
    - Get back into those global settings files for both servers, modify the IPs to whatever your router or public IP is, set your ports.. the default ports should work, just make sure you use the same ports in your loader.
- - Prepare your client
-   - No loader is included with the project yet, InfamousNoone released a good one in [ConquerServerV3](https://www.assembla.com/code/conquerserverv3/subversion/nodes).. Conquer's v5997 Windows client was used to develop Throne.
+ - Prepare a v6020+ client
+   - No loader is included with the project yet, InfamousNoone released a good one in [ConquerServerV3](https://www.assembla.com/code/conquerserverv3/subversion/nodes).. 
  - Test
    - For commands, type help on the console or >help ingame. Standard command usage: >teleport 1002 300 278
    - For targeted commands, use >>(command) (target). Usage: >>teleport Person 1002 300 378
